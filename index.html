@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABC Fleet Management</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#00AEEF;--dark:#0082B4;--light:#E0F6FF;
+  --w:#fff;--g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;
+  --g400:#94a3b8;--g600:#475569;--g800:#1e293b;
+  --ok:#10b981;--warn:#f59e0b;--err:#ef4444;
+  --radius:12px;--radius-sm:8px;
+}
+html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--g50);color:var(--g800);overflow-x:hidden}
+
+.page{display:none;min-height:100vh}
+.page.active{display:flex;flex-direction:column;animation:fi .35s ease}
+@keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+/* LOGIN */
+#pg-login{background:var(--blue);align-items:stretch;position:relative;overflow:hidden}
+.circles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.circles svg{position:absolute;bottom:-60px;left:-80px;opacity:.18;width:min(480px,130vw)}
+.login-wrap{position:relative;z-index:1;display:flex;flex-direction:column;flex:1}
+.login-top{padding:clamp(20px,4vw,32px) clamp(20px,5vw,36px)}
+.logo-a{font-family:'DM Serif Display',serif;font-size:clamp(22px,5vw,30px);color:#fff;line-height:1}
+.logo-b{font-size:10px;letter-spacing:3px;color:rgba(255,255,255,.65);text-transform:uppercase;margin-top:3px}
+.login-center{flex:1;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,32px)}
+.login-card{background:#fff;border-radius:clamp(14px,3vw,20px);padding:clamp(28px,5vw,44px) clamp(22px,5vw,40px);width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.login-card h1{font-size:clamp(18px,4vw,22px);font-weight:600;margin-bottom:6px}
+.login-card .sub{font-size:13px;color:var(--g600);margin-bottom:28px;line-height:1.55}
+label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-spacing:.4px;text-transform:uppercase;margin-bottom:6px}
+.inp{width:100%;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:13px 14px;font-size:15px;font-family:'DM Sans',sans-serif;color:var(--g800);outline:none;transition:border .2s;-webkit-appearance:none}
+.inp:focus{border-color:var(--blue)}
+.inp.bad{border-color:var(--err)}
+.err{font-size:12px;color:var(--err);margin-top:6px;display:none}
+.btn{display:block;width:100%;background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);padding:14px;font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:20px;transition:background .2s;-webkit-appearance:none;touch-action:manipulation}
+.btn:hover{background:var(--dark)}
+.btn:active{background:var(--dark);transform:scale(.98)}
+.login-bottom{padding:16px;text-align:center}
+.login-bottom p{font-size:11px;color:rgba(255,255,255,.5)}
+
+/* TOAST */
+#toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--g800);color:#fff;padding:11px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;z-index:9999;display:none;white-space:nowrap;max-width:90vw;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+
+/* APP SHELL */
+.app-shell{display:flex;flex-direction:column;flex:1;min-height:0}
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 clamp(14px,3vw,24px);height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-shrink:0}
+.hdr-logo .la{font-family:'DM Serif Display',serif;font-size:18px;color:var(--blue);line-height:1}
+.hdr-logo .lb{font-size:8px;letter-spacing:2px;color:var(--g400);text-transform:uppercase}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.hdr-user{text-align:right}
+.hdr-user .un{font-size:12px;font-weight:500;color:var(--g800)}
+.hdr-user .uc{font-size:10px;color:var(--g400)}
+.btn-out{font-size:11px;color:var(--g400);background:none;border:1px solid var(--g200);border-radius:6px;padding:5px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;touch-action:manipulation}
+.btn-out:hover{color:var(--g800);border-color:var(--g400)}
+.main{flex:1;overflow-y:auto}
+.inner{padding:clamp(18px,4vw,36px) clamp(14px,3vw,28px);max-width:960px;margin:0 auto}
+
+/* BREADCRUMB */
+.bc{font-size:12px;color:var(--g400);margin-bottom:20px}
+.bc span{color:var(--blue);cursor:pointer;font-weight:500}
+
+/* DASHBOARD */
+.dash-hero{margin-bottom:32px}
+.dash-hero h1{font-size:clamp(20px,4vw,26px);font-weight:600;margin-bottom:6px}
+.dash-hero p{font-size:13px;color:var(--g600);line-height:1.6}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:640px){.grid3{grid-template-columns:1fr;gap:12px}}
+@media(min-width:641px) and (max-width:800px){.grid3{grid-template-columns:1fr 1fr;gap:14px}}
+.sc{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:clamp(18px,3vw,28px) clamp(14px,2.5vw,24px);cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .2s;position:relative;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.sc:hover,.sc:active{box-shadow:0 6px 24px rgba(0,174,239,.1);transform:translateY(-2px);border-color:var(--blue)}
+.sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.sc:hover::before,.sc:active::before{transform:scaleX(1)}
+.sci{width:44px;height:44px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.sci svg{width:22px;height:22px;stroke:var(--blue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.sc h2{font-size:clamp(14px,2.5vw,17px);font-weight:600;margin-bottom:6px}
+.sc p{font-size:12px;color:var(--g600);line-height:1.5;margin-bottom:16px}
+.sc-cta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--blue)}
+.sc-cta svg{width:13px;height:13px;transition:transform .2s;flex-shrink:0}
+.sc:hover .sc-cta svg{transform:translateX(3px)}
+
+/* KNOWLEDGE */
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:24px}
+.pill{background:#fff;border:1px solid var(--g200);border-radius:20px;padding:6px 13px;font-size:11px;font-weight:500;color:var(--g600);cursor:pointer;transition:all .2s;touch-action:manipulation;white-space:nowrap}
+.pill.on,.pill:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.art{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:clamp(14px,3vw,20px);margin-bottom:12px}
+.art-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:500;padding:3px 9px;border-radius:10px}
+.t-norm{background:#fef3c7;color:#92400e}
+.t-sost{background:#d1fae5;color:#065f46}
+.t-tech{background:#ede9fe;color:#5b21b6}
+.t-inn{background:#fce7f3;color:#9d174d}
+.art-date{font-size:11px;color:var(--g400)}
+.art h3{font-size:clamp(13px,2.5vw,15px);font-weight:600;margin-bottom:5px;line-height:1.35}
+.art p{font-size:12px;color:var(--g600);line-height:1.55;margin-bottom:10px}
+.rm{font-size:12px;font-weight:500;color:var(--blue);cursor:pointer}
+
+/* QUIZ */
+.qz-inner{max-width:600px}
+.prog{height:4px;background:var(--g200);border-radius:2px;margin-bottom:24px;overflow:hidden}
+.prog-f{height:100%;background:var(--blue);border-radius:2px;transition:width .5s ease}
+.qz-step{animation:fi .3s ease}
+.qz-sec{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:7px}
+.qz-q{font-size:clamp(15px,3vw,18px);font-weight:600;margin-bottom:20px;line-height:1.4}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.opt{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:13px 14px;cursor:pointer;transition:all .2s;font-size:13px;color:var(--g800);line-height:1.4;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.opt:hover{border-color:var(--blue);background:var(--light)}
+.opt.on{border-color:var(--blue);background:var(--light);color:var(--dark);font-weight:500}
+.qz-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn-s{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:10px 16px;font-size:13px;font-weight:500;color:var(--g600);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;touch-action:manipulation}
+.btn-s:hover:not(:disabled){border-color:var(--g400);color:var(--g800)}
+.btn-s:disabled{opacity:.4;cursor:not-allowed}
+.btn-n{background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;touch-action:manipulation}
+.btn-n:hover:not(:disabled){background:var(--dark)}
+.btn-n:disabled{background:var(--g400);cursor:not-allowed}
+.qz-cnt{font-size:11px;color:var(--g400);flex-shrink:0}
+
+/* RESULTS */
+.res{animation:fi .4s ease}
+.res h2{font-size:clamp(18px,3.5vw,22px);font-weight:600;margin-bottom:4px;line-height:1.3}
+.res .pt{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:14px}
+.radar-box{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px;margin-bottom:20px;display:flex;justify-content:center;overflow:hidden}
+.radar-box svg{max-width:260px;width:100%}
+.prof-desc{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:22px;background:#fff;border-left:3px solid var(--blue);padding:13px 15px;border-radius:0 var(--radius-sm) var(--radius-sm) 0}
+.sol-t{font-size:11px;font-weight:600;color:var(--g800);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.sol-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:22px}
+.sol-c{background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:13px}
+.sol-c strong{display:block;color:var(--g800);margin-bottom:3px;font-size:13px}
+.sol-c span{font-size:12px;color:var(--g600);line-height:1.4}
+
+/* BENCHMARK */
+.bench-inner{max-width:680px}
+.bench-intro{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:24px}
+.sl-row{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:clamp(14px,3vw,18px) clamp(14px,3vw,20px);margin-bottom:10px}
+.sl-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:8px}
+.sl-lbl{font-size:13px;font-weight:500;color:var(--g800)}
+.sl-val{font-size:13px;font-weight:600;color:var(--blue);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;height:4px;-webkit-appearance:none;appearance:none;background:var(--g200);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--blue);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--blue);cursor:pointer;border:2px solid #fff}
+.btn-calc{background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);padding:13px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin:10px 0 20px;transition:background .2s;touch-action:manipulation}
+.btn-calc:hover{background:var(--dark)}
+.br-res{animation:fi .4s ease}
+.br-res h3{font-size:15px;font-weight:600;margin-bottom:14px}
+.bbr{margin-bottom:13px}
+.bbr-lbl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;gap:8px}
+.bbr-lbl span:first-child{font-weight:500;color:var(--g800)}
+.bbr-lbl span:last-child{font-size:11px;color:var(--g600);text-align:right}
+.bbr-track{position:relative;height:10px;background:var(--g100);border-radius:5px;overflow:visible}
+.bbr-fill{height:100%;border-radius:5px;transition:width 1s ease;min-width:2px}
+.bbr-avg{position:absolute;top:-4px;width:2px;height:18px;background:var(--g400);border-radius:1px}
+.bbr-avg::after{content:'avg';position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--g400);white-space:nowrap}
+.saving{background:var(--blue);border-radius:var(--radius);padding:clamp(16px,3vw,22px) clamp(16px,3vw,24px);color:#fff;margin:18px 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.saving-n{font-size:clamp(24px,5vw,30px);font-weight:600;font-family:'DM Serif Display',serif;line-height:1}
+.saving-p{font-size:clamp(16px,3vw,18px);font-weight:500;opacity:.85}
+.saving-l{font-size:12px;opacity:.75;line-height:1.4}
+
+/* BACK BTN */
+.btn-back{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--g600);background:none;border:1px solid var(--g200);border-radius:6px;padding:7px 13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px;transition:all .2s;touch-action:manipulation}
+.btn-back:hover{color:var(--g800);border-color:var(--g400)}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="pg-login" class="page active">
+  <div class="circles">
+    <svg viewBox="0 0 480 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="160" cy="380" r="60" stroke="white" stroke-width="1.2"/>
+      <circle cx="160" cy="380" r="100" stroke="white" stroke-width="1.2"/>
+      <circle cx="160" cy="380" r="145" stroke="white" stroke-width="1.2"/>
+      <circle cx="160" cy="380" r="195" stroke="white" stroke-width="1.2"/>
+      <circle cx="160" cy="380" r="250" stroke="white" stroke-width="1.2"/>
+      <circle cx="160" cy="380" r="310" stroke="white" stroke-width="1.2"/>
+      <circle cx="160" cy="380" r="380" stroke="white" stroke-width="1.2"/>
+    </svg>
+  </div>
+  <div class="login-wrap">
+    <div class="login-top">
+      <div class="logo-a">abc</div>
+      <div class="logo-b">Fleet Management</div>
+    </div>
+    <div class="login-center">
+      <div class="login-card">
+        <h1>Area Riservata</h1>
+        <p class="sub">Inserisci il codice personale ricevuto via email per accedere alla tua area dedicata.</p>
+        <label class="lbl" for="ci">Codice di accesso</label>
+        <input class="inp" id="ci" type="text" placeholder="es. FM2024-ALFA" autocomplete="off" autocapitalize="characters">
+        <div class="err" id="em">Codice non valido. Controlla la mail ricevuta.</div>
+        <button class="btn" onclick="doLogin()">Accedi</button>
+      </div>
+    </div>
+    <div class="login-bottom"><p>© 2025 ABC Fleet Management — Area riservata</p></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- DASHBOARD -->
+<div id="pg-dash" class="page">
+  <div class="app-shell">
+    <header class="hdr">
+      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-right">
+        <div class="hdr-user"><div class="un" id="hn1"></div><div class="uc" id="hc1"></div></div>
+        <button class="btn-out" onclick="doLogout()">Esci</button>
+      </div>
+    </header>
+    <div class="main">
+      <div class="inner">
+        <div class="dash-hero">
+          <h1>Il tuo percorso Fleet</h1>
+          <p>Esplora contenuti, valuta la tua maturità nella gestione flotta e confronta i costi con il mercato.</p>
+        </div>
+        <div class="grid3">
+          <div class="sc" onclick="showPage('pg-know')">
+            <div class="sci"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div>
+            <h2>Knowledge</h2>
+            <p>Articoli e news su mobilità aziendale e gestione intelligente delle flotte.</p>
+            <div class="sc-cta">Esplora gli articoli <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+          <div class="sc" onclick="showPage('pg-quiz');startQuiz()">
+            <div class="sci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10a3 3 0 016 0c0 2-3 3-3 3M12 17v.5"/></svg></div>
+            <h2>Questionario</h2>
+            <p>Valuta il tuo livello di maturità e scopri le soluzioni più adatte al tuo profilo.</p>
+            <div class="sc-cta">Inizia la valutazione <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+          <div class="sc" onclick="showPage('pg-bench')">
+            <div class="sci"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10M9 20V4M13 20V14M17 20V8"/></svg></div>
+            <h2>Benchmark</h2>
+            <p>Confronta i costi della tua flotta con il mercato e identifica il potenziale di saving.</p>
+            <div class="sc-cta">Calcola il benchmark <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KNOWLEDGE -->
+<div id="pg-know" class="page">
+  <div class="app-shell">
+    <header class="hdr">
+      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-right"><div class="hdr-user"><div class="un" id="hn2"></div><div class="uc" id="hc2"></div></div><button class="btn-out" onclick="doLogout()">Esci</button></div>
+    </header>
+    <div class="main">
+      <div class="inner">
+        <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Knowledge</div>
+        <div class="pills" id="fp"></div>
+        <div id="al"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="pg-quiz" class="page">
+  <div class="app-shell">
+    <header class="hdr">
+      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-right"><div class="hdr-user"><div class="un" id="hn3"></div><div class="uc" id="hc3"></div></div><button class="btn-out" onclick="doLogout()">Esci</button></div>
+    </header>
+    <div class="main">
+      <div class="inner">
+        <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Questionario di Maturità</div>
+        <div class="qz-inner">
+          <div class="prog"><div class="prog-f" id="qp"></div></div>
+          <div id="qb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENCHMARK -->
+<div id="pg-bench" class="page">
+  <div class="app-shell">
+    <header class="hdr">
+      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-right"><div class="hdr-user"><div class="un" id="hn4"></div><div class="uc" id="hc4"></div></div><button class="btn-out" onclick="doLogout()">Esci</button></div>
+    </header>
+    <div class="main">
+      <div class="inner">
+        <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Benchmark Costi</div>
+        <div class="bench-inner">
+          <p class="bench-intro">Inserisci i costi annuali della tua flotta per scoprire il tuo posizionamento rispetto al mercato e identificare le opportunità di risparmio.</p>
+          <div id="sw"></div>
+          <button class="btn-calc" onclick="calcBench()">Calcola il mio Benchmark</button>
+          <div id="br"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const USERS={
+  'FM2024-ALFA':{az:'Alfa Logistics',ref:'Marco Bianchi'},
+  'FM2024-BETA':{az:'Beta Transport',ref:'Laura Rossi'},
+  'FM2024-GAMMA':{az:'Gamma Mobility',ref:'Stefano Ferri'},
+  'FM2024-DELTA':{az:'Delta Fleet',ref:'Giulia Marini'},
+  'FM2024-EPSILON':{az:'Epsilon Drive',ref:'Andrea Costa'}
+};
+const ARTS=[
+  {cat:'Normativa',ck:'norm',title:'Decreto Mobilità 2024: cosa cambia per le flotte aziendali',ab:'Le nuove disposizioni ministeriali introducono soglie di emissione più stringenti per i veicoli aziendali con obbligo di rendicontazione trimestrale.',dt:'12 Mag 2025'},
+  {cat:'Sostenibilità',ck:'sost',title:'Transizione elettrica: i vantaggi fiscali per le aziende',ab:'I benefici dell\'elettrico non sono solo ambientali. Incentivi statali, esenzioni bollo e deduzioni IRPEF rendono l\'EV un investimento strategico per le flotte moderne.',dt:'3 Mag 2025'},
+  {cat:'Tecnologia',ck:'tech',title:'Telematica avanzata: ridurre i costi del 23% con il dato giusto',ab:'Un\'analisi di 140 aziende italiane mostra come l\'implementazione di sistemi telematici avanzati porti a risparmi significativi su carburante, manutenzione e assicurazioni.',dt:'28 Apr 2025'},
+  {cat:'Innovazione',ck:'inn',title:'Driver Behavior: come l\'AI trasforma la sicurezza in flotta',ab:'I nuovi sistemi di analisi comportamentale basati su machine learning permettono di identificare pattern di guida rischiosi e intervenire prima che si trasformino in sinistri.',dt:'19 Apr 2025'},
+  {cat:'Normativa',ck:'norm',title:'GDPR e dati di flotta: guida pratica alla compliance',ab:'La raccolta di dati sulla posizione e il comportamento dei conducenti richiede attenzione alla normativa privacy. Ecco le best practice per operare in modo conforme.',dt:'10 Apr 2025'},
+  {cat:'Sostenibilità',ck:'sost',title:'Carbon footprint della mobilità aziendale: come misurare e ridurre',ab:'Metodologie certificate per il calcolo delle emissioni della flotta aziendale e strategie pratiche per raggiungere gli obiettivi di sostenibilità ESG.',dt:'2 Apr 2025'},
+  {cat:'Tecnologia',ck:'tech',title:'Manutenzione predittiva: il futuro della gestione flotta',ab:'Grazie ai sensori IoT e all\'analisi predittiva, è possibile anticipare i guasti riducendo i fermo-macchina del 40% e abbattendo i costi di manutenzione straordinaria.',dt:'25 Mar 2025'}
+];
+const QS=[
+  {sec:'Gestione Operativa',q:'Come gestite gli interventi di manutenzione della flotta?',opts:['In modo reattivo, solo quando si presenta un guasto','Seguiamo i tagliandi programmati dal produttore','Utilizziamo dati chilometrici e di utilizzo per pianificare','Sistema predittivo basato su sensori e analisi dati'],sc:[0,1,2,3]},
+  {sec:'Gestione Operativa',q:'Qual è il livello di monitoraggio della flotta in tempo reale?',opts:['Nessun monitoraggio in tempo reale','Tracciamento GPS di base','Posizione, km percorsi e consumi','Visibilità completa su tutti i parametri del veicolo e conducente'],sc:[0,1,2,3]},
+  {sec:'Gestione Operativa',q:'Come gestite l\'assegnazione dei veicoli ai driver?',opts:['Assegnazione fissa e informale','Registro cartaceo o foglio di calcolo','Software dedicato con regole di assegnazione','Gestione dinamica ottimizzando l\'utilizzo della flotta'],sc:[0,1,2,3]},
+  {sec:'Sostenibilità',q:'Qual è la composizione della flotta in termini di alimentazione?',opts:['100% veicoli tradizionali (benzina/diesel)','Presenza marginale di ibridi (< 10%)','Mix significativo di ibridi e/o plug-in hybrid','Forte presenza di elettrici o piano di transizione strutturato'],sc:[0,1,2,3]},
+  {sec:'Sostenibilità',q:'Misurate e rendicontate le emissioni CO₂ della flotta?',opts:['No, non lo facciamo','Solo quando richiesto da enti esterni','Rendicontiamo annualmente per il report ESG','Misuriamo in tempo reale con target di riduzione strutturati'],sc:[0,1,2,3]},
+  {sec:'Sostenibilità',q:'Quali politiche di eco-driving sono adottate in azienda?',opts:['Nessuna politica strutturata','Linee guida informali senza monitoraggio','Training periodici con KPI comportamentali','Scoring real-time con incentivi e feedback continuo'],sc:[0,1,2,3]},
+  {sec:'Controllo Costi',q:'Con quale frequenza analizzate i costi per veicolo?',opts:['Nessuna analisi strutturata per veicolo','Annualmente o a consuntivo','Trimestralmente con report di costo per centro','Mensilmente con dashboard real-time e alerting automatico'],sc:[0,1,2,3]},
+  {sec:'Controllo Costi',q:'Come gestite i sinistri e il loro impatto sui premi assicurativi?',opts:['Gestione caso per caso senza analisi sistematica','Registro sinistri senza analisi delle cause','Analisi periodica con categorizzazione delle cause','Prevenzione attiva con monitoraggio comportamentale'],sc:[0,1,2,3]}
+];
+const CI=[
+  {lbl:'Carburante',k:'fuel',max:500000,avg:180000},
+  {lbl:'Manutenzione ordinaria',k:'maint',max:300000,avg:90000},
+  {lbl:'Manutenzione straordinaria',k:'extr',max:200000,avg:55000},
+  {lbl:'Assicurazioni',k:'ins',max:250000,avg:70000},
+  {lbl:'Gestione sinistri',k:'clm',max:150000,avg:35000},
+  {lbl:'Noleggio / leasing',k:'lease',max:500000,avg:150000}
+];
+
+let user=null,qStep=0,qAns=[],aFilt='all';
+
+function doLogin(){
+  const v=document.getElementById('ci').value.trim().toUpperCase();
+  const u=USERS[v];
+  document.getElementById('ci').classList.toggle('bad',!u);
+  document.getElementById('em').style.display=u?'none':'block';
+  if(u){user=u;showToast('Benvenuto, '+u.ref+' — '+u.az);setTimeout(()=>{showPage('pg-dash');upHdr();},1400);}
+}
+document.getElementById('ci').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+function doLogout(){
+  user=null;
+  showPage('pg-login');
+  document.getElementById('ci').value='';
+  document.getElementById('ci').classList.remove('bad');
+  document.getElementById('em').style.display='none';
+}
+
+function showToast(m){
+  const t=document.getElementById('toast');
+  t.textContent=m;t.style.display='block';
+  setTimeout(()=>t.style.display='none',1400);
+}
+
+function upHdr(){
+  if(!user)return;
+  [1,2,3,4].forEach(i=>{
+    const n=document.getElementById('hn'+i),c=document.getElementById('hc'+i);
+    if(n)n.textContent=user.ref;
+    if(c)c.textContent=user.az;
+  });
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='pg-know')renderKnow();
+  if(id==='pg-bench')renderSliders();
+}
+
+function renderKnow(){
+  const cats=['all','norm','sost','tech','inn'];
+  const lb={all:'Tutti',norm:'Normativa',sost:'Sostenibilità',tech:'Tecnologia',inn:'Innovazione'};
+  document.getElementById('fp').innerHTML=cats.map(c=>`<div class="pill ${aFilt===c?'on':''}" onclick="setFilt('${c}')">${lb[c]}</div>`).join('');
+  const filtered=aFilt==='all'?ARTS:ARTS.filter(a=>a.ck===aFilt);
+  document.getElementById('al').innerHTML=filtered.map(a=>`<div class="art"><div class="art-meta"><span class="tag t-${a.ck}">${a.cat}</span><span class="art-date">${a.dt}</span></div><h3>${a.title}</h3><p>${a.ab}</p><span class="rm">Leggi di più →</span></div>`).join('');
+}
+function setFilt(f){aFilt=f;renderKnow();}
+
+function startQuiz(){qStep=0;qAns=new Array(QS.length).fill(-1);renderQuiz();}
+function renderQuiz(){
+  const tot=QS.length;
+  document.getElementById('qp').style.width=((qStep/tot)*100)+'%';
+  const b=document.getElementById('qb');
+  if(qStep>=tot){showRes();return;}
+  const q=QS[qStep];
+  b.innerHTML=`<div class="qz-step"><div class="qz-sec">${q.sec}</div><div class="qz-q">${q.q}</div><div class="opts">${q.opts.map((o,i)=>`<div class="opt ${qAns[qStep]===i?'on':''}" onclick="selOpt(${i})">${o}</div>`).join('')}</div><div class="qz-nav"><button class="btn-s" onclick="qBack()" ${qStep===0?'disabled':''}>← Indietro</button><span class="qz-cnt">${qStep+1} / ${tot}</span><button class="btn-n" onclick="qNext()" ${qAns[qStep]===-1?'disabled':''}>${qStep===tot-1?'Vedi risultati →':'Avanti →'}</button></div></div>`;
+}
+function selOpt(i){qAns[qStep]=i;renderQuiz();}
+function qNext(){if(qAns[qStep]>-1){qStep++;renderQuiz();}}
+function qBack(){if(qStep>0){qStep--;renderQuiz();}}
+
+function showRes(){
+  document.getElementById('qp').style.width='100%';
+  const s={op:0,so:0,co:0};
+  QS.forEach((q,i)=>{const v=qAns[i]===-1?0:q.sc[qAns[i]];if(q.sec==='Gestione Operativa')s.op+=v;else if(q.sec==='Sostenibilità')s.so+=v;else s.co+=v;});
+  const mx=9,op=Math.round((s.op/mx)*100),so=Math.round((s.so/mx)*100),co=Math.round((s.co/mx)*100),avg=Math.round((op+so+co)/3);
+  let pr,ds,sl;
+  if(avg<33){pr='Gestore Tradizionale';ds='La tua azienda gestisce la flotta con approcci consolidati ma prevalentemente reattivi. Esiste un significativo potenziale di ottimizzazione attraverso l\'adozione di strumenti digitali e pratiche strutturate che possono ridurre costi e migliorare l\'efficienza operativa.';sl=[{t:'Fleet Monitoring Base',d:'Telematica GPS e reportistica semplice per iniziare la digitalizzazione.'},{t:'Manutenzione Programmata',d:'Pianificazione automatica degli interventi per ridurre i fermi non pianificati.'},{t:'Driver Training',d:'Programmi di formazione alla guida efficiente per abbattere i consumi.'}];}
+  else if(avg<66){pr='Fleet Manager in Crescita';ds='Hai già implementato alcune best practice e stai evolvendo verso modelli più strutturati. Il passo successivo è l\'integrazione tra le diverse aree per ottenere una visione unitaria e predittiva delle performance.';sl=[{t:'Piattaforma Integrata',d:'Dashboard unificata per costi, utilizzo e performance in tempo reale.'},{t:'Driver Behavior Analytics',d:'Scoring comportamentale per ridurre sinistri e consumi.'},{t:'Transizione EV',d:'Piano strutturato di elettrificazione con analisi TCO personalizzata.'}];}
+  else{pr='Leader della Mobilità Aziendale';ds='La tua organizzazione adotta pratiche avanzate con forte orientamento ai dati e alla sostenibilità. Sei posizionato per guidare la transizione verso modelli di mobilità innovativi e raggiungere eccellenza operativa misurabile.';sl=[{t:'Mobilità as a Service',d:'Gestione integrata di tutti i flussi di mobilità aziendale.'},{t:'Predictive Fleet AI',d:'Intelligenza artificiale per ottimizzazione continua e predizione guasti.'},{t:'Carbon Management',d:'Strumenti avanzati per misurazione e riduzione delle emissioni ESG.'}];}
+  document.getElementById('qb').innerHTML=`<div class="res"><h2>Profilo: <span style="color:var(--blue)">${pr}</span></h2><div class="pt">Punteggio medio: ${avg}%</div><div class="radar-box">${buildRadar(op,so,co)}</div><div class="prof-desc">${ds}</div><div class="sol-t">Le soluzioni per te</div><div class="sol-grid">${sl.map(s=>`<div class="sol-c"><strong>${s.t}</strong><span>${s.d}</span></div>`).join('')}</div><button class="btn-back" onclick="showPage('pg-dash')">← Torna alla Dashboard</button></div>`;
+}
+
+function buildRadar(op,so,co){
+  const cx=130,cy=130,r=90;
+  const ang=[-90,30,150],lbs=['Gestione\nOperativa','Sostenibilità','Controllo\nCosti'],vals=[op/100,so/100,co/100];
+  const pts=vals.map((v,i)=>{const a=(ang[i]*Math.PI)/180;return{x:cx+r*v*Math.cos(a),y:cy+r*v*Math.sin(a)};});
+  const grid=[.33,.66,1].map(g=>{const gp=ang.map(a=>{const rd=(a*Math.PI)/180;return(cx+r*g*Math.cos(rd))+','+(cy+r*g*Math.sin(rd));});return`<polygon points="${gp.join(' ')}" fill="none" stroke="#e2e8f0" stroke-width="1"/>`;}).join('');
+  const axes=ang.map(a=>{const rd=(a*Math.PI)/180;return`<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(rd)}" y2="${cy+r*Math.sin(rd)}" stroke="#e2e8f0" stroke-width="1"/>`;}).join('');
+  const lbls=ang.map((a,i)=>{const rd=(a*Math.PI)/180;const lx=cx+(r+26)*Math.cos(rd),ly=cy+(r+26)*Math.sin(rd);return lbs[i].split('\n').map((p,j,arr)=>`<text x="${lx}" y="${ly+(j*13)-((arr.length-1)*6.5)}" text-anchor="middle" dominant-baseline="central" font-size="10" font-family="DM Sans,sans-serif" fill="#475569">${p}</text>`).join('');}).join('');
+  const dots=pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#00AEEF"/>`).join('');
+  return`<svg viewBox="0 0 260 260" style="width:100%;max-width:240px">${grid}${axes}<polygon points="${pts.map(p=>p.x+','+p.y).join(' ')}" fill="rgba(0,174,239,.15)" stroke="#00AEEF" stroke-width="2"/>${dots}${lbls}</svg>`;
+}
+
+function renderSliders(){
+  document.getElementById('br').innerHTML='';
+  document.getElementById('sw').innerHTML=CI.map(it=>`<div class="sl-row"><div class="sl-hdr"><span class="sl-lbl">${it.lbl}</span><span class="sl-val" id="v-${it.k}">€ 0</span></div><input type="range" min="0" max="${it.max}" step="5000" value="0" id="s-${it.k}" oninput="upSl('${it.k}')"></div>`).join('');
+}
+function upSl(k){const v=+document.getElementById('s-'+k).value;document.getElementById('v-'+k).textContent='€ '+v.toLocaleString('it-IT');}
+
+function calcBench(){
+  const vals={};let tot=0,totAvg=0;
+  CI.forEach(it=>{vals[it.k]=+document.getElementById('s-'+it.k).value;tot+=vals[it.k];totAvg+=it.avg;});
+  const sav=Math.max(0,tot-totAvg),savP=tot>0?Math.round((sav/tot)*100):0;
+  const bars=CI.map(it=>{
+    const v=vals[it.k],pct=Math.round((v/it.max)*100),ap=Math.round((it.avg/it.max)*100);
+    const col=v>it.avg?'#ef4444':v>it.avg*.7?'#f59e0b':'#10b981';
+    const pos=v>it.avg?'sopra media':v>it.avg*.7?'nella media':'sotto media';
+    return`<div class="bbr"><div class="bbr-lbl"><span>${it.lbl}</span><span>€ ${v.toLocaleString('it-IT')} — <span style="color:${col}">${pos}</span></span></div><div class="bbr-track"><div class="bbr-fill" style="width:${pct}%;background:${col}"></div><div class="bbr-avg" style="left:${ap}%"></div></div></div>`;
+  }).join('');
+  const above=CI.filter(i=>vals[i.k]>i.avg);
+  const recs=above.length===0
+    ?[{t:'Ottima gestione dei costi',d:'I tuoi costi sono allineati o inferiori alla media di mercato.'},{t:'Fleet Intelligence Pro',d:'Dashboard avanzata per monitorare le derive di costo nel tempo.'},{t:'Benchmark Continuo',d:'Alert automatici quando un costo supera le soglie di riferimento.'}]
+    :above.slice(0,3).map(i=>({t:i.lbl+' — Ottimizzazione',d:'Soluzioni dedicate per ridurre questa voce di costo con monitoraggio continuo.'}));
+  document.getElementById('br').innerHTML=`<div class="br-res"><h3>Il tuo posizionamento rispetto al mercato</h3>${bars}<div class="saving"><div><div class="saving-l">Potenziale di saving stimato</div><div class="saving-n">€ ${sav.toLocaleString('it-IT')}</div></div><div class="saving-p">–${savP}%</div></div><div class="sol-t">Iniziative consigliate</div><div class="sol-grid">${recs.map(r=>`<div class="sol-c"><strong>${r.t}</strong><span>${r.d}</span></div>`).join('')}</div><button class="btn-back" onclick="showPage('pg-dash')">← Torna alla Dashboard</button></div>`;
+  document.getElementById('br').scrollIntoView({behavior:'smooth',block:'start'});
+}
+</script>
+</body>
+</html>
