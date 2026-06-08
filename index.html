@@ -15,8 +15,9 @@
   --radius:12px;--radius-sm:8px;
 }
 html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--g50);color:var(--g800);overflow-x:hidden}
-.page{display:none;min-height:100vh}
-.page.active{display:flex;flex-direction:column;animation:fi .35s ease}
+.page{display:none;overflow:hidden}
+.page.active{display:flex;flex-direction:column;min-height:100vh;animation:fi .35s ease}
+.app-shell{display:flex;flex-direction:column;flex:1;min-height:0;height:100%}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* LOGIN */
@@ -46,17 +47,17 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--g800);color:#fff;padding:11px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;z-index:9999;display:none;white-space:nowrap;max-width:90vw;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
 
 /* APP SHELL */
-.app-shell{display:flex;flex-direction:column;flex:1;min-height:0}
-.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 clamp(10px,2vw,24px);height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-shrink:0}
-.hdr-logo .la{font-family:'DM Serif Display',serif;font-size:18px;color:var(--blue);line-height:1}
+.app-shell{display:flex;flex-direction:column;flex:1;min-height:0;height:100%}
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 clamp(10px,2vw,24px);height:56px;display:flex;align-items:center;z-index:100;flex-shrink:0}
+.hdr-logo{cursor:pointer}.hdr-logo .la{font-family:'DM Serif Display',serif;font-size:18px;color:var(--blue);line-height:1}
 .hdr-logo .lb{font-size:8px;letter-spacing:2px;color:var(--g400);text-transform:uppercase}
-.hdr-right{display:flex;align-items:center;gap:6px}
+.hdr-right{display:flex;align-items:center;gap:6px;margin-left:auto}
 .hdr-user{text-align:right}
 .hdr-user .un{font-size:12px;font-weight:500;color:var(--g800)}
 .hdr-user .uc{font-size:10px;color:var(--g400)}
 .btn-out{font-size:11px;color:var(--g400);background:none;border:1px solid var(--g200);border-radius:6px;padding:5px 8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;touch-action:manipulation}
 .btn-out:hover{color:var(--g800);border-color:var(--g400)}
-.hdr-nav{display:flex;align-items:center;gap:2px}
+.hdr-nav{display:flex;align-items:center;gap:2px;flex:1;justify-content:center}
 .hdr-nav-btn{font-size:11px;font-weight:500;color:var(--g600);background:none;border:none;padding:5px 8px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;touch-action:manipulation}
 .hdr-nav-btn:hover{color:var(--blue);background:var(--light)}
 .hdr-nav-sep{width:1px;height:14px;background:var(--g200);margin:0 2px}
@@ -142,7 +143,7 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 .art-date{font-size:11px;color:var(--g400)}
 .art h3{font-size:clamp(13px,2.5vw,15px);font-weight:600;margin-bottom:5px;line-height:1.35}
 .art p{font-size:12px;color:var(--g600);line-height:1.55;margin-bottom:10px}
-.rm{font-size:12px;font-weight:500;color:var(--blue);cursor:pointer}
+.rm{font-size:12px;font-weight:500;color:var(--blue);cursor:pointer;text-decoration:none;display:inline-block}
 
 /* QUIZ */
 .qz-inner{max-width:600px}
@@ -251,18 +252,164 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .btn-back{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--g600);background:none;border:1px solid var(--g200);border-radius:6px;padding:7px 13px;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px;transition:all .2s;touch-action:manipulation}
 .btn-back:hover{color:var(--g800);border-color:var(--g400)}
 
+/* FLEET PROFILE */
+.fp-banner{background:var(--light);border:1px solid rgba(0,174,239,.2);border-radius:var(--radius);padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fp-banner-info{font-size:12px;color:var(--dark);line-height:1.5}
+.fp-banner-info strong{font-weight:600}
+.fp-banner-edit{font-size:11px;font-weight:500;color:var(--blue);background:none;border:1px solid var(--blue);border-radius:5px;padding:4px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.fp-form{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:20px 22px;margin-bottom:24px}
+.fp-form h3{font-size:14px;font-weight:600;color:var(--g800);margin-bottom:4px}
+.fp-form .fp-sub{font-size:12px;color:var(--g600);margin-bottom:20px}
+.fp-skip{font-size:12px;font-weight:500;color:var(--g400);background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:underline;margin-left:12px}
+.fp-skip:hover{color:var(--g600)}
+.fp-row{margin-bottom:16px}
+.fp-row label{display:block;font-size:11px;font-weight:500;color:var(--g600);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.fp-sl-hdr{display:flex;justify-content:space-between;margin-bottom:5px}
+.fp-sl-val{font-size:13px;font-weight:600;color:var(--blue)}
+.fp-opts{display:flex;flex-wrap:wrap;gap:7px}
+.fp-opt{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:7px 13px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;color:var(--g700)}
+.fp-opt.on{border-color:var(--blue);background:var(--light);color:var(--dark);font-weight:500}
+.fp-opt:hover{border-color:var(--blue)}
+.fp-actions{display:flex;align-items:center;margin-top:20px;gap:10px}
+.fp-btn{background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);padding:10px 22px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.fp-btn:hover{background:var(--dark)}
+
+/* HUB CARDS */
+.hub-intro{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:24px}
+.hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:8px}
+.hub-card{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:20px 22px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.hub-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.hub-card:hover{border-color:var(--blue);box-shadow:0 4px 20px rgba(0,174,239,.1);transform:translateY(-2px)}
+.hub-card:hover::before{transform:scaleX(1)}
+.hub-card-num{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+.hub-card h3{font-size:14px;font-weight:600;color:var(--g800);margin-bottom:6px;line-height:1.3}
+.hub-card p{font-size:12px;color:var(--g600);line-height:1.5;margin-bottom:10px}
+.hub-card-cta{font-size:12px;font-weight:500;color:var(--blue)}
+
+/* ASSESSMENT WIZARD */
+.az-header{margin-bottom:20px}
+.az-header h2{font-size:18px;font-weight:600;color:var(--g800);margin-bottom:4px}
+.az-header p{font-size:13px;color:var(--g600)}
+.prog{height:4px;background:var(--g200);border-radius:2px;margin-bottom:24px;overflow:hidden}
+.prog-f{height:100%;background:var(--blue);border-radius:2px;transition:width .5s ease}
+.qz-sec{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:7px}
+.qz-q{font-size:clamp(15px,3vw,17px);font-weight:600;margin-bottom:18px;line-height:1.4;color:var(--g800)}
+.opts{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
+.opt{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:13px 14px;cursor:pointer;transition:all .2s;font-size:13px;color:var(--g800);line-height:1.4;touch-action:manipulation}
+.opt:hover{border-color:var(--blue);background:var(--light)}
+.opt.on{border-color:var(--blue);background:var(--light);color:var(--dark);font-weight:500}
+.qz-nav{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.btn-s{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:10px 16px;font-size:13px;font-weight:500;color:var(--g600);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-s:hover:not(:disabled){border-color:var(--g400);color:var(--g800)}
+.btn-s:disabled{opacity:.4;cursor:not-allowed}
+.btn-n{background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-n:hover:not(:disabled){background:var(--dark)}
+.btn-n:disabled{background:var(--g400);cursor:not-allowed}
+.qz-cnt{font-size:11px;color:var(--g400);flex-shrink:0}
+
+/* ASSESSMENT RESULTS */
+.res-header{background:var(--blue);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;position:relative;overflow:hidden}
+.res-header-circles{position:absolute;right:-30px;top:-30px;opacity:.12;pointer-events:none;width:160px}
+.res-header-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.7);margin-bottom:6px}
+.res-header h2{font-size:clamp(17px,3vw,21px);font-weight:600;color:#fff;margin-bottom:8px}
+.res-header p{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+.res-score-row{display:flex;align-items:center;gap:10px;margin-top:12px}
+.res-score-badge{background:rgba(255,255,255,.2);border-radius:6px;padding:5px 12px;font-size:13px;font-weight:600;color:#fff}
+.radar-box{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px;margin-bottom:20px;display:flex;justify-content:center}
+.radar-box svg{max-width:240px;width:100%}
+.sol-t{font-size:11px;font-weight:600;color:var(--g800);margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
+.sol-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:16px}
+.sol-c{background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:13px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.sol-c:hover{border-color:var(--blue);box-shadow:0 2px 12px rgba(0,174,239,.1)}
+.sol-c strong{display:block;color:var(--g800);margin-bottom:3px;font-size:13px}
+.sol-c span{font-size:12px;color:var(--g600);line-height:1.4}
+.sol-c .sol-link{font-size:11px;color:var(--blue);font-weight:500;margin-top:6px;display:block}
+.res-cat-group{margin-bottom:18px}
+.res-cat-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--blue);background:var(--light);padding:3px 10px;border-radius:20px;display:inline-block;margin-bottom:10px}
+
+/* BENCHMARK */
+.bench-type-header{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px}
+.bench-type-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:4px}
+.bench-type-header h2{font-size:16px;font-weight:600;color:var(--g800);margin-bottom:4px}
+.bench-type-header p{font-size:13px;color:var(--g600);line-height:1.5}
+.bench-section{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:18px 20px;margin-bottom:12px}
+.bench-section-title{font-size:12px;font-weight:600;color:var(--g800);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.bench-section-badge{font-size:10px;font-weight:600;color:var(--blue);background:var(--light);padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
+.sl-row{margin-bottom:14px}
+.sl-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:8px}
+.sl-lbl{font-size:13px;font-weight:500;color:var(--g800)}
+.sl-val{font-size:13px;font-weight:600;color:var(--blue);white-space:nowrap}
+input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer;height:4px;-webkit-appearance:none;appearance:none;background:var(--g200);border-radius:2px;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--blue);cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--blue);cursor:pointer;border:2px solid #fff}
+.qual-row{margin-bottom:12px}
+.qual-row label{display:block;font-size:13px;font-weight:500;color:var(--g800);margin-bottom:7px}
+.qual-opts{display:flex;flex-wrap:wrap;gap:6px}
+.qual-opt{background:#fff;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:6px 12px;font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;color:var(--g700)}
+.qual-opt.on{border-color:var(--blue);background:var(--light);color:var(--dark);font-weight:500}
+.qual-opt:hover{border-color:var(--blue)}
+.btn-calc{background:var(--blue);color:#fff;border:none;border-radius:var(--radius-sm);padding:12px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin:8px 0 20px;transition:background .2s}
+.btn-calc:hover{background:var(--dark)}
+.br-res{animation:fi .4s ease}
+.br-section-title{font-size:13px;font-weight:600;color:var(--g800);margin:16px 0 10px;text-transform:uppercase;letter-spacing:.4px}
+.bbr{margin-bottom:14px}
+.bbr-lbl{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px;gap:8px}
+.bbr-lbl span:first-child{font-weight:500;color:var(--g800)}
+.bbr-lbl span:last-child{font-size:11px;color:var(--g600);text-align:right}
+.bbr-track{position:relative;height:10px;background:var(--g100);border-radius:5px;overflow:visible}
+.bbr-fill{height:100%;border-radius:5px;transition:width 1s ease;min-width:2px}
+.bbr-avg{position:absolute;top:-4px;width:2px;height:18px;background:var(--g400);border-radius:1px}
+.bbr-avg::after{content:'avg';position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--g400);white-space:nowrap}
+.saving{background:var(--blue);border-radius:var(--radius);padding:clamp(16px,3vw,22px) clamp(16px,3vw,24px);color:#fff;margin:16px 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.saving-n{font-size:clamp(22px,4vw,28px);font-weight:600;font-family:'DM Serif Display',serif;line-height:1}
+.saving-p{font-size:clamp(15px,3vw,17px);font-weight:500;opacity:.85}
+.saving-l{font-size:12px;opacity:.75;line-height:1.4}
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:16px}
+.score-card{background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:14px;text-align:center}
+.score-card-label{font-size:11px;color:var(--g600);margin-bottom:6px;line-height:1.3}
+.score-bar{height:6px;background:var(--g100);border-radius:3px;overflow:hidden;margin-bottom:6px}
+.score-bar-fill{height:100%;border-radius:3px;transition:width 1s ease}
+.score-card-val{font-size:18px;font-weight:600;font-family:'DM Serif Display',serif;color:var(--blue)}
+
 /* FOOTER */
-.site-footer{background:#fff;border-top:1px solid var(--g200);padding:14px clamp(14px,3vw,24px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;flex-shrink:0}
+.site-footer{background:#fff;border-top:1px solid var(--g200);padding:14px clamp(14px,3vw,24px);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;flex-shrink:0;position:relative;z-index:1}
 .footer-copy{font-size:11px;color:var(--g400)}
-.footer-nav{display:flex;align-items:center;gap:2px;flex-wrap:wrap}
+.footer-nav{display:flex;align-items:center;gap:2px;justify-content:center}
 .footer-nav-btn{font-size:11px;font-weight:500;color:var(--g600);background:none;border:none;padding:4px 9px;border-radius:5px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;touch-action:manipulation;white-space:nowrap}
 .footer-nav-btn:hover{color:var(--blue);background:var(--light)}
 .footer-sep{font-size:11px;color:var(--g200)}
+.footer-right{display:flex;justify-content:flex-end}
 .btn-home{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:var(--blue);background:none;border:1px solid var(--blue);border-radius:6px;padding:6px 14px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;touch-action:manipulation;white-space:nowrap}
 .btn-home:hover{background:var(--light)}
 .btn-home svg{width:13px;height:13px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+/* MY PROFILE */
+.prof-welcome{background:var(--blue);border-radius:var(--radius);padding:20px 24px;margin-bottom:16px;position:relative;overflow:hidden}
+.prof-welcome::after{content:'';position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(255,255,255,.12)}
+.prof-welcome::before{content:'';position:absolute;right:-10px;top:-10px;width:100px;height:100px;border-radius:50%;border:1px solid rgba(255,255,255,.08)}
+.prof-welcome-name{font-size:clamp(18px,3vw,22px);font-weight:600;color:#fff;margin-bottom:2px}
+.prof-welcome-company{font-size:13px;color:rgba(255,255,255,.75)}
+.prof-card{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:20px 22px}
+.prof-card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.prof-card-title{font-size:14px;font-weight:600;color:var(--g800)}
+.prof-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.prof-detail-item{background:var(--g50);border-radius:var(--radius-sm);padding:12px 14px}
+.prof-detail-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.5px;color:var(--g400);margin-bottom:4px}
+.prof-detail-val{font-size:14px;font-weight:500;color:var(--g800)}
+/* ASSESSMENT OPTIONS with letter labels */
+.opt{display:flex;align-items:flex-start;gap:10px}
+.opt-letter{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--g400);transition:all .2s;margin-top:1px}
+.opt.on .opt-letter{background:var(--blue);color:#fff}
+.opt-text{flex:1;line-height:1.4}
+/* CONTACTS */
+.contact-card{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:24px 26px;max-width:480px}
+.contact-role{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--blue);margin-bottom:12px}
+.contact-name{font-size:20px;font-weight:600;color:var(--g800);margin-bottom:16px;font-family:'DM Serif Display',serif}
+.contact-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.contact-row svg{width:16px;height:16px;stroke:var(--blue);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.contact-row a{font-size:14px;color:var(--g700);text-decoration:none;transition:color .2s}
+.contact-row a:hover{color:var(--blue)}
+.contact-intro{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:24px}
 </style>
-</head>
 <body>
 
 <!-- LOGIN -->
@@ -292,16 +439,19 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-dash" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
-      <div class="hdr-right">
-        <nav class="hdr-nav">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
-          <button class="hdr-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+          <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
           <span class="hdr-nav-sep"></span>
           <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
-        <div class="hdr-user"><div class="un" id="hn1"></div><div class="uc" id="hc1"></div></div>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn1"></div><div class="uc" id="hc1" style="color:var(--blue);font-size:10px">My Profile</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -330,7 +480,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <h2>Knowledge</h2><p>Articoli e news su mobilità aziendale e gestione intelligente delle flotte.</p>
           <div class="sc-cta">Esplora gli articoli <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         </div>
-        <div class="sc" onclick="showPage('pg-quiz');startQuiz()">
+        <div class="sc" onclick="showPage('pg-quiz')">
           <div class="sci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10a3 3 0 016 0c0 2-3 3-3 3M12 17v.5"/></svg></div>
           <h2>Assessment</h2><p>Valuta il tuo livello di maturità nella gestione flotta e scopri le soluzioni più adatte al tuo profilo.</p>
           <div class="sc-cta">Inizia la valutazione <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
@@ -341,24 +491,23 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <div class="sc-cta">Calcola il benchmark <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
         </div>
       </div>
-
-      <div class="section-title" style="margin-top:36px">Perché scegliere ABC</div>
-      <div class="benefits-row">
-        <div class="benefit-card"><div class="benefit-dot"></div><div><h4>Integrazione verticale e governance unica</h4><p>Offerta integrata dal disegno alla gestione operativa, fino all'integrazione con infrastrutture di ricarica, erogata tramite presidio end-to-end ed unico interlocutore.</p></div></div>
-        <div class="benefit-card"><div class="benefit-dot"></div><div><h4>Supporto alla transizione energetica</h4><p>Un'offerta integrata lungo tutta la catena del valore: dal fleet management evoluto, all'infrastruttura di ricarica, alla vendita di energia, fino al change management.</p></div></div>
-        <div class="benefit-card"><div class="benefit-dot"></div><div><h4>Piattaforma digitale unica</h4><p>Gestione completa del parco auto attraverso un'unica piattaforma digitale che centralizza dati, contratti, servizi e ricariche, garantendo controllo e trasparenza.</p></div></div>
-      </div>
     </div></div>
     <footer class="site-footer">
       <span class="footer-copy">© 2026 ABC Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
     </footer>
   </div>
 </div>
@@ -367,16 +516,19 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-svc" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
-      <div class="hdr-right">
-        <nav class="hdr-nav">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
-          <button class="hdr-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+          <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
           <span class="hdr-nav-sep"></span>
           <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
-        <div class="hdr-user"><div class="un" id="hn2"></div><div class="uc" id="hc2"></div></div>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn2"></div><div class="uc" id="hc2" style="color:var(--blue);font-size:10px">My Profile</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -389,11 +541,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
     </footer>
   </div>
 </div>
@@ -402,16 +560,19 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-svc-detail" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
-      <div class="hdr-right">
-        <nav class="hdr-nav">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
-          <button class="hdr-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+          <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
           <span class="hdr-nav-sep"></span>
           <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
-        <div class="hdr-user"><div class="un" id="hn5"></div><div class="uc" id="hc5"></div></div>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn5"></div><div class="uc" id="hc5" style="color:var(--blue);font-size:10px">My Profile</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -424,11 +585,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
     </footer>
   </div>
 </div>
@@ -437,14 +604,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-know" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
-      <div class="hdr-right">
-        <nav class="hdr-nav">
-          <button class="hdr-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
+          <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
           <span class="hdr-nav-sep"></span>
           <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
-        <div class="hdr-user"><div class="un" id="hn3"></div><div class="uc" id="hc3"></div></div>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn3"></div><div class="uc" id="hc3" style="color:var(--blue);font-size:10px">My Profile</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -456,11 +626,17 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <footer class="site-footer">
       <span class="footer-copy">© 2026 ABC Fleet Management</span>
       <div class="footer-nav">
-        <button class="footer-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
     </footer>
   </div>
 </div>
@@ -469,20 +645,23 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-quiz" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
-      <div class="hdr-right">
-        <nav class="hdr-nav">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
           <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
-        <div class="hdr-user"><div class="un" id="hn4"></div><div class="uc" id="hc4"></div></div>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn4"></div><div class="uc" id="hc4" style="color:var(--blue);font-size:10px">My Profile</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
     <div class="main"><div class="inner">
       <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Assessment di Maturità</div>
-      <div class="qz-inner"><div class="prog"><div class="prog-f" id="qp"></div></div><div id="qb"></div></div>
+      <div id="quiz-hub"></div>
     </div></div>
     <footer class="site-footer">
       <span class="footer-copy">© 2026 ABC Fleet Management</span>
@@ -490,8 +669,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
     </footer>
   </div>
 </div>
@@ -500,24 +685,77 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-bench" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
-      <div class="hdr-right">
-        <nav class="hdr-nav">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
-          <button class="hdr-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+          <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
-        <div class="hdr-user"><div class="un" id="hn6"></div><div class="uc" id="hc6"></div></div>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn6"></div><div class="uc" id="hc6" style="color:var(--blue);font-size:10px">My Profile</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
     <div class="main"><div class="inner">
-      <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Benchmark Costi</div>
-      <div class="bench-inner">
-        <p class="bench-intro">Inserisci i costi annuali della tua flotta per scoprire il tuo posizionamento rispetto al mercato e identificare le opportunità di risparmio.</p>
-        <div id="sw"></div>
-        <button class="btn-calc" onclick="calcBench()">Calcola il mio Benchmark</button>
-        <div id="br"></div>
+      <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Benchmark</div>
+      <div id="bench-hub"></div>
+    </div></div>
+    <footer class="site-footer">
+      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <div class="footer-nav">
+        <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
+      </div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+    </footer>
+  </div>
+</div>
+
+
+<!-- CONTATTI -->
+<div id="pg-contatti" class="page">
+  <div class="app-shell">
+    <header class="hdr">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
+          <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        
+          <span class="hdr-nav-sep"></span>
+          <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+        </nav>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn8"></div><div class="uc" id="hc8" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <button class="btn-out" onclick="doLogout()">Esci</button>
+      </div>
+    </header>
+    <div class="main"><div class="inner">
+      <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Contatti</div>
+      <p class="contact-intro">Per maggiori informazioni sui servizi ABC Fleet Management o per richiedere un appuntamento, contatta il tuo Responsabile di riferimento.</p>
+      <div class="contact-card">
+        <div class="contact-role">Responsabile Fleet Management</div>
+        <div class="contact-name">Mario Rossi</div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <a href="tel:+393401234567">+39 340 123 4567</a>
+        </div>
+        <div class="contact-row">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:mario.rossi@abc-fleet.it">mario.rossi@abc-fleet.it</a>
+        </div>
       </div>
     </div></div>
     <footer class="site-footer">
@@ -525,14 +763,64 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-quiz');startQuiz()">Assessment</button>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+    </footer>
+  </div>
+</div>
+
+
+<div id="pg-profile" class="page">
+  <div class="app-shell">
+    <header class="hdr">
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <nav class="hdr-nav">
+        <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
+        <span class="hdr-nav-sep"></span>
+        <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
+        <span class="hdr-nav-sep"></span>
+        <button class="hdr-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        <span class="hdr-nav-sep"></span>
+        <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      </nav>
+      <div class="hdr-right">
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn7"></div><div class="uc" id="hc7" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <button class="btn-out" onclick="doLogout()">Esci</button>
+      </div>
+    </header>
+    <div class="main"><div class="inner">
+      <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › My Profile</div>
+      <div id="profile-body"></div>
+    </div></div>
+    <footer class="site-footer">
+      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <div class="footer-nav">
+        <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
+      
+        <span class="footer-sep">·</span>
+        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
+      </div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
     </footer>
   </div>
 </div>
 
 <script>
+
 // ── USERS ──
 const USERS={
   'FM2024-ALFA':{az:'Alfa Logistics',ref:'Marco Bianchi'},
@@ -542,398 +830,691 @@ const USERS={
   'FM2024-EPSILON':{az:'Epsilon Drive',ref:'Andrea Costa'}
 };
 
-// ── SERVICES CATALOG ──
+// ── SERVICES CATALOG DATA ──
 const CATS=[
   {
     id:'adv', label:'Advisory', badge:'Consulenza strategica',
     desc:'Le attività di consulenza sono proposte come servizi a valore aggiunto, erogabili su base progettuale o continuativa, con l\'obiettivo di supportare l\'evoluzione del modello di Fleet Management, migliorare l\'efficienza operativa e garantire un allineamento continuo alle best practice di mercato.',
     services:[
-      {
-        id:'ADV-01', title:'Pre-progettazione & valutazione opportunità fleet',
-        short:'Analisi della situazione attuale e identificazione delle opportunità di ottimizzazione del modello di Fleet Management.',
-        desc:'Supporto nella pre-progettazione e valutazione delle opportunità in ambito fleet. L\'attività include un\'analisi approfondita della situazione attuale, la mappatura dei processi esistenti e l\'identificazione di aree di miglioramento, con l\'obiettivo di definire una roadmap di evoluzione sostenibile ed efficiente.',
-        activities:['Analisi del parco auto esistente e della sua congruità rispetto alle necessità operative','Mappatura dei processi di Fleet Management interni','Identificazione delle opportunità di ottimizzazione e stima del potenziale di saving','Definizione di una roadmap di evoluzione del modello','Valutazione del mix ideale tra veicoli di servizio, sharing, proprietà e noleggio'],
-        benefits:['Visione chiara della situazione attuale e dei gap rispetto alle best practice','Roadmap di azione concreta e prioritizzata','Stima quantitativa del potenziale di saving'],
-        questions:['La mia flotta di servizio è congrua rispetto alle necessità operative?','Qual è il mix ideale tra veicoli di servizio/sharing e il mix fra veicoli di proprietà e noleggio?','Sono soddisfatto della sicurezza e della gestione dei sinistri?'],
-        kpis:[{n:'–15%',l:'Costo totale di possesso stimato'},{n:'3–6 mesi',l:'Tempo medio di implementazione'},{n:'+20%',l:'Efficienza operativa attesa'}],
-        tags:['op','sost']
-      },
-      {
-        id:'ADV-02', title:'Ottimizzazione del parco auto',
-        short:'Ridefinizione della composizione e della car policy per massimizzare efficienza, controllo dei costi e soddisfazione dei driver.',
-        desc:'Analisi e ridefinizione della composizione del parco auto aziendale con l\'obiettivo di ottimizzare il mix di veicoli, allineare la car policy alle best practice di mercato e massimizzare l\'efficienza della flotta rispetto ai reali bisogni dell\'organizzazione.',
-        activities:['Analisi della composizione attuale del parco e del livello di utilizzo per veicolo','Benchmarking della car policy rispetto al mercato','Ridefinizione della car list in ottica di efficienza e sostenibilità','Ottimizzazione del mix proprietà vs noleggio vs sharing','Definizione di KPI di monitoraggio continuo del parco'],
-        benefits:['Car policy aggiornata e allineata alle best practice','Riduzione dei costi di gestione del parco','Miglioramento dell\'esperienza dei driver'],
-        questions:['La mia policy è in linea con le best practice del mercato?','Qual è il mix ideale tra veicoli di servizio/sharing?','Sono soddisfatto del livello di utilizzo dei veicoli?'],
-        kpis:[{n:'–10%',l:'Costi di gestione flotta'},{n:'–20%',l:'Veicoli sottoutilizzati'},{n:'+15%',l:'Soddisfazione driver'}],
-        tags:['op','co']
-      },
-      {
-        id:'ADV-03', title:'Sviluppo policy & ottimizzazione processi aziendali',
-        short:'Ridisegno dei processi di Fleet Management e sviluppo di policy aziendali strutturate per migliorare controllo, efficienza e compliance.',
-        desc:'Supporto nella definizione e implementazione di policy aziendali in ambito Fleet e nel ridisegno dei processi operativi, con l\'obiettivo di migliorare il controllo dei costi, aumentare l\'efficienza gestionale e garantire la compliance normativa e fiscale.',
-        activities:['Analisi dei processi di Fleet Management esistenti e identificazione delle inefficienze','Ridisegno end-to-end dei processi operativi chiave','Sviluppo e implementazione di policy aziendali (car policy, fuel policy, sinistri)','Definizione di KPI e strumenti di monitoraggio','Formazione dei referenti interni sui nuovi processi'],
-        benefits:['Processi standardizzati e documentati','Riduzione degli errori e dei tempi di gestione','Maggiore controllo e visibilità sul TCO'],
-        questions:['Qual è il livello di visibilità sul mio TCO?','Ci sono margini di ottimizzazione sia dei costi vivi che della gestione fiscale?','Sono soddisfatto della mia reportistica? Mi aiuta a prendere decisioni?'],
-        kpis:[{n:'–25%',l:'Tempo gestione amministrativa'},{n:'–30%',l:'Errori di processo'},{n:'+40%',l:'Visibilità sul TCO'}],
-        tags:['co','op']
-      },
-      {
-        id:'ADV-04', title:'Change management sull\'utilizzo dei veicoli',
-        short:'Programmi strutturati per accompagnare l\'organizzazione nell\'adozione di nuovi comportamenti e strumenti di mobilità aziendale.',
-        desc:'Progettazione e gestione di percorsi di change management per supportare l\'organizzazione nell\'adozione di nuove abitudini di utilizzo dei veicoli e dei servizi connessi, dalla mobilità elettrica alla digitalizzazione dei processi, garantendo un\'adozione efficace e duratura.',
-        activities:['Analisi del contesto organizzativo e dei principali bias al cambiamento','Progettazione del piano di change management','Sviluppo di materiali di comunicazione e formazione per i driver','Implementazione di programmi di incentivazione al comportamento virtuoso','Monitoraggio dell\'adozione e fine tuning del programma'],
-        benefits:['Adozione rapida ed efficace dei nuovi modelli di mobilità','Riduzione delle resistenze al cambiamento','Miglioramento dei comportamenti di guida e utilizzo'],
-        questions:['Quali benefici indiretti voglio ottenere dalla digitalizzazione?','Quanto è migliorabile l\'esperienza del driver tramite strumenti digitali?','Come posso supportare la transizione verso la mobilità elettrica?'],
-        kpis:[{n:'+60%',l:'Tasso di adozione nuovi strumenti'},{n:'–12%',l:'Consumo carburante medio'},{n:'+35%',l:'Soddisfazione driver'}],
-        tags:['sost','op']
-      },
-      {
-        id:'ADV-05', title:'Elettrificazione della flotta',
-        short:'Strategia e roadmap per la progressiva elettrificazione della flotta aziendale, con supporto end-to-end dalla pianificazione all\'infrastruttura.',
-        desc:'Supporto strategico e operativo per la progressiva elettrificazione della flotta aziendale. L\'attività include la definizione del piano di transizione, l\'identificazione del mix ideale di veicoli elettrici, la progettazione dell\'infrastruttura di ricarica e la gestione del change management connesso.',
-        activities:['Analisi della flotta attuale e identificazione dei veicoli candidati all\'elettrificazione','Definizione del mix ideale EV in base alle esigenze operative','Sviluppo della roadmap di elettrificazione con piano di sostituzione progressivo','Progettazione dell\'infrastruttura di ricarica (sede, home charging, pubblica)','Supporto nella selezione dei fornitori e gestione del change management'],
-        benefits:['Roadmap di elettrificazione concreta e sostenibile','Riduzione dell\'impatto ambientale e dei costi energetici','Accesso agli incentivi fiscali per la mobilità elettrica'],
-        questions:['C\'è un mix ideale di veicoli elettrici per una flotta sostenibile e coerente con i miei bisogni?','Qual è la roadmap di elettrificazione ideale per la mia flotta?','Ho un partner per l\'installazione delle infrastrutture di ricarica?'],
-        kpis:[{n:'–40%',l:'Emissioni CO₂ flotta'},{n:'–25%',l:'Costi energetici vs carburante'},{n:'70%',l:'Target flotta green 2026'}],
-        tags:['sost']
-      }
+      {id:'ADV-01',title:'Pre-progettazione & valutazione opportunità fleet',short:'Analisi della situazione attuale e identificazione delle opportunità di ottimizzazione del modello di Fleet Management.',desc:'Supporto nella pre-progettazione e valutazione delle opportunità in ambito fleet. Analisi approfondita della situazione attuale, mappatura dei processi e identificazione di aree di miglioramento.',activities:['Analisi del parco auto e congruità rispetto alle necessità operative','Mappatura dei processi di Fleet Management interni','Identificazione delle opportunità di ottimizzazione','Definizione di una roadmap di evoluzione del modello','Valutazione del mix ideale tra veicoli di servizio, sharing, proprietà e noleggio'],benefits:['Visione chiara della situazione attuale e dei gap rispetto alle best practice','Roadmap di azione concreta e prioritizzata','Stima quantitativa del potenziale di saving'],questions:['La mia flotta è congrua rispetto alle necessità operative?','Qual è il mix ideale tra veicoli di servizio/sharing e proprietà/noleggio?','Sono soddisfatto della gestione dei sinistri?'],tags:['op','sost']},
+      {id:'ADV-02',title:'Ottimizzazione del parco auto',short:'Ridefinizione della composizione e della car policy per massimizzare efficienza, controllo dei costi e soddisfazione dei driver.',desc:'Analisi e ridefinizione della composizione del parco auto aziendale per ottimizzare il mix di veicoli e allineare la car policy alle best practice di mercato.',activities:['Analisi della composizione attuale e del livello di utilizzo per veicolo','Benchmarking della car policy rispetto al mercato','Ridefinizione della car list in ottica di efficienza e sostenibilità','Ottimizzazione del mix proprietà vs noleggio vs sharing','Definizione di KPI di monitoraggio continuo'],benefits:['Car policy aggiornata e allineata alle best practice','Riduzione dei costi di gestione del parco','Miglioramento dell\'esperienza dei driver'],questions:['La mia policy è in linea con le best practice?','Qual è il mix ideale tra veicoli di servizio/sharing?','Sono soddisfatto del livello di utilizzo dei veicoli?'],tags:['op','co']},
+      {id:'ADV-03',title:'Sviluppo policy & ottimizzazione processi aziendali',short:'Ridisegno dei processi di Fleet Management e sviluppo di policy aziendali strutturate per migliorare controllo, efficienza e compliance.',desc:'Supporto nella definizione di policy aziendali in ambito Fleet e nel ridisegno dei processi operativi per migliorare il controllo dei costi e garantire la compliance.',activities:['Analisi dei processi esistenti e identificazione delle inefficienze','Ridisegno end-to-end dei processi operativi chiave','Sviluppo e implementazione di policy aziendali','Definizione di KPI e strumenti di monitoraggio','Formazione dei referenti interni'],benefits:['Processi standardizzati e documentati','Riduzione degli errori e dei tempi di gestione','Maggiore controllo e visibilità sul TCO'],questions:['Qual è il livello di visibilità sul mio TCO?','Ci sono margini di ottimizzazione dei costi?','La mia reportistica mi aiuta a prendere decisioni?'],tags:['co','op']},
+      {id:'ADV-04',title:'Change management sull\'utilizzo dei veicoli',short:'Programmi strutturati per accompagnare l\'organizzazione nell\'adozione di nuovi comportamenti e strumenti di mobilità aziendale.',desc:'Progettazione e gestione di percorsi di change management per supportare l\'adozione di nuove abitudini di utilizzo dei veicoli e dei servizi connessi.',activities:['Analisi del contesto organizzativo e dei principali bias al cambiamento','Progettazione del piano di change management','Sviluppo di materiali di comunicazione e formazione per i driver','Implementazione di programmi di incentivazione','Monitoraggio dell\'adozione e fine tuning'],benefits:['Adozione rapida dei nuovi modelli di mobilità','Riduzione delle resistenze al cambiamento','Miglioramento dei comportamenti di guida'],questions:['Quali benefici voglio ottenere dalla digitalizzazione?','Come posso migliorare l\'esperienza del driver?','Come supportare la transizione verso la mobilità elettrica?'],tags:['sost','op']},
+      {id:'ADV-05',title:'Elettrificazione della flotta',short:'Strategia e roadmap per la progressiva elettrificazione della flotta aziendale, con supporto end-to-end dalla pianificazione all\'infrastruttura.',desc:'Supporto strategico e operativo per la progressiva elettrificazione della flotta: definizione del piano di transizione, identificazione del mix ideale di veicoli elettrici e progettazione dell\'infrastruttura di ricarica.',activities:['Analisi della flotta e identificazione dei veicoli candidati all\'elettrificazione','Definizione del mix ideale EV in base alle esigenze operative','Sviluppo della roadmap di elettrificazione con piano di sostituzione progressivo','Progettazione dell\'infrastruttura di ricarica','Supporto nella selezione dei fornitori e change management'],benefits:['Roadmap di elettrificazione concreta e sostenibile','Riduzione dell\'impatto ambientale e dei costi energetici','Accesso agli incentivi fiscali per la mobilità elettrica'],questions:['Qual è il mix ideale di veicoli elettrici per la mia flotta?','Qual è la roadmap di elettrificazione ideale?','Ho un partner per le infrastrutture di ricarica?'],tags:['sost']}
     ]
   },
   {
     id:'ctr', label:'Contract Management', badge:'Gestione contrattuale',
-    desc:'Un modello ibrido a seconda delle esigenze: gestiamo e monitoriamo i tuoi contratti esistenti oppure mettiamo a disposizione le nostre condizioni negoziate con i principali fornitori del mercato (noleggiatori, carburante, altri fornitori), gestendo direttamente il rapporto per conto del cliente.',
+    desc:'Un modello ibrido a seconda delle esigenze: gestiamo e monitoriamo i tuoi contratti esistenti oppure mettiamo a disposizione le nostre condizioni negoziate con i principali fornitori di mercato, gestendo direttamente il rapporto per conto del cliente.',
     services:[
-      {
-        id:'CTR-01', title:'T&C Proprietarie',
-        short:'ABC gestisce e monitora i fornitori del cliente utilizzando i contratti e le condizioni già in essere, garantendo continuità e ottimizzando le performance.',
-        desc:'Nel modello T&C Proprietarie, ABC gestisce e monitora i fornitori utilizzando i contratti e le condizioni già in essere del cliente. Questo approccio garantisce la continuità contrattuale, elimina la necessità di sostituire i contratti esistenti e assicura governance e controllo sulle performance dei fornitori.',
-        activities:['Presa in carico e mappatura dei contratti esistenti del cliente','Monitoraggio continuo delle performance dei fornitori vs SLA contrattuale','Gestione delle attività quotidiane di interfaccia con i fornitori','Reporting periodico su performance, compliance e anomalie','Supporto nella rinegoziazione dei contratti alla scadenza'],
-        benefits:['Continuità contrattuale: nessuna sostituzione dei contratti esistenti','Governance e controllo: monitoraggio performance, SLA e compliance','Riduzione del carico operativo interno nella gestione fornitori'],
-        questions:['Sono soddisfatto del livello di servizio dei miei fornitori?','Ho visibilità sulle performance contrattuali dei miei fornitori?','Voglio mantenere i miei contratti ma migliorare la governance?'],
-        kpis:[{n:'100%',l:'Continuità contrattuale'},{n:'–30%',l:'Tempo gestione fornitori interno'},{n:'+25%',l:'Visibilità performance fornitori'}],
-        tags:['co','op']
-      },
-      {
-        id:'CTR-02', title:'T&C as a Service',
-        short:'ABC mette a disposizione i propri contratti e condizioni negoziate con i principali fornitori, gestendo direttamente il rapporto per conto del cliente.',
-        desc:'Nel modello T&C as a Service, ABC mette a disposizione del cliente i propri contratti e condizioni già negoziate con i principali fornitori del mercato (noleggiatori come Ayvens e Arval, carburante come DKV e Q8, altri fornitori come Telepass ed EasyPark), gestendo direttamente il rapporto per conto del cliente.',
-        activities:['Accesso alle condizioni ABC già negoziate con i principali fornitori di mercato','Onboarding immediato su contratti competitivi e "plug & play"','Gestione end-to-end della relazione con i fornitori per conto del cliente','Monitoraggio continuo di performance e contratti','Reportistica integrata su tutti i fornitori'],
-        benefits:['Condizioni ottimizzate e plug & play: contratti già negoziati e competitivi','Gestione end-to-end: ABC governa relazione, contratti e performance','Riduzione complessità e standardizzazione: minore effort su procurement e gestione'],
-        questions:['Voglio accedere a condizioni di mercato migliori senza dover rinegoziare da zero?','Voglio ridurre la complessità nella gestione dei fornitori?','Sono soddisfatto delle condizioni attuali su carburante e noleggio?'],
-        kpis:[{n:'–15%',l:'Costi carburante e noleggio'},{n:'Plug & play',l:'Attivazione immediata'},{n:'–50%',l:'Effort procurement interno'}],
-        tags:['co','fuel','lease']
-      }
+      {id:'CTR-01',title:'T&C Proprietarie',short:'ABC gestisce e monitora i fornitori del cliente utilizzando i contratti e le condizioni già in essere, garantendo continuità e ottimizzando le performance.',desc:'Nel modello T&C Proprietarie, ABC gestisce e monitora i fornitori utilizzando i contratti già in essere del cliente, garantendo la continuità contrattuale e il controllo sulle performance.',activities:['Presa in carico e mappatura dei contratti esistenti','Monitoraggio continuo delle performance dei fornitori vs SLA','Gestione delle attività quotidiane di interfaccia con i fornitori','Reporting periodico su performance e anomalie','Supporto nella rinegoziazione alla scadenza'],benefits:['Continuità contrattuale: nessuna sostituzione dei contratti esistenti','Governance e controllo: monitoraggio performance e compliance','Riduzione del carico operativo interno'],questions:['Sono soddisfatto del livello di servizio dei miei fornitori?','Ho visibilità sulle performance contrattuali?','Voglio mantenere i miei contratti ma migliorare la governance?'],tags:['co','op']},
+      {id:'CTR-02',title:'T&C as a Service',short:'ABC mette a disposizione i propri contratti e condizioni negoziate con i principali fornitori, gestendo direttamente il rapporto per conto del cliente.',desc:'Nel modello T&C as a Service, ABC mette a disposizione del cliente i propri contratti già negoziati con i principali fornitori di mercato, gestendo direttamente il rapporto per conto del cliente.',activities:['Accesso alle condizioni ABC già negoziate con i principali fornitori','Onboarding immediato su contratti competitivi','Gestione end-to-end della relazione con i fornitori','Monitoraggio continuo di performance e contratti','Reportistica integrata su tutti i fornitori'],benefits:['Condizioni ottimizzate e plug & play','Gestione end-to-end: ABC governa relazione, contratti e performance','Riduzione complessità: minore effort su procurement e gestione'],questions:['Voglio accedere a condizioni di mercato migliori senza rinegoziare?','Voglio ridurre la complessità nella gestione dei fornitori?','Sono soddisfatto delle condizioni attuali su carburante e noleggio?'],tags:['co','fuel','lease']}
     ]
   },
   {
     id:'ops', label:'Operations & Delivery', badge:'Gestione operativa',
-    desc:'Cinque pacchetti scalabili che includono la piattaforma digitale ABC e coprono l\'intero spettro della gestione operativa della flotta — dalla semplice gestione delle sanzioni fino alla soluzione end-to-end premium con supporto continuo ai driver. Ogni pacchetto include tutti i servizi del livello precedente.',
+    desc:'Cinque pacchetti scalabili che includono la piattaforma digitale ABC e coprono l\'intero spettro della gestione operativa della flotta, dalla semplice gestione delle sanzioni fino alla soluzione end-to-end premium con supporto continuo ai driver.',
     services:[
-      {
-        id:'OPS-01', title:'Piattaforma ABC',
-        short:'Adozione del gestionale Fleet Management ABC con attività di formazione e change management per le risorse dedicate.',
-        desc:'La Piattaforma ABC è il fondamento digitale di tutti i servizi Operations & Delivery. Include l\'onboarding al gestionale Fleet Management, le attività di formazione delle risorse dedicate e il supporto al change management per garantire un\'adozione efficace degli strumenti digitali. Impatto basso sulla struttura interna: il cliente mantiene la propria struttura di Fleet Management, potenziata dagli strumenti ABC.',
-        activities:['Onboarding e configurazione del gestionale Fleet Management ABC','Migrazione e caricamento dei dati anagrafiche driver e veicoli','Formazione delle risorse interne dedicate al Fleet Management','Supporto al change management per l\'adozione degli strumenti digitali','Accesso all\'applicazione mobile per i driver'],
-        benefits:['Digitalizzazione immediata dei processi di Fleet Management','Visibilità completa su veicoli, driver e costi in un\'unica piattaforma','Riduzione degli errori e dei tempi di gestione manuale'],
-        questions:['Ho una piattaforma di gestione della mia flotta?','Come posso migliorare la visibilità e il controllo sulla mia flotta?','Voglio digitalizzare i processi mantenendo la gestione interna?'],
-        kpis:[{n:'1 piattaforma',l:'Unico punto di controllo'},{n:'–40%',l:'Tempo gestione manuale'},{n:'Basso',l:'Impatto struttura interna'}],
-        tags:['op']
-      },
-      {
-        id:'OPS-02', title:'Fine Management',
-        short:'Gestione completa delle sanzioni, dal controllo alla chiusura, in linea con le policy aziendali. Include la Piattaforma ABC.',
-        desc:'Il pacchetto Fine Management include la Piattaforma ABC e aggiunge la gestione completa delle sanzioni amministrative della flotta, dal controllo alla chiusura, garantendo il rispetto delle policy aziendali e la puntualità nei pagamenti. Impatto medio sulla struttura interna: alleggerimento tramite affidamento della gestione sanzioni.',
-        activities:['Ricezione e controllo delle sanzioni amministrative (verbali e ricorsi)','Verifica delle tempistiche e delle policy aziendali','Gestione dei giustificativi a sistema','Chiusura delle pratiche nei tempi previsti','Reportistica periodica sulle sanzioni e i costi connessi'],
-        benefits:['Zero sanzioni perse o scadute','Rispetto delle policy aziendali garantito','Riduzione del carico amministrativo interno sulla gestione sanzioni'],
-        questions:['Sono soddisfatto della gestione delle sanzioni della mia flotta?','Ho visibilità sui costi delle sanzioni e sulle cause principali?','Voglio ridurre il rischio di sanzioni non gestite nei tempi?'],
-        kpis:[{n:'0',l:'Sanzioni scadute'},{n:'100%',l:'Compliance policy aziendali'},{n:'Medio',l:'Impatto struttura interna'}],
-        tags:['op','co']
-      },
-      {
-        id:'OPS-03', title:'Essential',
-        short:'Servizi base per la gestione operativa della flotta: sanzioni, carte carburante, scadenziario veicoli, ZTL, fatturazione e dati. Include i livelli precedenti.',
-        desc:'Il pacchetto Essential include tutto il Fine Management e aggiunge i servizi operativi fondamentali per la gestione quotidiana della flotta: carte carburante, scadenziario vetture, ZTL, fatturazione e gestione dati. È il punto di ingresso per l\'esternalizzazione operativa con un impatto medio sulla struttura interna.',
-        activities:['Gestione carte carburante: emissione, distribuzione, monitoraggio e sostituzione carte','Gestione scadenziario vetture: monitoraggio scadenze e notifica','Gestione ZTL: attivazione permessi di circolazione e aggiornamento sistema','Fatturazione: fatture, pagamenti, note credito/debito e controlli','Gestione auto: ordini, configurazioni, consegne, assegnazioni, monitoraggio lifecycle','Gestione dati: anagrafiche driver/veicoli, variazioni organizzative'],
-        benefits:['Gestione operativa quotidiana completamente esternalizzata','Nessuna scadenza o adempimento perso','Dati sempre aggiornati e disponibili in piattaforma'],
-        questions:['Sono soddisfatto della gestione delle carte carburante?','Ho visibilità sulle scadenze dei veicoli?','Voglio esternalizzare la gestione operativa base mantenendo il controllo?'],
-        kpis:[{n:'–20%',l:'Costi carburante tramite controllo'},{n:'100%',l:'Scadenze gestite nei tempi'},{n:'Medio',l:'Impatto struttura interna'}],
-        tags:['fuel','op','co']
-      },
-      {
-        id:'OPS-04', title:'Smart',
-        short:'Maggiore controllo e digitalizzazione della flotta grazie a monitoraggio avanzato, gestione contratti, manutenzione e diagnostica. Include i livelli precedenti.',
-        desc:'Il pacchetto Smart include tutto l\'Essential e aggiunge servizi evoluti per il monitoraggio e il controllo della flotta: archiviazione tessere carburante, gestione scadenziario avanzata, assegnazione veicoli, gestione contratti di noleggio, manutenzione ordinaria e diagnostica connessa. Impatto alto sulla struttura interna: esternalizzazione dell\'intero processo operativo.',
-        activities:['Gestione carte carburante: archiviazione tessere a sistema','Gestione scadenziario vetture: monitoraggio e aggiornamento documenti a sistema','Gestione auto: assegnazione veicoli, supporto MAD, monitoraggio consegne','Gestione contratti di noleggio: inserimento documentazione a sistema','Gestione manutenzione proprietà: supporto driver per tagliandi, revisioni, guasti','Gestione diagnostica & mobilità connessa: monitoraggio anomalie e consumi'],
-        benefits:['Visibilità completa su contratti, manutenzione e diagnostica','Supporto proattivo ai driver per tutte le esigenze operative','Riduzione significativa dei costi di manutenzione straordinaria'],
-        questions:['Voglio migliorare il controllo sulla manutenzione della mia flotta?','Come posso ridurre i costi di manutenzione straordinaria?','Voglio supportare i driver in modo più strutturato?'],
-        kpis:[{n:'–30%',l:'Costi manutenzione straordinaria'},{n:'+45%',l:'Visibilità flotta'},{n:'Alto',l:'Impatto struttura interna'}],
-        tags:['maint','extr','op','co']
-      },
-      {
-        id:'OPS-05', title:'Premium',
-        short:'Soluzione end-to-end per la gestione completa della flotta, con servizi avanzati e supporto continuo ai driver. Include tutti i livelli precedenti.',
-        desc:'Il pacchetto Premium è la soluzione end-to-end completa per la gestione della flotta. Include tutto lo Smart e aggiunge i servizi più avanzati: gestione sinistri, car sharing, garage e lavaggi, con supporto continuativo ai driver. È la scelta ideale per chi vuole esternalizzare completamente la gestione della flotta mantenendo solo la governance del rapporto di fornitura.',
-        activities:['Gestione carte carburante: verifica consumi anomali','Gestione scadenziario vetture: chiamata al driver e supporto per prenotazione','Gestione auto: veicoli sostitutivi e di servizio, supporto ritiro/consegna','Gestione manutenzione noleggio: supporto driver per tagliandi, revisioni e guasti','Gestione sinistri: comunicazioni, supporto al driver, coordinamento riparazioni e carro attrezzi','Gestione garage/lavaggi: supporto accessi e richieste','Car Sharing: supporto prenotazioni, utilizzo veicolo e gestione anomalie app'],
-        benefits:['Gestione end-to-end della flotta con unico interlocutore','Supporto continuo ai driver per tutte le esigenze','Massima riduzione del carico interno di Fleet Management'],
-        questions:['Voglio esternalizzare completamente la gestione della mia flotta?','Come posso migliorare la gestione dei sinistri?','Voglio supportare i driver H24 su tutte le esigenze operative?'],
-        kpis:[{n:'End-to-end',l:'Gestione completa flotta'},{n:'–50%',l:'Costi gestione interna'},{n:'H24',l:'Supporto driver'}],
-        tags:['maint','extr','ins','clm','op','co']
-      }
+      {id:'OPS-01',title:'Piattaforma ABC',short:'Adozione del gestionale Fleet Management ABC con attività di formazione e change management per le risorse dedicate.',desc:'La Piattaforma ABC è il fondamento digitale di tutti i servizi Operations & Delivery. Include l\'onboarding al gestionale, la formazione delle risorse dedicate e il supporto al change management.',activities:['Onboarding e configurazione del gestionale Fleet Management ABC','Migrazione e caricamento dei dati anagrafiche driver e veicoli','Formazione delle risorse interne dedicate','Supporto al change management','Accesso all\'applicazione mobile per i driver'],benefits:['Digitalizzazione immediata dei processi di Fleet Management','Visibilità completa su veicoli, driver e costi','Riduzione degli errori e dei tempi di gestione manuale'],questions:['Ho una piattaforma di gestione della mia flotta?','Come posso migliorare la visibilità e il controllo?','Voglio digitalizzare mantenendo la gestione interna?'],tags:['op']},
+      {id:'OPS-02',title:'Fine Management',short:'Gestione completa delle sanzioni, dal controllo alla chiusura, in linea con le policy aziendali. Include la Piattaforma ABC.',desc:'Il pacchetto Fine Management include la Piattaforma ABC e aggiunge la gestione completa delle sanzioni amministrative della flotta.',activities:['Ricezione e controllo delle sanzioni amministrative','Verifica delle tempistiche e delle policy aziendali','Gestione dei giustificativi a sistema','Chiusura delle pratiche nei tempi previsti','Reportistica periodica sulle sanzioni'],benefits:['Zero sanzioni perse o scadute','Rispetto delle policy aziendali garantito','Riduzione del carico amministrativo interno'],questions:['Sono soddisfatto della gestione delle sanzioni?','Ho visibilità sui costi delle sanzioni?','Voglio ridurre il rischio di sanzioni non gestite?'],tags:['op','co']},
+      {id:'OPS-03',title:'Essential',short:'Servizi base per la gestione operativa della flotta: sanzioni, carte carburante, scadenziario veicoli, ZTL, fatturazione e dati.',desc:'Il pacchetto Essential aggiunge i servizi operativi fondamentali per la gestione quotidiana: carte carburante, scadenziario vetture, ZTL, fatturazione e gestione dati.',activities:['Gestione carte carburante: emissione, distribuzione, monitoraggio e sostituzione','Gestione scadenziario vetture: monitoraggio scadenze e notifica','Gestione ZTL: attivazione permessi di circolazione','Fatturazione: fatture, pagamenti, note credito/debito','Gestione auto: ordini, configurazioni, consegne, lifecycle','Gestione dati: anagrafiche driver/veicoli, variazioni organizzative'],benefits:['Gestione operativa quotidiana esternalizzata','Nessuna scadenza o adempimento perso','Dati sempre aggiornati in piattaforma'],questions:['Sono soddisfatto della gestione delle carte carburante?','Ho visibilità sulle scadenze dei veicoli?','Voglio esternalizzare la gestione base mantenendo il controllo?'],tags:['fuel','op','co']},
+      {id:'OPS-04',title:'Smart',short:'Maggiore controllo e digitalizzazione della flotta grazie a monitoraggio avanzato, gestione contratti, manutenzione e diagnostica.',desc:'Il pacchetto Smart aggiunge servizi evoluti per il monitoraggio e il controllo della flotta: assegnazione veicoli, gestione contratti di noleggio, manutenzione ordinaria e diagnostica connessa.',activities:['Gestione carte carburante: archiviazione tessere a sistema','Gestione scadenziario vetture: monitoraggio e aggiornamento documenti','Gestione auto: assegnazione veicoli, supporto MAD, monitoraggio consegne','Gestione contratti di noleggio: inserimento documentazione','Gestione manutenzione: supporto driver per tagliandi, revisioni, guasti','Gestione diagnostica: monitoraggio anomalie e consumi'],benefits:['Visibilità completa su contratti, manutenzione e diagnostica','Supporto proattivo ai driver','Riduzione significativa dei costi di manutenzione straordinaria'],questions:['Voglio migliorare il controllo sulla manutenzione?','Come posso ridurre i costi di manutenzione straordinaria?','Voglio supportare i driver in modo più strutturato?'],tags:['maint','extr','op','co']},
+      {id:'OPS-05',title:'Premium',short:'Soluzione end-to-end per la gestione completa della flotta, con servizi avanzati e supporto continuo ai driver.',desc:'Il pacchetto Premium è la soluzione end-to-end completa. Include tutto lo Smart e aggiunge la gestione sinistri, car sharing, garage e lavaggi, con supporto continuativo ai driver.',activities:['Gestione carte carburante: verifica consumi anomali','Gestione scadenziario: chiamata al driver e supporto prenotazione','Gestione auto: veicoli sostitutivi, supporto ritiro/consegna','Gestione manutenzione noleggio: supporto driver per tagliandi e guasti','Gestione sinistri: comunicazioni, supporto driver, coordinamento riparazioni','Gestione garage/lavaggi: supporto accessi e richieste','Car Sharing: supporto prenotazioni e gestione anomalie app'],benefits:['Gestione end-to-end con unico interlocutore','Supporto continuo ai driver per tutte le esigenze','Massima riduzione del carico interno'],questions:['Voglio esternalizzare completamente la gestione?','Come posso migliorare la gestione dei sinistri?','Voglio supportare i driver H24?'],tags:['maint','extr','ins','clm','op','co']}
     ]
   }
 ];
 
-// ── MATCHING LOGIC ──
-const QUIZ_MATCH={
-  low:['ADV-01','ADV-02','OPS-01','OPS-02'],
-  mid:['ADV-03','ADV-04','CTR-01','OPS-03','OPS-04'],
-  high:['ADV-05','CTR-02','OPS-04','OPS-05']
-};
-const BENCH_MATCH={
-  fuel:['CTR-02','OPS-03'],
-  maint:['OPS-04','OPS-05'],
-  extr:['OPS-05'],
-  ins:['OPS-05'],
-  clm:['OPS-05'],
-  lease:['CTR-01','CTR-02']
-};
-
-function getSvcById(id){
-  for(const cat of CATS){
-    const s=cat.services.find(s=>s.id===id);
-    if(s)return{...s,catLabel:cat.label};
-  }
-  return null;
-}
+function getSvcById(id){for(var i=0;i<CATS.length;i++){var s=CATS[i].services.find(function(s){return s.id===id;});if(s)return Object.assign({},s,{catLabel:CATS[i].label});}return null;}
 
 // ── ARTICLES ──
 const ARTS=[
-  {cat:'Normativa',ck:'norm',title:'Decreto Mobilità 2024: cosa cambia per le flotte aziendali',ab:'Le nuove disposizioni ministeriali introducono soglie di emissione più stringenti per i veicoli aziendali con obbligo di rendicontazione trimestrale.',dt:'12 Mag 2025'},
-  {cat:'Sostenibilità',ck:'sost',title:'Transizione elettrica: i vantaggi fiscali per le aziende',ab:'I benefici dell\'elettrico non sono solo ambientali. Incentivi statali, esenzioni bollo e deduzioni IRPEF rendono l\'EV un investimento strategico per le flotte moderne.',dt:'3 Mag 2025'},
-  {cat:'Tecnologia',ck:'tech',title:'Telematica avanzata: ridurre i costi del 23% con il dato giusto',ab:'Un\'analisi di 140 aziende italiane mostra come l\'implementazione di sistemi telematici avanzati porti a risparmi significativi su carburante, manutenzione e assicurazioni.',dt:'28 Apr 2025'},
-  {cat:'Innovazione',ck:'inn',title:'Driver Behavior: come l\'AI trasforma la sicurezza in flotta',ab:'I nuovi sistemi di analisi comportamentale basati su machine learning permettono di identificare pattern di guida rischiosi e intervenire prima che si trasformino in sinistri.',dt:'19 Apr 2025'},
-  {cat:'Normativa',ck:'norm',title:'GDPR e dati di flotta: guida pratica alla compliance',ab:'La raccolta di dati sulla posizione e il comportamento dei conducenti richiede attenzione alla normativa privacy. Ecco le best practice per operare in modo conforme.',dt:'10 Apr 2025'},
-  {cat:'Sostenibilità',ck:'sost',title:'Carbon footprint della mobilità aziendale: come misurare e ridurre',ab:'Metodologie certificate per il calcolo delle emissioni della flotta aziendale e strategie pratiche per raggiungere gli obiettivi di sostenibilità ESG.',dt:'2 Apr 2025'},
-  {cat:'Tecnologia',ck:'tech',title:'Manutenzione predittiva: il futuro della gestione flotta',ab:'Grazie ai sensori IoT e all\'analisi predittiva, è possibile anticipare i guasti riducendo i fermo-macchina del 40% e abbattendo i costi di manutenzione straordinaria.',dt:'25 Mar 2025'}
+  {cat:'Normativa',ck:'norm',
+   title:'Bonus auto elettriche 2025: gli incentivi per le flotte aziendali',
+   ab:'La Legge di Bilancio 2025 ha introdotto una nuova tassazione agevolata sul fringe benefit per le auto aziendali: aliquota al 10% per i veicoli elettrici, 20% per i plug-in hybrid, 50% per i termici. Una riforma che cambia le regole del gioco per chi gestisce una flotta aziendale.',
+   dt:'2025',src:'Magazine A2A',
+   url:'https://www.a2a.it/magazine/energia-per-il-tuo-business/bonus-ecco-gli-incentivi-le-auto-elettriche-aziendali'},
+  {cat:'Sostenibilità',ck:'sost',
+   title:'Mobilità elettrica in Italia: mercato, infrastrutture e prospettive',
+   ab:'Nel 2025 le immatricolazioni di auto elettriche a batteria sono cresciute del 46%, raggiungendo 94.230 unità. Parallelamente la rete pubblica di ricarica ha superato i 70.000 punti, con il 50% di tipo veloce o ultraveloce. Un quadro aggiornato sullo stato della transizione elettrica in Italia.',
+   dt:'2025',src:'Magazine A2A',
+   url:'https://www.a2a.it/magazine/mobilita-elettrica/mobilita-elettrica-in-italia'},
+  {cat:'Tecnologia',ck:'tech',
+   title:'Wallbox e colonnina pubblica: differenze, vantaggi e come scegliere',
+   ab:'Wallbox privata o colonnina pubblica? La scelta dipende dallo stile di guida, dalle abitudini e dal contesto aziendale. Una guida pratica sulle differenze tecniche, di potenza e di costo tra le due soluzioni, per orientarsi nella pianificazione dell\'infrastruttura di ricarica aziendale.',
+   dt:'2024',src:'Magazine A2A',
+   url:'https://www.a2a.it/magazine/mobilita-elettrica/differenza-tra-wallbox-e-colonnina-di-ricarica-pubblica'},
+  {cat:'Tecnologia',ck:'tech',
+   title:'Come installare una wallbox: guida pratica passo per passo',
+   ab:'Installare una wallbox in azienda o per i propri dipendenti richiede una valutazione tecnica degli impianti, le autorizzazioni necessarie e la scelta del modello adatto. A2A accompagna le aziende in ogni fase, dal sopralluogo gratuito all\'attivazione, garantendo una ricarica sicura ed efficiente.',
+   dt:'2024',src:'Magazine A2A',
+   url:'https://www.a2a.it/magazine/magazine/mobilita-elettrica/come-installare-una-wallbox'},
+  {cat:'Sostenibilità',ck:'sost',
+   title:'Mobilità elettrica: le basi per iniziare la transizione in azienda',
+   ab:'Passare all\'elettrico non richiede di essere esperti: bastano alcuni concetti chiave per orientarsi tra modelli, tipologie di ricarica e soluzioni disponibili. Una guida introduttiva di A2A per capire come funziona la mobilità elettrica e prepararsi al meglio alla transizione della flotta aziendale.',
+   dt:'2025',src:'Magazine A2A',
+   url:'https://www.a2a.it/magazine/mobilita-elettrica/basi-per-iniziare-con-mobilita-elettrica'}
 ];
 
-const QS=[
-  {sec:'Gestione Operativa',q:'Come gestite gli interventi di manutenzione della flotta?',opts:['In modo reattivo, solo quando si presenta un guasto','Seguiamo i tagliandi programmati dal produttore','Utilizziamo dati chilometrici e di utilizzo per pianificare','Sistema predittivo basato su sensori e analisi dati'],sc:[0,1,2,3]},
-  {sec:'Gestione Operativa',q:'Qual è il livello di monitoraggio della flotta in tempo reale?',opts:['Nessun monitoraggio in tempo reale','Tracciamento GPS di base','Posizione, km percorsi e consumi','Visibilità completa su tutti i parametri del veicolo e conducente'],sc:[0,1,2,3]},
-  {sec:'Gestione Operativa',q:'Come gestite l\'assegnazione dei veicoli ai driver?',opts:['Assegnazione fissa e informale','Registro cartaceo o foglio di calcolo','Software dedicato con regole di assegnazione','Gestione dinamica ottimizzando l\'utilizzo della flotta'],sc:[0,1,2,3]},
-  {sec:'Sostenibilità',q:'Qual è la composizione della flotta in termini di alimentazione?',opts:['100% veicoli tradizionali (benzina/diesel)','Presenza marginale di ibridi (< 10%)','Mix significativo di ibridi e/o plug-in hybrid','Forte presenza di elettrici o piano di transizione strutturato'],sc:[0,1,2,3]},
-  {sec:'Sostenibilità',q:'Misurate e rendicontate le emissioni CO₂ della flotta?',opts:['No, non lo facciamo','Solo quando richiesto da enti esterni','Rendicontiamo annualmente per il report ESG','Misuriamo in tempo reale con target di riduzione strutturati'],sc:[0,1,2,3]},
-  {sec:'Sostenibilità',q:'Quali politiche di eco-driving sono adottate in azienda?',opts:['Nessuna politica strutturata','Linee guida informali senza monitoraggio','Training periodici con KPI comportamentali','Scoring real-time con incentivi e feedback continuo'],sc:[0,1,2,3]},
-  {sec:'Controllo Costi',q:'Con quale frequenza analizzate i costi per veicolo?',opts:['Nessuna analisi strutturata per veicolo','Annualmente o a consuntivo','Trimestralmente con report di costo per centro','Mensilmente con dashboard real-time e alerting automatico'],sc:[0,1,2,3]},
-  {sec:'Controllo Costi',q:'Come gestite i sinistri e il loro impatto sui premi assicurativi?',opts:['Gestione caso per caso senza analisi sistematica','Registro sinistri senza analisi delle cause','Analisi periodica con categorizzazione delle cause','Prevenzione attiva con monitoraggio comportamentale'],sc:[0,1,2,3]}
+// ── ASSESSMENTS DATA ──
+const ASSESSMENTS=[
+  {
+    id:'A1', title:'Maturità operativa della flotta',
+    desc:'Valuta il livello di strutturazione dei processi operativi quotidiani della tua flotta.',
+    questions:[
+      {q:'Come gestite gli interventi di manutenzione ordinaria?',opts:['Solo quando il veicolo si guasta','Seguiamo i tagliandi programmati dal produttore','Pianifichiamo in base a km percorsi e storico utilizzo','Sistema predittivo basato su dati e alert automatici'],sc:[0,1,2,3]},
+      {q:'Come gestite le scadenze amministrative dei veicoli (bollo, revisione, assicurazione)?',opts:['Manualmente, a volte con ritardi','Registro interno aggiornato periodicamente','Sistema con notifiche automatiche','Sistema integrato che gestisce anche i rinnovi'],sc:[0,1,2,3]},
+      {q:'Come vengono gestite le carte carburante?',opts:['I driver le gestiscono autonomamente senza controllo','Verifichiamo i consumi a fine mese','Monitoriamo i consumi per veicolo con alert su anomalie','Visibilità real-time con blocco automatico in caso di anomalia'],sc:[0,1,2,3]},
+      {q:'Come gestite i sinistri?',opts:['Caso per caso, senza processo strutturato','Registro manuale senza processo definito','Processo definito con tracciamento delle cause','Sistema di prevenzione attiva e gestione digitale end-to-end'],sc:[0,1,2,3]},
+      {q:'Come supportate i driver nelle esigenze operative quotidiane?',opts:['I driver si arrangiano autonomamente','Referente interno raggiungibile in orario di ufficio','Helpdesk dedicato con tempi di risposta definiti','App e supporto H24 per qualsiasi esigenza'],sc:[0,1,2,3]}
+    ],
+    profiles:[
+      {label:'Gestione reattiva',range:[0,6],desc:'La flotta è gestita principalmente in modo reattivo. Mancano processi strutturati e strumenti digitali. Il potenziale di ottimizzazione è significativo.',services:{low:['OPS-01','OPS-02'],mid:[],high:[]}},
+      {label:'Gestione strutturata',range:[7,11],desc:'Hai processi definiti ma ancora prevalentemente manuali. L\'adozione di strumenti digitali porterebbe efficienza immediata.',services:{low:['OPS-03'],mid:['CTR-01'],high:[]}},
+      {label:'Gestione proattiva',range:[12,15],desc:'La tua gestione operativa è evoluta e data-driven. Sei pronto per soluzioni avanzate di automazione e supporto continuativo.',services:{low:['OPS-04','OPS-05'],mid:['ADV-01'],high:[]}}
+    ]
+  },
+  {
+    id:'A2', title:'Sostenibilità & transizione energetica',
+    desc:'Valuta il livello di avanzamento della tua organizzazione verso la mobilità green e gli obiettivi ESG.',
+    questions:[
+      {q:'Qual è la composizione attuale della tua flotta per alimentazione?',opts:['100% veicoli termici (benzina/diesel)','Meno del 10% ibridi o elettrici','Tra il 10% e il 40% ibridi o elettrici','Oltre il 40% elettrici o piano strutturato entro 2026'],sc:[0,1,2,3]},
+      {q:'Hai una roadmap formale per l\'elettrificazione della flotta?',opts:['No, non è una priorità attuale','Stiamo valutando ma non c\'è ancora un piano','Abbiamo un piano di massima con obiettivi temporali','Roadmap dettagliata con KPI e budget approvato'],sc:[0,1,2,3]},
+      {q:'Come gestite l\'infrastruttura di ricarica per i veicoli elettrici?',opts:['Non abbiamo veicoli elettrici','I driver si arrangiano con colonnine pubbliche','Alcune colonnine in sede senza strategia strutturata','Piano integrato con gestione centralizzata'],sc:[0,1,2,3]},
+      {q:'Misurate e rendicontate le emissioni CO₂ della flotta?',opts:['No, non lo facciamo','Solo se richiesto da enti esterni','Rendicontiamo annualmente nel report ESG','Monitoraggio real-time con target di riduzione'],sc:[0,1,2,3]},
+      {q:'Avete politiche di eco-driving per i driver?',opts:['Nessuna politica strutturata','Linee guida informali senza monitoraggio','Training periodici con KPI di comportamento','Scoring real-time con feedback continuo e incentivi'],sc:[0,1,2,3]}
+    ],
+    profiles:[
+      {label:'Early stage',range:[0,6],desc:'La transizione sostenibile è ancora agli inizi. Esistono opportunità concrete per avviare un percorso strutturato verso la mobilità green.',services:{low:['ADV-05'],mid:[],high:[]}},
+      {label:'In transizione',range:[7,11],desc:'Hai avviato il percorso ma manca una visione integrata. Un piano strutturato di elettrificazione e infrastruttura accelererebbe i risultati.',services:{low:['ADV-04','ADV-05'],mid:['OPS-04'],high:[]}},
+      {label:'Green leader',range:[12,15],desc:'La tua organizzazione è avanzata sul fronte della sostenibilità. Puoi puntare a soluzioni integrate di energy management e rendicontazione ESG evoluta.',services:{low:['OPS-05'],mid:['CTR-02'],high:[]}}
+    ]
+  },
+  {
+    id:'A3', title:'Digitalizzazione & controllo dati',
+    desc:'Valuta il grado di adozione di strumenti digitali per il monitoraggio e la governance della tua flotta.',
+    questions:[
+      {q:'Hai una piattaforma digitale per la gestione della flotta?',opts:['No, usiamo fogli Excel o carta','Strumenti generici (Excel avanzato, email)','Software dedicato ma usato parzialmente','Piattaforma integrata usata da tutti i referenti'],sc:[0,1,2,3]},
+      {q:'Hai visibilità in tempo reale sulla posizione e l\'utilizzo dei tuoi veicoli?',opts:['No, nessun tracciamento','Tracciamento GPS di base su alcuni veicoli','GPS su tutta la flotta con reportistica periodica','Monitoraggio completo con alert e analisi comportamentale'],sc:[0,1,2,3]},
+      {q:'Come gestite i dati di costo della flotta?',opts:['Nessun sistema strutturato di raccolta dati','Dati raccolti ma analisi manuale e saltuaria','Report periodici per centro di costo','Dashboard real-time con KPI per veicolo e alert automatici'],sc:[0,1,2,3]},
+      {q:'I driver hanno strumenti digitali per le loro esigenze?',opts:['No, tutto via telefono o email','Accesso a qualche strumento non integrato','Portale o app per le principali operazioni','App mobile completa con tutte le funzionalità integrate'],sc:[0,1,2,3]},
+      {q:'Come sono integrati i sistemi di fleet management con HR, ERP o altri sistemi aziendali?',opts:['Nessuna integrazione, tutto separato','Integrazione manuale tramite export/import periodici','Alcune integrazioni automatiche su processi chiave','Integrazione completa e bidirezionale con i sistemi aziendali'],sc:[0,1,2,3]}
+    ],
+    profiles:[
+      {label:'Analogico',range:[0,6],desc:'La gestione della flotta è ancora prevalentemente manuale. L\'adozione di una piattaforma digitale avrebbe un impatto immediato su efficienza e controllo.',services:{low:['OPS-01'],mid:[],high:[]}},
+      {label:'Parzialmente digitale',range:[7,11],desc:'Hai iniziato la digitalizzazione ma con strumenti non integrati. Il passo successivo è una piattaforma unica che connetta tutti i flussi.',services:{low:['OPS-03','OPS-04'],mid:['ADV-04'],high:[]}},
+      {label:'Data-driven',range:[12,15],desc:'La tua flotta è gestita con dati strutturati. Puoi evolvere verso modelli predittivi e ottimizzazione continua basata su AI.',services:{low:['OPS-05'],mid:['CTR-01','CTR-02'],high:[]}}
+    ]
+  },
+  {
+    id:'A4', title:'Governance & compliance',
+    desc:'Valuta il livello di strutturazione di policy, processi e compliance normativa e fiscale della tua flotta.',
+    questions:[
+      {q:'Avete una car policy aziendale formalmente definita e aggiornata?',opts:['No, le regole sono informali e non scritte','Abbiamo una policy ma datata e poco rispettata','Policy aggiornata e comunicata ai driver','Policy integrata con i sistemi di gestione e monitorata con KPI'],sc:[0,1,2,3]},
+      {q:'Come gestite la compliance normativa (ZTL, bolli, revisioni, normative emissioni)?',opts:['Reattivamente, quando riceviamo notifiche o multe','Con controlli manuali periodici','Sistema di alert e scadenziario automatico','Sistema integrato che gestisce, traccia e rendiconta tutto'],sc:[0,1,2,3]},
+      {q:'Come gestite la fiscalità legata ai veicoli aziendali (fringe benefit, deducibilità, IVA)?',opts:['Deleghiamo tutto al commercialista senza monitoraggio interno','Processo interno poco strutturato','Procedure definite e verifiche periodiche','Sistema integrato che ottimizza la fiscalità in modo proattivo'],sc:[0,1,2,3]},
+      {q:'Come gestite il trattamento dei dati dei driver (GDPR, consensi, dati GPS)?',opts:['Nessuna policy specifica per i dati dei driver','Consensi raccolti ma senza gestione strutturata','Policy GDPR dedicata per la flotta','Processo certificato con audit periodici e DPO coinvolto'],sc:[0,1,2,3]},
+      {q:'Con quale frequenza aggiornate le policy e i processi di fleet management?',opts:['Mai o solo in caso di problemi gravi','Ogni pochi anni o quando cambia il management','Annualmente con revisione strutturata','In modo continuo con benchmark vs mercato e aggiornamento proattivo'],sc:[0,1,2,3]}
+    ],
+    profiles:[
+      {label:'Informale',range:[0,6],desc:'La governance della flotta è poco strutturata e esposta a rischi normativi e fiscali. Una revisione dei processi porterebbe benefici immediati.',services:{low:['ADV-03'],mid:['OPS-02'],high:[]}},
+      {label:'Formalizzato',range:[7,11],desc:'Hai strutturato i processi principali ma ci sono aree di rischio. Un approccio più sistematico alla compliance e alla fiscalità ridurrebbe l\'esposizione.',services:{low:['CTR-01','CTR-02'],mid:['ADV-03'],high:[]}},
+      {label:'Best practice',range:[12,15],desc:'La tua governance è solida e allineata alle best practice. Puoi concentrarti sull\'ottimizzazione fiscale avanzata.',services:{low:['OPS-04','OPS-05'],mid:[],high:[]}}
+    ]
+  }
 ];
 
-const CI=[
-  {lbl:'Carburante',k:'fuel',max:500000,avg:180000},
-  {lbl:'Manutenzione ordinaria',k:'maint',max:300000,avg:90000},
-  {lbl:'Manutenzione straordinaria',k:'extr',max:200000,avg:55000},
-  {lbl:'Assicurazioni',k:'ins',max:250000,avg:70000},
-  {lbl:'Gestione sinistri',k:'clm',max:150000,avg:35000},
-  {lbl:'Noleggio / leasing',k:'lease',max:500000,avg:150000}
+// ── BENCHMARKS DATA ──
+const BENCHMARKS=[
+  {
+    id:'B1', title:'Costi da economie di scala',
+    desc:'Confronta i costi strutturali della tua flotta con i benchmark di mercato. Inserisci la dimensione della tua flotta e i costi annuali per categoria.',
+    type:'cost',
+    inputs:[],
+    costs:[
+      {id:'leasing', label:'Acquisizione / leasing / ammortamento', max:800000, avg:240000},
+      {id:'fuel2', label:'Carburante, pedaggi, parcheggi', max:500000, avg:180000},
+      {id:'ins2', label:'Assicurazioni, RCA, kasko, bollo', max:250000, avg:70000},
+      {id:'maint2', label:'Fornitori manutenzione (officine, gommisti, carrozzerie)', max:300000, avg:90000}
+    ]
+  },
+  {
+    id:'B2', title:'Costi migliorabili con team dedicato',
+    desc:'Valuta quanto ti costa la mancanza di processi strutturati e presidio professionale. Rispondi alle domande per stimare i costi nascosti nella tua gestione.',
+    type:'qualitative',
+    questions:[
+      {id:'b2q1', label:'Quante ore/settimana il tuo team dedica al fleet management?', type:'slider', min:0, max:40, step:1, unit:'ore/sett', benchmark:4},
+      {id:'b2q2', label:'Hai processi di verifica sui comportamenti driver (carburante, Telepass)?', type:'choice', opts:['Sì, sistematicamente','Sì, a campione','Parzialmente','No'], scores:[3,2,1,0]},
+      {id:'b2q3', label:'Tempo medio per chiudere una pratica sinistro:', type:'choice', opts:['Meno di 3 giorni','3–7 giorni','7–15 giorni','Più di 15 giorni'], scores:[3,2,1,0]},
+      {id:'b2q4', label:'I ritardi nel pagamento delle multe generano maggiorazioni?', type:'choice', opts:['Mai','Raramente','Spesso','Sempre'], scores:[3,2,1,0]},
+      {id:'b2q5', label:'Hai visibilità sui costi di downtime (veicoli fermi, sostitutivi)?', type:'choice', opts:['Sì, in tempo reale','Sì, periodicamente','Parzialmente','No'], scores:[3,2,1,0]},
+      {id:'b2q6', label:'Il tuo team gestisce direttamente la riconciliazione delle fatture fornitori?', type:'choice', opts:['No, è automatizzato','Solo a campione','Parzialmente','Sì, sempre manualmente'], scores:[3,2,1,0]}
+    ]
+  },
+  {
+    id:'B3', title:'Costi ottimizzabili con digitalizzazione',
+    desc:'Valuta quanto stai perdendo per mancanza di dati, integrazione e ottimizzazione della flotta.',
+    type:'digital',
+    questions:[
+      {id:'b3q1', label:'Hai un software fleet management dedicato?', type:'choice', opts:['Sì, integrato con altri sistemi','Sì, standalone','No, uso strumenti generici','No, gestione manuale'], scores:[3,2,1,0]},
+      {id:'b3q2', label:'I tuoi sistemi sono integrati con HR/ERP?', type:'choice', opts:['Completamente','Parzialmente','In corso di integrazione','No'], scores:[3,2,1,0]},
+      {id:'b3q3', label:'Misuri il tasso di utilizzo effettivo dei veicoli?', type:'choice', opts:['Sì, con dati precisi per veicolo','Sì, stima aggregata','No, ma lo vorrei fare','No'], scores:[3,2,1,0]},
+      {id:'b3q4', label:'Fai car sharing aziendale?', type:'choice', opts:['Sì, con piattaforma dedicata','Sì, in modo informale','No, ma ci stiamo pensando','No'], scores:[3,2,1,0]},
+      {id:'b3q5', label:'Hai un sistema di monitoraggio comportamento driver?', type:'choice', opts:['Sì, con scoring e feedback','Sì, solo monitoraggio','In fase di valutazione','No'], scores:[3,2,1,0]},
+      {id:'b3q6', label:'Gestisci l\'IVA sui rimborsi spesa driver in modo ottimizzato?', type:'choice', opts:['Sì, recupero sistematico','Sì, parzialmente','No, ma so che è recuperabile','Non so'], scores:[3,2,1,0]}
+    ]
+  }
 ];
 
-let user=null,qStep=0,qAns=[],aFilt='all';
+// ── FLEET PROFILE ──
+var fleetProfile = null;
+var fleetProfileCallback = null;
+const FP_USO = ['Prevalentemente veicoli di servizio','Prevalentemente fringe benefit','Mix equilibrato'];
+const FP_TEAM = ['Nessuna figura dedicata','1 persona part-time','1–2 persone full-time','Team di 3+ persone'];
+
+
+function getFleetSummary(){
+  if(!fleetProfile) return null;
+  return fleetProfile.veicoli+' veicoli - '+fleetProfile.pctNoleggio+'% a noleggio - '+(FP_USO[fleetProfile.uso]||'')+' - '+(FP_TEAM[fleetProfile.team]||'');
+}
+
+function fpUpdateVeh(el){ document.getElementById('fp-veh-val').textContent=el.value; }
+function fpUpdateNol(el){ document.getElementById('fp-nol-val').textContent=el.value+'%'; }
+
+function buildFleetForm(title, subtitle, showSkip){
+  var v=fleetProfile?fleetProfile.veicoli:50;
+  var n=fleetProfile?fleetProfile.pctNoleggio:50;
+  var u=fleetProfile?fleetProfile.uso:-1;
+  var t=fleetProfile?fleetProfile.team:-1;
+  var usoOpts=FP_USO.map(function(o,i){ return "<div class='fp-opt"+(u===i?" on":"")+"' onclick='fpSel(this)' data-val='"+i+"' data-group='uso'>"+o+"</div>"; }).join('');
+  var teamOpts=FP_TEAM.map(function(o,i){ return "<div class='fp-opt"+(t===i?" on":"")+"' onclick='fpSel(this)' data-val='"+i+"' data-group='team'>"+o+"</div>"; }).join('');
+  return "<div class='fp-form'>"
+    +"<h3>"+title+"</h3><p class='fp-sub'>"+subtitle+"</p>"
+    +"<div class='fp-row'><label>Numero di veicoli</label>"
+    +"<div class='fp-sl-hdr'><span>1</span><span class='fp-sl-val' id='fp-veh-val'>"+v+"</span><span>500</span></div>"
+    +"<input type='range' id='fp-veh' min='1' max='500' step='1' value='"+v+"' oninput='fpUpdateVeh(this)'>"
+    +"</div>"
+    +"<div class='fp-row'><label>% veicoli a noleggio a lungo termine</label>"
+    +"<div class='fp-sl-hdr'><span>0%</span><span class='fp-sl-val' id='fp-nol-val'>"+n+"%</span><span>100%</span></div>"
+    +"<input type='range' id='fp-nol' min='0' max='100' step='5' value='"+n+"' oninput='fpUpdateNol(this)'>"
+    +"</div>"
+    +"<div class='fp-row'><label>Destinazione uso prevalente</label><div class='fp-opts'>"+usoOpts+"</div></div>"
+    +"<div class='fp-row'><label>Persone dedicate al fleet management</label><div class='fp-opts'>"+teamOpts+"</div></div>"
+    +"<div class='fp-actions'>"
+    +"<button class='fp-btn' onclick='saveFleetProfile()'>Salva e continua</button>"
+    +(showSkip ? "<button class='fp-skip' onclick='skipFleetProfile()'>Salta e continua</button>" : "")
+    +"</div></div>";
+}
+
+function fpSel(el){
+  el.closest('.fp-opts').querySelectorAll('.fp-opt').forEach(function(o){o.classList.remove('on');});
+  el.classList.add('on');
+}
+
+function saveFleetProfile(){
+  var uso=-1, team=-1;
+  document.querySelectorAll('.fp-opt.on').forEach(function(el){
+    if(el.dataset.group==='uso') uso=parseInt(el.dataset.val);
+    if(el.dataset.group==='team') team=parseInt(el.dataset.val);
+  });
+  fleetProfile={
+    veicoli: parseInt(document.getElementById('fp-veh').value),
+    pctNoleggio: parseInt(document.getElementById('fp-nol').value),
+    uso: uso>=0?uso:2,
+    team: team>=0?team:0
+  };
+  if(fleetProfileCallback) fleetProfileCallback();
+  else renderProfile();
+}
+
+function skipFleetProfile(){
+  if(fleetProfileCallback) fleetProfileCallback();
+}
+
+function showFleetForm(containerId, callbackFn, fromProfile){
+  fleetProfileCallback = callbackFn||null;
+  var title=fromProfile?'Modifica il profilo della tua flotta':'Prima di iniziare, parlaci della tua flotta';
+  var subtitle=fromProfile?'Aggiorna le informazioni sulla tua flotta.':'Ci aiuta a contestualizzare meglio i risultati. Puoi saltare questo passaggio.';
+  document.getElementById(containerId).innerHTML=buildFleetForm(title,subtitle,!fromProfile);
+}
+
+
+// ── STATE ──
+var user=null, aFilt='all';
+var currentAssessment=null, currentAssessmentStep=0, currentAssessmentAnswers=[];
+var currentBenchmark=null, benchAnswers={};
 
 // ── AUTH ──
 function doLogin(){
-  const v=document.getElementById('ci').value.trim().toUpperCase();
-  const u=USERS[v];
+  var v=document.getElementById('ci').value.trim().toUpperCase();
+  var u=USERS[v];
   document.getElementById('ci').classList.toggle('bad',!u);
   document.getElementById('em').style.display=u?'none':'block';
-  if(u){user=u;showToast('Benvenuto, '+u.ref+' — '+u.az);setTimeout(()=>{showPage('pg-dash');upHdr();},1400);}
+  if(u){user=u;showToast('Benvenuto, '+u.ref+' — '+u.az);setTimeout(function(){showPage('pg-dash');upHdr();},1400);}
 }
-document.getElementById('ci').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+document.getElementById('ci').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
 
 function doLogout(){
-  user=null;showPage('pg-login');
+  user=null;
+  showPage('pg-login');
   document.getElementById('ci').value='';
   document.getElementById('ci').classList.remove('bad');
   document.getElementById('em').style.display='none';
 }
-function showToast(m){const t=document.getElementById('toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',1400);}
+
+function showToast(m){
+  var t=document.getElementById('toast');
+  t.textContent=m;t.style.display='block';
+  setTimeout(function(){t.style.display='none';},1400);
+}
 
 function upHdr(){
   if(!user)return;
-  [1,2,3,4,5,6].forEach(i=>{
-    const n=document.getElementById('hn'+i),c=document.getElementById('hc'+i);
-    if(n)n.textContent=user.ref;if(c)c.textContent=user.az;
+  [1,2,3,4,5,6,7,8].forEach(function(i){
+    var n=document.getElementById('hn'+i),c=document.getElementById('hc'+i);
+    if(n)n.textContent=user.ref;
+    if(c&&!c.style.color)c.textContent=user.az;
   });
-  const dn=document.getElementById('dash-name');if(dn)dn.textContent=user.ref;
+  var dn=document.getElementById('dash-name');if(dn)dn.textContent=user.ref;
 }
 
 function showPage(id){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
   if(id==='pg-know')renderKnow();
-  if(id==='pg-bench')renderSliders();
   if(id==='pg-svc')renderCatalog();
   if(id==='pg-dash')renderCatDash();
+  if(id==='pg-quiz')renderQuizHub();
+  if(id==='pg-bench')renderBenchHub();
+  if(id==='pg-profile')renderProfile();
+}
+
+function makeProfileBanner(ctx){
+  var containerId=ctx==='quiz'?'quiz-hub':'bench-hub';
+  var cbFn=ctx==='quiz'?renderQuizHub:renderBenchHub;
+  var div=document.createElement('div');
+  div.className='fp-banner';
+  div.innerHTML="<div class='fp-banner-info'>🚗 <strong>La tua flotta:</strong> "+getFleetSummary()+"</div>";
+  var btn=document.createElement('button');
+  btn.className='fp-banner-edit';
+  btn.textContent='Modifica';
+  btn.onclick=function(){showFleetForm(containerId,cbFn,false);};
+  div.appendChild(btn);
+  return div.outerHTML;
 }
 
 // ── SERVICES CATALOG ──
 function renderCatalog(activeCatId){
-  const active=activeCatId||CATS[0].id;
-  const cat=CATS.find(c=>c.id===active)||CATS[0];
-  const nav=`<div class="cat-nav">${CATS.map(c=>`<button class="cat-nav-btn ${c.id===active?'active':''}" onclick="renderCatalog('${c.id}')">${c.label}</button>`).join('')}</div>`;
-  const content=`
-    <div class="cat-header">
-      <div class="cat-header-top"><span class="cat-badge">${cat.badge}</span></div>
-      <h2>${cat.label}</h2>
-      <p>${cat.desc}</p>
-    </div>
-    <div class="svc-grid">
-      ${cat.services.map(s=>`
-        <div class="svc-card" onclick="showDetail('${s.id}')">
-          <div class="svc-code">${s.id}</div>
-          <h3>${s.title}</h3>
-          <p>${s.short}</p>
-          <div class="svc-arrow">Scopri il servizio →</div>
-        </div>`).join('')}
-    </div>`;
-  document.getElementById('svc-catalog').innerHTML=nav+content;
-}
-
-function showDetail(id,fromCat){
-  const s=getSvcById(id);
-  if(!s)return;
-  document.getElementById('det-bc').textContent=s.title;
-  // breadcrumb back target: if fromCat, go back to catalog filtered on that cat
-  const backLabel='← Torna al catalogo';
-  document.getElementById('svc-detail-body').innerHTML=`
-    <div class="svc-detail-header">
-      <svg class="circles-sm" viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="40" stroke="white" stroke-width="1"/><circle cx="100" cy="100" r="65" stroke="white" stroke-width="1"/><circle cx="100" cy="100" r="90" stroke="white" stroke-width="1"/></svg>
-      <div class="svc-detail-cat">${s.catLabel}</div>
-      <div class="svc-detail-code">${s.id}</div>
-      <h1>${s.title}</h1>
-      <p>${s.desc}</p>
-    </div>
-    <div class="detail-body">
-      <div class="detail-block"><h3>Attività incluse</h3><ul>${s.activities.map(a=>`<li>${a}</li>`).join('')}</ul></div>
-      <div class="detail-block"><h3>Benefici</h3><ul>${s.benefits.map(b=>`<li>${b}</li>`).join('')}</ul></div>
-    </div>
-    <div class="questions-block">
-      <h3>Questo servizio risponde alle tue domande</h3>
-      <ul>${s.questions.map(q=>`<li>${q}</li>`).join('')}</ul>
-    </div>
-    <button class="btn-back" onclick="showPage('pg-svc')">${backLabel}</button>`;
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('pg-svc-detail').classList.add('active');
-  window.scrollTo(0,0);
+  var active=activeCatId||CATS[0].id;
+  var cat=CATS.find(function(c){return c.id===active;})||CATS[0];
+  var navBtns=CATS.map(function(c){
+    return "<button class='cat-nav-btn "+(c.id===active?"active":"")+"' onclick=\"renderCatalog('"+c.id+"')\">"+c.label+"</button>";
+  }).join('');
+  var svcCards=cat.services.map(function(s){
+    return "<div class='svc-card' onclick=\"showDetail('"+s.id+"')\"><div class='svc-code'>"+s.id+"</div><h3>"+s.title+"</h3><p>"+s.short+"</p><div class='svc-arrow'>Scopri il servizio →</div></div>";
+  }).join('');
+  var nav="<div class='cat-nav'>"+navBtns+"</div>";
+  var catContent="<div class='cat-header'><div class='cat-header-top'><span class='cat-badge'>"+cat.badge+"</span></div><h2>"+cat.label+"</h2><p>"+cat.desc+"</p></div><div class='svc-grid'>"+svcCards+"</div>";
+  document.getElementById('svc-catalog').innerHTML=nav+catContent;
 }
 
 function renderCatDash(){
-  const el=document.getElementById('cat-dash-grid');
+  var el=document.getElementById('cat-dash-grid');
   if(!el)return;
-  el.innerHTML=CATS.map(cat=>`
-    <div class="cat-dash-card" onclick="showCatalogCat('${cat.id}')">
-      <div class="cat-dash-badge">${cat.badge}</div>
-      <h3>${cat.label}</h3>
-      <p>${cat.desc}</p>
-      <div class="cat-dash-services">${cat.services.map(s=>`<span class="cat-dash-tag">${s.id}</span>`).join('')}</div>
-      <div class="cat-dash-cta">Esplora i servizi →</div>
-    </div>`).join('');
+  el.innerHTML=CATS.map(function(cat){
+    var tags=cat.services.map(function(s){return "<span class='cat-dash-tag'>"+s.id+"</span>";}).join('');
+    return "<div class='cat-dash-card' onclick=\"showCatalogCat('"+cat.id+"')\"><div class='cat-dash-badge'>"+cat.badge+"</div><h3>"+cat.label+"</h3><p>"+cat.desc+"</p><div class='cat-dash-services'>"+tags+"</div><div class='cat-dash-cta'>Esplora i servizi →</div></div>";
+  }).join('');
 }
 
 function showCatalogCat(catId){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
   document.getElementById('pg-svc').classList.add('active');
   window.scrollTo(0,0);
   renderCatalog(catId);
 }
 
+function showDetail(id){
+  var s=getSvcById(id);if(!s)return;
+  document.getElementById('det-bc').textContent=s.title;
+  var acts=s.activities.map(function(a){return "<li>"+a+"</li>";}).join('');
+  var bens=s.benefits.map(function(b){return "<li>"+b+"</li>";}).join('');
+  var qs=s.questions.map(function(q){return "<li>"+q+"</li>";}).join('');
+  document.getElementById('svc-detail-body').innerHTML=
+    "<div class='svc-detail-header'><svg class='circles-sm' viewBox='0 0 200 200' fill='none'><circle cx='100' cy='100' r='40' stroke='white' stroke-width='1'/><circle cx='100' cy='100' r='65' stroke='white' stroke-width='1'/><circle cx='100' cy='100' r='90' stroke='white' stroke-width='1'/></svg>"
+    +"<div class='svc-detail-cat'>"+s.catLabel+"</div><div class='svc-detail-code'>"+s.id+"</div><h1>"+s.title+"</h1><p>"+s.desc+"</p></div>"
+    +"<div class='detail-body'><div class='detail-block'><h3>Attività incluse</h3><ul>"+acts+"</ul></div>"
+    +"<div class='detail-block'><h3>Benefici</h3><ul>"+bens+"</ul></div></div>"
+    +"<div class='questions-block'><h3>Questo servizio risponde alle tue domande</h3><ul>"+qs+"</ul></div>"
+    +"<button class='btn-back' onclick=\"showPage('pg-svc')\">← Torna al catalogo</button>";
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('pg-svc-detail').classList.add('active');
+  window.scrollTo(0,0);
+}
+
 // ── KNOWLEDGE ──
 function renderKnow(){
-  const cats=['all','norm','sost','tech','inn'];
-  const lb={all:'Tutti',norm:'Normativa',sost:'Sostenibilità',tech:'Tecnologia',inn:'Innovazione'};
-  document.getElementById('fp').innerHTML=cats.map(c=>`<div class="pill ${aFilt===c?'on':''}" onclick="setFilt('${c}')">${lb[c]}</div>`).join('');
-  const filtered=aFilt==='all'?ARTS:ARTS.filter(a=>a.ck===aFilt);
-  document.getElementById('al').innerHTML=filtered.map(a=>`<div class="art"><div class="art-meta"><span class="tag t-${a.ck}">${a.cat}</span><span class="art-date">${a.dt}</span></div><h3>${a.title}</h3><p>${a.ab}</p><span class="rm">Leggi di più →</span></div>`).join('');
+  var cats=['all','norm','sost','tech','inn'];
+  var lb={all:'Tutti',norm:'Normativa',sost:'Sostenibilità',tech:'Tecnologia',inn:'Innovazione'};
+  document.getElementById('fp').innerHTML=cats.map(function(c){
+    return "<div class='pill "+(aFilt===c?'on':'')+"' onclick=\"setFilt('"+c+"')\">"+lb[c]+"</div>";
+  }).join('');
+  var filtered=aFilt==='all'?ARTS:ARTS.filter(function(a){return a.ck===aFilt;});
+  document.getElementById('al').innerHTML=filtered.map(function(a){
+    var link = a.url ? '<a href="'+a.url+'" target="_blank" rel="noopener" class="rm">Leggi di più →</a>' : '<span class="rm">Leggi di più →</span>';
+    return "<div class='art'><div class='art-meta'><span class='tag t-"+a.ck+"'>"+a.cat+"</span><span class='art-date'>"+a.dt+(a.src?" · "+a.src:"")+"</span></div><h3>"+a.title+"</h3><p>"+a.ab+"</p>"+link+"</div>";
+  }).join('');
 }
 function setFilt(f){aFilt=f;renderKnow();}
 
-// ── QUIZ ──
-function startQuiz(){qStep=0;qAns=new Array(QS.length).fill(-1);renderQuiz();}
-function renderQuiz(){
-  const tot=QS.length;
-  document.getElementById('qp').style.width=((qStep/tot)*100)+'%';
-  const b=document.getElementById('qb');
-  if(qStep>=tot){showRes();return;}
-  const q=QS[qStep];
-  b.innerHTML=`<div class="qz-step"><div class="qz-sec">${q.sec}</div><div class="qz-q">${q.q}</div><div class="opts">${q.opts.map((o,i)=>`<div class="opt ${qAns[qStep]===i?'on':''}" onclick="selOpt(${i})">${o}</div>`).join('')}</div><div class="qz-nav"><button class="btn-s" onclick="qBack()" ${qStep===0?'disabled':''}>← Indietro</button><span class="qz-cnt">${qStep+1} / ${tot}</span><button class="btn-n" onclick="qNext()" ${qAns[qStep]===-1?'disabled':''}>${qStep===tot-1?'Vedi risultati →':'Avanti →'}</button></div></div>`;
-}
-function selOpt(i){qAns[qStep]=i;renderQuiz();}
-function qNext(){if(qAns[qStep]>-1){qStep++;renderQuiz();}}
-function qBack(){if(qStep>0){qStep--;renderQuiz();}}
 
-function groupByCat(svcList){
-  const groups={};
-  svcList.forEach(s=>{
-    if(!groups[s.catLabel])groups[s.catLabel]=[];
-    groups[s.catLabel].push(s);
-  });
-  return Object.entries(groups).map(([label,svcs])=>`
-    <div class="res-cat-group">
-      <div class="res-cat-label">${label}</div>
-      <div class="sol-grid">${svcs.map(s=>`<div class="sol-c" onclick="showDetail('${s.id}')"><strong>${s.title}</strong><span>${s.short}</span><span class="sol-link">Scopri il servizio →</span></div>`).join('')}</div>
-    </div>`).join('');
+// ── ASSESSMENT HUB ──
+function renderQuizHub(){
+  const el=document.getElementById('quiz-hub');
+  if(!el)return;
+  var profBanner = fleetProfile ? makeProfileBanner('quiz') : '';
+  var assessCards = ASSESSMENTS.map(function(a){ return "<div class='hub-card' onclick='startAssessment(\"" + a.id + "\")'><div class='hub-card-num'>" + a.id + "</div><h3>" + a.title + "</h3><p>" + a.desc + "</p></div>"; }).join('');
+
+  el.innerHTML = profBanner + "<p class='hub-intro'>Valuta la maturita della tua gestione flotta con i 4 assessment dedicati.</p><div class='hub-grid'>" + assessCards + "</div>";
 }
 
-function showRes(){
-  document.getElementById('qp').style.width='100%';
-  const s={op:0,so:0,co:0};
-  QS.forEach((q,i)=>{const v=qAns[i]===-1?0:q.sc[qAns[i]];if(q.sec==='Gestione Operativa')s.op+=v;else if(q.sec==='Sostenibilità')s.so+=v;else s.co+=v;});
-  const mx=9,op=Math.round((s.op/mx)*100),so=Math.round((s.so/mx)*100),co=Math.round((s.co/mx)*100),avg=Math.round((op+so+co)/3);
-  let pr,ds,matchKey;
-  if(avg<33){pr='Gestore Tradizionale';ds='La tua azienda gestisce la flotta con approcci consolidati ma prevalentemente reattivi. Esiste un significativo potenziale di ottimizzazione attraverso l\'adozione di strumenti digitali e pratiche strutturate.';matchKey='low';}
-  else if(avg<66){pr='Fleet Manager in Crescita';ds='Hai già implementato alcune best practice e stai evolvendo verso modelli più strutturati. Il passo successivo è l\'integrazione tra le diverse aree per ottenere una visione unitaria e predittiva delle performance.';matchKey='mid';}
-  else{pr='Leader della Mobilità Aziendale';ds='La tua organizzazione adotta pratiche avanzate con forte orientamento ai dati e alla sostenibilità. Sei posizionato per guidare la transizione verso modelli di mobilità innovativi.';matchKey='high';}
-  const matched=QUIZ_MATCH[matchKey].map(id=>getSvcById(id)).filter(Boolean);
-  document.getElementById('qb').innerHTML=`<div class="res"><h2>Profilo: <span style="color:var(--blue)">${pr}</span></h2><div class="pt">Punteggio medio: ${avg}%</div><div class="radar-box">${buildRadar(op,so,co)}</div><div class="prof-desc">${ds}</div><div class="sol-t">I servizi ABC per il tuo profilo</div>${groupByCat(matched)}<button class="btn-back" onclick="showPage('pg-dash')">← Torna alla Dashboard</button></div>`;
+// ── ASSESSMENT WIZARD ──
+function startAssessment(id){
+  const a=ASSESSMENTS.find(function(x){return x.id===id;});
+  if(!a)return;
+  currentAssessment=a;
+  currentAssessmentStep=0;
+  currentAssessmentAnswers=new Array(a.questions.length).fill(-1);
+  if(!fleetProfile){
+    showFleetForm('quiz-hub', renderAssessmentStep, false);
+  } else {
+    renderAssessmentStep();
+  }
 }
 
-function buildRadar(op,so,co){
-  const cx=130,cy=130,r=90;
-  const ang=[-90,30,150],lbs=['Gestione\nOperativa','Sostenibilità','Controllo\nCosti'],vals=[op/100,so/100,co/100];
-  const pts=vals.map((v,i)=>{const a=(ang[i]*Math.PI)/180;return{x:cx+r*v*Math.cos(a),y:cy+r*v*Math.sin(a)};});
-  const grid=[.33,.66,1].map(g=>{const gp=ang.map(a=>{const rd=(a*Math.PI)/180;return(cx+r*g*Math.cos(rd))+','+(cy+r*g*Math.sin(rd));});return`<polygon points="${gp.join(' ')}" fill="none" stroke="#e2e8f0" stroke-width="1"/>`;}).join('');
-  const axes=ang.map(a=>{const rd=(a*Math.PI)/180;return`<line x1="${cx}" y1="${cy}" x2="${cx+r*Math.cos(rd)}" y2="${cy+r*Math.sin(rd)}" stroke="#e2e8f0" stroke-width="1"/>`;}).join('');
-  const lbls=ang.map((a,i)=>{const rd=(a*Math.PI)/180;const lx=cx+(r+26)*Math.cos(rd),ly=cy+(r+26)*Math.sin(rd);return lbs[i].split('\n').map((p,j,arr)=>`<text x="${lx}" y="${ly+(j*13)-((arr.length-1)*6.5)}" text-anchor="middle" dominant-baseline="central" font-size="10" font-family="DM Sans,sans-serif" fill="#475569">${p}</text>`).join('');}).join('');
-  const dots=pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#00AEEF"/>`).join('');
-  return`<svg viewBox="0 0 260 260" style="width:100%;max-width:240px">${grid}${axes}<polygon points="${pts.map(p=>p.x+','+p.y).join(' ')}" fill="rgba(0,174,239,.15)" stroke="#00AEEF" stroke-width="2"/>${dots}${lbls}</svg>`;
-}
-
-// ── BENCHMARK ──
-function renderSliders(){
-  document.getElementById('br').innerHTML='';
-  document.getElementById('sw').innerHTML=CI.map(it=>`<div class="sl-row"><div class="sl-hdr"><span class="sl-lbl">${it.lbl}</span><span class="sl-val" id="v-${it.k}">€ 0</span></div><input type="range" min="0" max="${it.max}" step="5000" value="0" id="s-${it.k}" oninput="upSl('${it.k}')"></div>`).join('');
-}
-function upSl(k){const v=+document.getElementById('s-'+k).value;document.getElementById('v-'+k).textContent='€ '+v.toLocaleString('it-IT');}
-
-function calcBench(){
-  const vals={};let tot=0,totAvg=0;
-  CI.forEach(it=>{vals[it.k]=+document.getElementById('s-'+it.k).value;tot+=vals[it.k];totAvg+=it.avg;});
-  const sav=Math.max(0,tot-totAvg),savP=tot>0?Math.round((sav/tot)*100):0;
-  const bars=CI.map(it=>{
-    const v=vals[it.k],pct=Math.round((v/it.max)*100),ap=Math.round((it.avg/it.max)*100);
-    const col=v>it.avg?'#ef4444':v>it.avg*.7?'#f59e0b':'#10b981';
-    const pos=v>it.avg?'sopra media':v>it.avg*.7?'nella media':'sotto media';
-    return`<div class="bbr"><div class="bbr-lbl"><span>${it.lbl}</span><span>€ ${v.toLocaleString('it-IT')} — <span style="color:${col}">${pos}</span></span></div><div class="bbr-track"><div class="bbr-fill" style="width:${pct}%;background:${col}"></div><div class="bbr-avg" style="left:${ap}%"></div></div></div>`;
+function renderAssessmentStep(){
+  const a=currentAssessment;
+  const step=currentAssessmentStep;
+  const tot=a.questions.length;
+  const el=document.getElementById('quiz-hub');
+  if(step>=tot){showAssessmentResults();return;}
+  const q=a.questions[step];
+  const pct=Math.round((step/tot)*100);
+  const letters=['A','B','C','D'];
+  const optsHtml=q.opts.map(function(o,i){
+    return '<div class="opt '+(currentAssessmentAnswers[step]===i?'on':'')+'" onclick="selAssOpt('+i+')">'
+      +'<span class="opt-letter">'+letters[i]+'</span>'
+      +'<span class="opt-text">'+o+'</span>'
+      +'</div>';
   }).join('');
-  // build matched services from above-avg items
-  const above=CI.filter(i=>vals[i.k]>i.avg);
-  const matchedIds=new Set();
-  if(above.length===0){['CTR-01','OPS-03','OPS-04'].forEach(id=>matchedIds.add(id));}
-  else{above.forEach(i=>{(BENCH_MATCH[i.k]||[]).forEach(id=>matchedIds.add(id));});}
-  const matched=[...matchedIds].slice(0,5).map(id=>getSvcById(id)).filter(Boolean);
-  document.getElementById('br').innerHTML=`<div class="br-res"><h3>Il tuo posizionamento rispetto al mercato</h3>${bars}<div class="saving"><div><div class="saving-l">Potenziale di saving stimato</div><div class="saving-n">€ ${sav.toLocaleString('it-IT')}</div></div><div class="saving-p">–${savP}%</div></div><div class="sol-t">Servizi ABC consigliati</div>${groupByCat(matched)}<button class="btn-back" onclick="showPage('pg-dash')">← Torna alla Dashboard</button></div>`;
-  document.getElementById('br').scrollIntoView({behavior:'smooth',block:'start'});
+  el.innerHTML='<div class="az-header">'
+    +'<button class="btn-back" onclick="renderQuizHub()" style="margin-bottom:12px">← Tutti gli assessment</button>'
+    +'<h2>'+a.title+'</h2>'
+    +'<p>'+a.desc+'</p>'
+    +'</div>'
+    +'<div class="prog"><div class="prog-f" style="width:'+pct+'%"></div></div>'
+    +'<div class="qz-sec">Domanda '+(step+1)+' di '+tot+'</div>'
+    +'<div class="qz-q">'+q.q+'</div>'
+    +'<div class="opts">'+optsHtml+'</div>'
+    +'<div class="qz-nav">'
+    +'<button class="btn-s" onclick="assBack()" '+(step===0?'disabled':'')+'>← Indietro</button>'
+    +'<span class="qz-cnt">'+(step+1)+' / '+tot+'</span>'
+    +'<button class="btn-n" onclick="assNext()" '+(currentAssessmentAnswers[step]===-1?'disabled':'')+'>'+(step===tot-1?'Vedi risultati →':'Avanti →')+'</button>'
+    +'</div>';
+}
+
+function selAssOpt(i){currentAssessmentAnswers[currentAssessmentStep]=i;renderAssessmentStep();}
+function assNext(){if(currentAssessmentAnswers[currentAssessmentStep]>-1){currentAssessmentStep++;renderAssessmentStep();}}
+function assBack(){if(currentAssessmentStep>0){currentAssessmentStep--;renderAssessmentStep();}}
+
+function showAssessmentResults(){
+  const a=currentAssessment;
+  const score=a.questions.reduce((sum,q,i)=>{const ans=currentAssessmentAnswers[i];return sum+(ans===-1?0:q.sc[ans]);},0);
+  const maxScore=a.questions.length*3;
+  const pct=Math.round((score/maxScore)*100);
+  const profile=a.profiles.find(p=>score>=p.range[0]&&score<=p.range[1])||a.profiles[a.profiles.length-1];
+  // collect matched services
+  const allSvcIds=[...profile.services.low,...profile.services.mid,...profile.services.high];
+  const matched=allSvcIds.map(id=>getSvcById(id)).filter(Boolean);
+  var fleetCtx=fleetProfile?'<div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:8px">🚗 '+getFleetSummary()+'</div>':'';
+  var solHtml=matched.length>0?'<div class="sol-t" style="margin-top:20px">Servizi ABC consigliati per il tuo profilo</div>'+groupByCat(matched):'';
+  document.getElementById('quiz-hub').innerHTML=''
+    +'<button class="btn-back" onclick="renderQuizHub()" style="margin-bottom:16px">← Tutti gli assessment</button>'
+    +'<div class="res-header">'
+    +'<svg class="res-header-circles" viewBox="0 0 160 160" fill="none"><circle cx="80" cy="80" r="35" stroke="white" stroke-width="1"/><circle cx="80" cy="80" r="60" stroke="white" stroke-width="1"/><circle cx="80" cy="80" r="80" stroke="white" stroke-width="1"/></svg>'
+    +'<div class="res-header-label">'+a.title+'</div>'
+    +'<h2>'+profile.label+'</h2>'
+    +'<div class="res-score-row"><div class="res-score-badge">Punteggio: '+score+'/'+maxScore+' ('+pct+'%)</div></div>'
+    +fleetCtx
+    +'</div>'
+    +'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--g600);line-height:1.6">'+profile.desc+'</div>'
+    +solHtml
+    +'<button class="btn-back" onclick="renderQuizHub()" style="margin-top:8px">← Torna agli assessment</button>';
+}
+
+// ── BENCHMARK HUB ──
+function renderBenchHub(){
+  const el=document.getElementById('bench-hub');
+  if(!el)return;
+  var profBanner = fleetProfile ? makeProfileBanner('bench') : '';
+  var benchCards = BENCHMARKS.map(function(b){ return "<div class='hub-card' onclick='startBenchmark(\"" + b.id + "\")'><div class='hub-card-num'>" + b.id + "</div><h3>" + b.title + "</h3><p>" + b.desc + "</p></div>"; }).join('');
+
+  el.innerHTML = profBanner + "<p class='hub-intro'>Scopri il tuo posizionamento con i 3 benchmark disponibili.</p><div class='hub-grid'>" + benchCards + "</div>";
+}
+
+function startBenchmark(id){
+  const b=BENCHMARKS.find(function(x){return x.id===id;});
+  if(!b)return;
+  currentBenchmark=b;
+  benchAnswers={};
+  if(!fleetProfile){
+    showFleetForm('bench-hub', renderBenchmarkForm, false);
+  } else {
+    renderBenchmarkForm();
+  }
+}
+
+function renderBenchmarkForm(){
+  var b=currentBenchmark;
+  var el=document.getElementById('bench-hub');
+  var fleetCtx=fleetProfile?'<div class="fp-banner" style="margin-bottom:16px"><div class="fp-banner-info">🚗 <strong>La tua flotta:</strong> '+getFleetSummary()+'</div></div>':'';
+
+  var formHtml='';
+  if(b.type==='cost'){
+    formHtml+='<div class="bench-section"><div class="bench-section-title"><span class="bench-section-badge">Costi annuali €</span></div>';
+    b.costs.forEach(function(c){
+      formHtml+='<div class="sl-row"><div class="sl-hdr"><span class="sl-lbl">'+c.label+'</span><span class="sl-val" id="bv-'+c.id+'">€ 0</span></div>'
+      formHtml += '<input type="range" min="0" max="'+c.max+'" step="5000" value="0" id="bs-'+c.id+'" oninput="upBSlEur(this.id.slice(3))"></div>';
+    });
+    formHtml+='</div>';
+  } else {
+    b.questions.forEach(function(q){
+      if(q.type==='slider'){
+        formHtml+='<div class="bench-section"><div class="sl-row"><div class="sl-hdr"><span class="sl-lbl">'+q.label+'</span><span class="sl-val" id="bv-'+q.id+'">0 '+q.unit+'</span></div>'
+        formHtml += '<input type="range" min="'+q.min+'" max="'+q.max+'" step="'+q.step+'" value="0" id="bs-'+q.id+'" oninput="upBSlByEl(this)" data-unit="'+q.unit+'"></div></div>';
+      } else {
+        var optsHtml=q.opts.map(function(o,i){
+          return '<div class="qual-opt" onclick="selBOpt(this,\'' + q.id + '\',' + i + ')">'+o+'</div>';
+        }).join('');
+        formHtml+='<div class="bench-section"><div class="qual-row"><label>'+q.label+'</label><div class="qual-opts">'+optsHtml+'</div></div></div>';
+      }
+    });
+  }
+
+  el.innerHTML='<button class="btn-back" onclick="renderBenchHub()" style="margin-bottom:16px">← Tutti i benchmark</button>'
+    +'<div class="bench-type-header">'
+    +'<div class="bench-type-label">'+b.id+'</div>'
+    +'<h2>'+b.title+'</h2>'
+    +'<p>'+b.desc+'</p>'
+    +'</div>'
+    +fleetCtx
+    +formHtml
+    +'<button class="btn-calc" onclick="calcBenchmark()">Calcola il mio Benchmark</button>'
+    +'<div id="bench-result"></div>';
+}
+
+function upBSl(id,unit){const v=document.getElementById('bs-'+id).value;document.getElementById('bv-'+id).textContent=v+' '+unit;}
+function upBSlEur(id){const v=+document.getElementById('bs-'+id).value;document.getElementById('bv-'+id).textContent='€ '+v.toLocaleString('it-IT');}
+function selBOpt(el,qid,idx){
+  el.closest('.qual-opts').querySelectorAll('.qual-opt').forEach(o=>o.classList.remove('on'));
+  el.classList.add('on');
+  benchAnswers[qid]=idx;
+}
+
+function calcBenchmark(){
+  const b=currentBenchmark;
+  let resultHtml='';
+  let matchedSvcIds=[];
+
+  if(b.type==='cost'){
+    const nveh=(fleetProfile&&fleetProfile.veicoli>0)?fleetProfile.veicoli:1;
+    let tot=0,totAvg=0;
+    const bars=b.costs.map(c=>{
+      const v=+document.getElementById('bs-'+c.id).value;
+      tot+=v; totAvg+=c.avg;
+      const pct=Math.round((v/c.max)*100);
+      const ap=Math.round((c.avg/c.max)*100);
+      const col=v>c.avg?'#ef4444':v>c.avg*.7?'#f59e0b':'#10b981';
+      const pos=v>c.avg?'sopra media':v>c.avg*.7?'nella media':'sotto media';
+      if(v>c.avg) matchedSvcIds.push(...['CTR-02','OPS-03']);
+      return '<div class="bbr"><div class="bbr-lbl"><span>'+c.label+'</span><span>€ '+v.toLocaleString('it-IT')+' — <span style="color:'+col+'">'+pos+'</span></span></div><div class="bbr-track"><div class="bbr-fill" style="width:'+pct+'%;background:'+col+'"></div><div class="bbr-avg" style="left:'+ap+'%"></div></div></div>';
+    }).join('');
+    const costPerVeh=nveh>0?Math.round(tot/nveh):0;
+    const avgPerVeh=nveh>0?Math.round(totAvg/nveh):0;
+    const sav=Math.max(0,tot-totAvg);
+    const savP=tot>0?Math.round((sav/tot)*100):0;
+    matchedSvcIds.push('CTR-01','OPS-04');
+    resultHtml='<div class="br-res"><div class="br-section-title">Posizionamento per categoria</div>'+bars+'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:14px 16px;margin:12px 0;font-size:13px"><strong>Costo per veicolo/anno:</strong> <span style="color:var(--blue);font-weight:600">€ '+costPerVeh.toLocaleString('it-IT')+'</span> vs media mercato <span style="color:var(--g600)">€ '+avgPerVeh.toLocaleString('it-IT')+'</span></div><div class="saving"><div><div class="saving-l">Potenziale di saving stimato</div><div class="saving-n">€ '+sav.toLocaleString('it-IT')+'</div></div><div class="saving-p">–'+savP+'%</div></div>';
+  } else {
+    const questions=b.questions;
+    let totalScore=0, maxScore=questions.length*3;
+    const scores=questions.map(q=>{
+      if(q.type==='slider'){
+        const v=+document.getElementById('bs-'+q.id).value;
+        const norm=Math.min(3,Math.round((v/q.benchmark)*3));
+        totalScore+=norm;
+        return {label:q.label,score:norm,max:3};
+      } else {
+        const s=benchAnswers[q.id]!==undefined?q.scores[benchAnswers[q.id]]:0;
+        totalScore+=s;
+        return {label:q.label,score:s,max:3};
+      }
+    });
+    const pct=Math.round((totalScore/maxScore)*100);
+    const maturity=pct>=70?'Avanzato':pct>=40?'In sviluppo':'Base';
+    const matColor=pct>=70?'#10b981':pct>=40?'#f59e0b':'#ef4444';
+    var scoreCards=scores.map(function(s){var col=s.score/s.max>=0.7?'#10b981':s.score/s.max>=0.4?'#f59e0b':'#ef4444';var w=Math.round((s.score/s.max)*100);return '<div class="score-card"><div class="score-card-label">'+s.label+'</div><div class="score-bar"><div class="score-bar-fill" style="width:'+w+'%;background:'+col+'"></div></div><div class="score-card-val" style="color:'+col+'">'+s.score+'/'+s.max+'</div></div>';}).join('');
+    if(b.id==='B2') matchedSvcIds.push('OPS-04','OPS-05','CTR-01');
+    else matchedSvcIds.push('OPS-01','OPS-03','ADV-04');
+    resultHtml='<div class="br-res"><div class="br-section-title">Il tuo profilo di maturita</div><div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px"><span style="font-size:20px;font-weight:600;color:'+matColor+'">'+pct+'%</span><span style="font-size:13px;font-weight:500;color:'+matColor+'">'+maturity+'</span><span style="font-size:12px;color:var(--g600);margin-left:4px">vs benchmark di mercato</span></div><div class="score-grid">'+scoreCards+'</div>';
+  }
+
+  // matched services grouped by category
+  const uniqueIds=[...new Set(matchedSvcIds)];
+  const matched=uniqueIds.slice(0,5).map(id=>getSvcById(id)).filter(Boolean);
+  var solHtml=matched.length>0?'<div class="sol-t">Servizi ABC consigliati</div>'+groupByCat(matched):'';
+  document.getElementById('bench-result').innerHTML=resultHtml+solHtml+'<button class="btn-back" onclick="renderBenchHub()" style="margin-top:8px">← Torna ai benchmark</button></div>';
+  document.getElementById('bench-result').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── HELPERS ──
+function groupByCat(svcList){
+  var groups={};
+  svcList.forEach(function(s){if(!groups[s.catLabel])groups[s.catLabel]=[];groups[s.catLabel].push(s);});
+  return Object.keys(groups).map(function(label){
+    var svcs=groups[label];
+    var cards=svcs.map(function(s){
+      return '<div class="sol-c" onclick="showDetail(\''+s.id+'\')"><strong>'+s.title+'</strong><span>'+s.short+'</span><span class="sol-link">Scopri il servizio</span></div>';
+    }).join('');
+    return '<div class="res-cat-group"><div class="res-cat-label">'+label+'</div><div class="sol-grid">'+cards+'</div></div>';
+  }).join('');
+}
+
+function renderProfile(){
+  var el=document.getElementById('profile-body');
+  if(!el)return;
+  el.innerHTML='';
+
+  var welcome=document.createElement('div');
+  welcome.className='prof-welcome';
+  welcome.innerHTML='<div class="prof-welcome-name">'+(user?user.ref:'')+'</div><div class="prof-welcome-company">'+(user?user.az:'')+'</div>';
+  el.appendChild(welcome);
+
+  var fleetCard=document.createElement('div');
+  fleetCard.className='prof-card';
+
+  if(fleetProfile){
+    var hdr=document.createElement('div');
+    hdr.className='prof-card-header';
+    var t1=document.createElement('span');
+    t1.className='prof-card-title';
+    t1.textContent='La tua flotta';
+    var editBtn=document.createElement('button');
+    editBtn.className='fp-banner-edit';
+    editBtn.textContent='Modifica';
+    editBtn.onclick=function(){ showFleetForm('profile-fp-wrap', renderProfile, true); };
+    hdr.appendChild(t1); hdr.appendChild(editBtn);
+    fleetCard.appendChild(hdr);
+    var grid=document.createElement('div');
+    grid.className='prof-detail-grid';
+    [['Veicoli totali',fleetProfile.veicoli],['% a noleggio',fleetProfile.pctNoleggio+'%'],['Destinazione uso',FP_USO[fleetProfile.uso]||'—'],['Team fleet mgmt',FP_TEAM[fleetProfile.team]||'—']].forEach(function(it){
+      var d=document.createElement('div');
+      d.className='prof-detail-item';
+      d.innerHTML='<div class="prof-detail-label">'+it[0]+'</div><div class="prof-detail-val">'+it[1]+'</div>';
+      grid.appendChild(d);
+    });
+    fleetCard.appendChild(grid);
+  } else {
+    var hdr2=document.createElement('div');
+    hdr2.className='prof-card-header';
+    var t2=document.createElement('span');
+    t2.className='prof-card-title';
+    t2.textContent='La tua flotta';
+    hdr2.appendChild(t2);
+    fleetCard.appendChild(hdr2);
+    var msg=document.createElement('p');
+    msg.style.cssText='font-size:13px;color:var(--g600);margin-bottom:14px';
+    msg.textContent='Non hai ancora inserito le informazioni sulla tua flotta.';
+    fleetCard.appendChild(msg);
+    var cBtn=document.createElement('button');
+    cBtn.className='fp-btn';
+    cBtn.textContent='Compila il profilo flotta';
+    cBtn.onclick=function(){ showFleetForm('profile-fp-wrap', renderProfile, true); };
+    fleetCard.appendChild(cBtn);
+  }
+
+  var fpWrap=document.createElement('div');
+  fpWrap.id='profile-fp-wrap';
+  fpWrap.style.marginTop='12px';
+  fleetCard.appendChild(fpWrap);
+  el.appendChild(fleetCard);
+
+  var toolCard=document.createElement('div');
+  toolCard.className='prof-card';
+  toolCard.style.marginTop='16px';
+  var thdr=document.createElement('div');
+  thdr.className='prof-card-header';
+  var tt=document.createElement('span');
+  tt.className='prof-card-title';
+  tt.textContent='Assessment & Benchmark';
+  thdr.appendChild(tt);
+  toolCard.appendChild(thdr);
+  var tm=document.createElement('p');
+  tm.style.cssText='font-size:13px;color:var(--g600);margin-bottom:16px';
+  tm.textContent='Accedi alle sezioni dedicate per avviare o ripetere assessment e benchmark.';
+  toolCard.appendChild(tm);
+  var row=document.createElement('div');
+  row.style.cssText='display:flex;flex-wrap:wrap;gap:10px';
+  var ab=document.createElement('button');
+  ab.className='fp-btn'; ab.textContent='Vai agli Assessment';
+  ab.onclick=function(){ showPage('pg-quiz'); };
+  var bb=document.createElement('button');
+  bb.style.cssText='background:#fff;border:1.5px solid var(--blue);color:var(--blue);border-radius:var(--radius-sm);padding:10px 22px;font-size:13px;font-weight:500;cursor:pointer';
+  bb.textContent='Vai ai Benchmark';
+  bb.onclick=function(){ showPage('pg-bench'); };
+  row.appendChild(ab); row.appendChild(bb);
+  toolCard.appendChild(row);
+  el.appendChild(toolCard);
 }
 </script>
 </body>
