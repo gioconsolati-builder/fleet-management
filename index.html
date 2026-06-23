@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ABC Fleet Management</title>
+<title>E-motion Fleet Management</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -55,6 +55,8 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 .hdr-user{text-align:right}
 .hdr-user .un{font-size:12px;font-weight:500;color:var(--g800)}
 .hdr-user .uc{font-size:10px;color:var(--g400)}
+.hdr-profile-link{font-size:12px;font-weight:500;color:var(--blue);transition:color .2s}
+.hdr-user:hover .hdr-profile-link{color:var(--dark)}
 .btn-out{font-size:11px;color:var(--g400);background:none;border:1px solid var(--g200);border-radius:6px;padding:5px 8px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;white-space:nowrap;touch-action:manipulation}
 .btn-out:hover{color:var(--g800);border-color:var(--g400)}
 .hdr-nav{display:flex;align-items:center;gap:2px;flex:1;justify-content:center}
@@ -117,6 +119,19 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:640px){.grid3{grid-template-columns:1fr;gap:12px}}
 @media(min-width:641px) and (max-width:800px){.grid3{grid-template-columns:1fr 1fr;gap:14px}}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px}
+@media(max-width:640px){.grid2{grid-template-columns:1fr;gap:12px}}
+/* CTA HERO */
+.cta-hero{background:var(--blue);border-radius:var(--radius);padding:clamp(20px,3vw,28px) clamp(20px,3vw,32px);margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;touch-action:manipulation}
+.cta-hero::after{content:'';position:absolute;right:-30px;bottom:-40px;width:160px;height:160px;border-radius:50%;border:1px solid rgba(255,255,255,.15);pointer-events:none}
+.cta-hero:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,174,239,.25)}
+.cta-hero-text{flex:1;min-width:0}
+.cta-hero-title{font-size:clamp(16px,2.6vw,20px);font-weight:600;color:#fff;line-height:1.25;margin-bottom:6px}
+.cta-hero-sub{font-size:13px;color:rgba(255,255,255,.85);line-height:1.5}
+.cta-hero-btn{flex-shrink:0;background:#fff;color:var(--blue);border:none;border-radius:var(--radius-sm);padding:12px 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:7px;transition:background .2s;white-space:nowrap;z-index:1}
+.cta-hero-btn svg{width:16px;height:16px}
+.cta-hero:hover .cta-hero-btn{background:var(--g50)}
+@media(max-width:560px){.cta-hero{flex-direction:column;align-items:flex-start}.cta-hero-btn{width:100%;justify-content:center}}
 .sc{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:clamp(18px,3vw,28px) clamp(14px,2.5vw,24px);cursor:pointer;transition:box-shadow .2s,transform .2s,border-color .2s;position:relative;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .sc:hover,.sc:active{box-shadow:0 6px 24px rgba(0,174,239,.1);transform:translateY(-2px);border-color:var(--blue)}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transition:transform .3s;transform-origin:left}
@@ -126,6 +141,7 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 .sc h2{font-size:clamp(14px,2.5vw,17px);font-weight:600;margin-bottom:6px}
 .sc p{font-size:12px;color:var(--g600);line-height:1.5;margin-bottom:16px}
 .sc-cta{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:500;color:var(--blue)}
+.grid2 .sc-cta{margin-top:14px}
 .sc-cta svg{width:13px;height:13px;transition:transform .2s;flex-shrink:0}
 .sc:hover .sc-cta svg{transform:translateX(3px)}
 
@@ -150,6 +166,8 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 .prog{height:4px;background:var(--g200);border-radius:2px;margin-bottom:24px;overflow:hidden}
 .prog-f{height:100%;background:var(--blue);border-radius:2px;transition:width .5s ease}
 .qz-step{animation:fi .3s ease}
+.az-method{font-size:12px;color:var(--g600);line-height:1.5;background:var(--light);border-radius:var(--radius-sm);padding:10px 14px;margin:-10px 0 22px;display:flex;align-items:center;gap:9px}
+.az-method::before{content:'';flex-shrink:0;width:14px;height:14px;border-radius:50%;border:2px solid var(--blue);box-sizing:border-box}
 .qz-sec{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:7px}
 .qz-q{font-size:clamp(15px,3vw,18px);font-weight:600;margin-bottom:20px;line-height:1.4}
 .opts{display:flex;flex-direction:column;gap:9px;margin-bottom:24px}
@@ -264,6 +282,16 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .fp-skip:hover{color:var(--g600)}
 .fp-row{margin-bottom:16px}
 .fp-row label{display:block;font-size:11px;font-weight:500;color:var(--g600);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
+.fp-hint{font-size:11px;color:var(--g400);margin-bottom:8px;margin-top:-2px;font-style:italic}
+.fp-sl-line{display:flex;align-items:center;gap:14px}
+.fp-sl-line input[type=range]{flex:1;min-width:0}
+.fp-numbox{width:72px;flex-shrink:0;border:1.5px solid var(--g200);border-radius:var(--radius-sm);padding:8px 10px;font-size:13px;font-weight:600;color:var(--dark);font-family:'DM Sans',sans-serif;text-align:center;transition:border-color .2s}
+.fp-numbox:focus{outline:none;border-color:var(--blue)}
+.fp-numbox::-webkit-outer-spin-button,.fp-numbox::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.fp-numbox[type=number]{-moz-appearance:textfield}
+.fp-numbox-wrap{position:relative;flex-shrink:0;display:flex;align-items:center}
+.fp-numbox-wrap .fp-numbox{width:64px;padding-right:24px}
+.fp-pct{position:absolute;right:10px;font-size:12px;color:var(--g400);pointer-events:none}
 .fp-sl-hdr{display:flex;justify-content:space-between;margin-bottom:5px}
 .fp-sl-val{font-size:13px;font-weight:600;color:var(--blue)}
 .fp-opts{display:flex;flex-wrap:wrap;gap:7px}
@@ -276,6 +304,27 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
 /* HUB CARDS */
 .hub-intro{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:24px}
+/* ASSESSMENT INTRO */
+.az-intro{margin-bottom:22px}
+.az-intro-title{font-size:clamp(17px,2.8vw,21px);font-weight:600;color:var(--g800);margin-bottom:8px;line-height:1.3}
+.az-intro-text{font-size:13px;color:var(--g600);line-height:1.65}
+/* ASSESSMENT 0 - FLEET PROFILE CARD */
+.az0-card{border-radius:var(--radius);padding:20px 22px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;margin-bottom:26px}
+.az0-card.todo{background:var(--light);border:1.5px solid var(--blue)}
+.az0-card.todo:hover{box-shadow:0 4px 20px rgba(0,174,239,.15);transform:translateY(-2px)}
+.az0-card.done{background:#fff;border:1px solid var(--g200)}
+.az0-card.done:hover{border-color:var(--blue);box-shadow:0 2px 14px rgba(0,174,239,.08)}
+.az0-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:8px}
+.az0-card h3{font-size:15px;font-weight:600;color:var(--g800);margin-bottom:6px}
+.az0-card p{font-size:13px;color:var(--g600);line-height:1.55;margin-bottom:12px}
+.az0-summary{font-weight:500;color:var(--g700)!important}
+.az0-cta{font-size:12px;font-weight:600;color:var(--blue)}
+.az0-dot{position:absolute;top:18px;right:18px;width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 0 rgba(0,174,239,.5);animation:az0pulse 2s infinite}
+@keyframes az0pulse{0%{box-shadow:0 0 0 0 rgba(0,174,239,.5)}70%{box-shadow:0 0 0 10px rgba(0,174,239,0)}100%{box-shadow:0 0 0 0 rgba(0,174,239,0)}}
+.az-grid-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--g400);margin-bottom:14px}
+/* DIMMED assessment cards (profile not yet filled) */
+.hub-card.dimmed{opacity:.55;transition:opacity .3s}
+.hub-card.dimmed:hover{opacity:1}
 .hub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:8px}
 .hub-card{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:20px 22px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
 .hub-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transition:transform .3s;transform-origin:left}
@@ -311,8 +360,23 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .res-header{background:var(--blue);border-radius:var(--radius);padding:20px 24px;margin-bottom:20px;position:relative;overflow:hidden}
 .res-header-circles{position:absolute;right:-30px;top:-30px;opacity:.12;pointer-events:none;width:160px}
 .res-header-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:rgba(255,255,255,.7);margin-bottom:6px}
-.res-header h2{font-size:clamp(17px,3vw,21px);font-weight:600;color:#fff;margin-bottom:8px}
+.res-header-intro{font-size:13px;color:rgba(255,255,255,.85);line-height:1.4;margin-bottom:6px}
+.res-header h2{font-size:clamp(20px,3.5vw,26px);font-weight:600;color:#fff;margin-bottom:8px;font-family:'DM Serif Display',serif}
 .res-header p{font-size:13px;color:rgba(255,255,255,.85);line-height:1.6}
+.res-block-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:10px}
+/* BLOCK 2 - how we can help */
+.res-help{background:var(--g50);border:1px solid var(--g200);border-radius:var(--radius);padding:22px 24px;margin-bottom:24px}
+.res-help-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:6px}
+.res-help-title{font-size:clamp(15px,2.6vw,18px);font-weight:600;color:var(--g800);margin-bottom:6px}
+.res-help-sub{font-size:13px;color:var(--g600);line-height:1.5;margin-bottom:16px}
+/* CTA final */
+.res-cta{background:var(--blue);border-radius:var(--radius);padding:clamp(18px,3vw,24px) clamp(20px,3vw,28px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;position:relative;overflow:hidden}
+.res-cta-text{flex:1;min-width:200px}
+.res-cta-title{font-size:clamp(15px,2.6vw,18px);font-weight:600;color:#fff;line-height:1.3;margin-bottom:6px}
+.res-cta-sub{font-size:13px;color:rgba(255,255,255,.85);line-height:1.5}
+.res-cta-btn{flex-shrink:0;background:#fff;color:var(--blue);border:none;border-radius:var(--radius-sm);padding:12px 22px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s;white-space:nowrap}
+.res-cta-btn:hover{background:var(--g50)}
+@media(max-width:560px){.res-cta-btn{width:100%}}
 .res-score-row{display:flex;align-items:center;gap:10px;margin-top:12px}
 .res-score-badge{background:rgba(255,255,255,.2);border-radius:6px;padding:5px 12px;font-size:13px;font-weight:600;color:#fff}
 .radar-box{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px;margin-bottom:20px;display:flex;justify-content:center}
@@ -399,6 +463,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .opt{display:flex;align-items:flex-start;gap:10px}
 .opt-letter{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:var(--g100);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:var(--g400);transition:all .2s;margin-top:1px}
 .opt.on .opt-letter{background:var(--blue);color:#fff}
+.opt-altro-field{width:100%;box-sizing:border-box;margin:-12px 0 24px;border:1.5px solid var(--blue);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--g800);line-height:1.5;min-height:70px;resize:vertical;transition:border-color .2s}
+.opt-altro-field:focus{outline:none;border-color:var(--dark)}
+.opt-altro-field::placeholder{color:var(--g400)}
 .opt-text{flex:1;line-height:1.4}
 /* CONTACTS */
 .contact-card{background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:24px 26px;max-width:480px}
@@ -409,6 +476,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 .contact-row a{font-size:14px;color:var(--g700);text-decoration:none;transition:color .2s}
 .contact-row a:hover{color:var(--blue)}
 .contact-intro{font-size:13px;color:var(--g600);line-height:1.6;margin-bottom:24px}
+.contact-mail-btn{display:inline-block;margin-top:16px;background:var(--blue);color:#fff;border-radius:var(--radius-sm);padding:11px 20px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s}
+.contact-mail-btn:hover{background:var(--dark)}
 </style>
 <body>
 
@@ -418,7 +487,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
     <svg viewBox="0 0 480 480" fill="none"><circle cx="160" cy="380" r="60" stroke="white" stroke-width="1.2"/><circle cx="160" cy="380" r="100" stroke="white" stroke-width="1.2"/><circle cx="160" cy="380" r="145" stroke="white" stroke-width="1.2"/><circle cx="160" cy="380" r="195" stroke="white" stroke-width="1.2"/><circle cx="160" cy="380" r="250" stroke="white" stroke-width="1.2"/><circle cx="160" cy="380" r="310" stroke="white" stroke-width="1.2"/><circle cx="160" cy="380" r="380" stroke="white" stroke-width="1.2"/></svg>
   </div>
   <div class="login-wrap">
-    <div class="login-top"><div class="logo-a">abc</div><div class="logo-b">Fleet Management</div></div>
+    <div class="login-top"><div class="logo-a">E-motion</div><div class="logo-b">Fleet Management</div></div>
     <div class="login-center">
       <div class="login-card">
         <h1>Area Riservata</h1>
@@ -429,7 +498,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <button class="btn" onclick="doLogin()">Accedi</button>
       </div>
     </div>
-    <div class="login-bottom"><p>© 2026 ABC Fleet Management — Area riservata</p></div>
+    <div class="login-bottom"><p>© 2026 E-motion Fleet Management — Area riservata</p></div>
   </div>
 </div>
 
@@ -439,7 +508,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-dash" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
@@ -451,7 +520,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn1"></div><div class="uc" id="hc1" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -460,7 +529,28 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <div class="dash-welcome-circles"><svg viewBox="0 0 260 260" fill="none"><circle cx="130" cy="130" r="50" stroke="white" stroke-width="1"/><circle cx="130" cy="130" r="80" stroke="white" stroke-width="1"/><circle cx="130" cy="130" r="110" stroke="white" stroke-width="1"/><circle cx="130" cy="130" r="140" stroke="white" stroke-width="1"/></svg></div>
         <div class="dash-welcome-tag">La tua area riservata</div>
         <h1>Benvenuto, <span id="dash-name">—</span></h1>
-        <p>ABC offre soluzioni integrate di progettazione, gestione operativa e amministrativa e di supporto all'elettrificazione della flotta — in un modello end-to-end, modulare e scalabile, pensato per semplificare la governance e ridurre le inefficienze.</p>
+        <p>E-motion offre soluzioni integrate di progettazione, gestione operativa e amministrativa e di supporto all'elettrificazione della flotta — in un modello end-to-end, modulare e scalabile, pensato per semplificare la governance e ridurre le inefficienze.</p>
+      </div>
+
+      <div class="cta-hero" onclick="showPage('pg-quiz')">
+        <div class="cta-hero-text">
+          <div class="cta-hero-title">Fai gratuitamente l'assessment della tua flotta</div>
+          <div class="cta-hero-sub">5 minuti per scoprire il tuo profilo di maturità e le soluzioni più adatte alla tua azienda.</div>
+        </div>
+        <button class="cta-hero-btn">Inizia ora <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+
+      <div class="grid2">
+        <div class="sc" onclick="showPage('pg-bench')">
+          <div class="sci"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10M9 20V4M13 20V14M17 20V8"/></svg></div>
+          <h2>Benchmark</h2>
+          <div class="sc-cta">Scopri come ti posizioni sul mercato <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
+        <div class="sc" onclick="showPage('pg-know')">
+          <div class="sci"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div>
+          <h2>Knowledge</h2>
+          <div class="sc-cta">Leggi gli ultimi articoli sulla mobilità <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+        </div>
       </div>
 
       <div class="section-title">I nostri numeri</div>
@@ -472,28 +562,9 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 
       <div class="section-title">I nostri servizi</div>
       <div class="cat-dash-grid" id="cat-dash-grid"></div>
-
-      <div class="nav-title">Approfondisci</div>
-      <div class="grid3">
-        <div class="sc" onclick="showPage('pg-know')">
-          <div class="sci"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div>
-          <h2>Knowledge</h2><p>Articoli e news su mobilità aziendale e gestione intelligente delle flotte.</p>
-          <div class="sc-cta">Esplora gli articoli <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-        <div class="sc" onclick="showPage('pg-quiz')">
-          <div class="sci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 10a3 3 0 016 0c0 2-3 3-3 3M12 17v.5"/></svg></div>
-          <h2>Assessment</h2><p>Valuta il tuo livello di maturità nella gestione flotta e scopri le soluzioni più adatte al tuo profilo.</p>
-          <div class="sc-cta">Inizia la valutazione <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-        <div class="sc" onclick="showPage('pg-bench')">
-          <div class="sci"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V10M9 20V4M13 20V14M17 20V8"/></svg></div>
-          <h2>Benchmark</h2><p>Confronta i costi della tua flotta con il mercato e identifica il potenziale di saving.</p>
-          <div class="sc-cta">Calcola il benchmark <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-      </div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -503,11 +574,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -516,7 +584,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-svc" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
@@ -528,7 +596,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn2"></div><div class="uc" id="hc2" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -537,7 +605,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div id="svc-catalog"></div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -547,11 +615,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -560,7 +625,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-svc-detail" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
@@ -572,7 +637,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn5"></div><div class="uc" id="hc5" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -581,7 +646,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div id="svc-detail-body"></div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -591,11 +656,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -604,7 +666,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-know" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
           <span class="hdr-nav-sep"></span>
@@ -614,7 +676,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn3"></div><div class="uc" id="hc3" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -624,7 +686,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div id="al"></div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-quiz')">Assessment</button>
         <span class="footer-sep">·</span>
@@ -632,11 +694,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -645,7 +704,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-quiz" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
@@ -655,7 +714,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn4"></div><div class="uc" id="hc4" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -664,7 +723,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div id="quiz-hub"></div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -672,11 +731,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -685,7 +741,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-bench" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
@@ -695,7 +751,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn6"></div><div class="uc" id="hc6" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
@@ -704,7 +760,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       <div id="bench-hub"></div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -712,11 +768,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
       
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -726,7 +779,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-contatti" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
           <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
           <span class="hdr-nav-sep"></span>
@@ -738,13 +791,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
         </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn8"></div><div class="uc" id="hc8" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
     <div class="main"><div class="inner">
       <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Contatti</div>
-      <p class="contact-intro">Per maggiori informazioni sui servizi ABC Fleet Management o per richiedere un appuntamento, contatta il tuo Responsabile di riferimento.</p>
+      <p class="contact-intro">Per maggiori informazioni sui servizi E-motion Fleet Management o per richiedere un appuntamento, contatta il tuo Responsabile di riferimento.</p>
       <div class="contact-card">
         <div class="contact-role">Responsabile Fleet Management</div>
         <div class="contact-name">Mario Rossi</div>
@@ -756,10 +809,11 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
           <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           <a href="mailto:mario.rossi@abc-fleet.it">mario.rossi@abc-fleet.it</a>
         </div>
+        <a class="contact-mail-btn" href="mailto:mario.rossi@abc-fleet.it?subject=Richiesta%20assessment%20gratuito%20flotta&body=Buongiorno%2C%0A%0Avorrei%20approfondire%20la%20possibilit%C3%A0%20di%20ricevere%20un%20assessment%20gratuito%20sulla%20mia%20flotta.%0A%0AGrazie.">Scrivi una mail al Responsabile →</a>
       </div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -768,11 +822,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -781,7 +832,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <div id="pg-profile" class="page">
   <div class="app-shell">
     <header class="hdr">
-      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">abc</div><div class="lb">Fleet Management</div></div>
+      <div class="hdr-logo" onclick="showPage('pg-dash')"><div class="la">E-motion</div><div class="lb">Fleet Management</div></div>
       <nav class="hdr-nav">
         <button class="hdr-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="hdr-nav-sep"></span>
@@ -792,16 +843,16 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <button class="hdr-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
       </nav>
       <div class="hdr-right">
-        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="un" id="hn7"></div><div class="uc" id="hc7" style="color:var(--blue);font-size:10px">My Profile</div></div>
+        <div class="hdr-user" style="cursor:pointer" onclick="showPage('pg-profile')"><div class="hdr-profile-link">Il mio profilo</div></div>
         <button class="btn-out" onclick="doLogout()">Esci</button>
       </div>
     </header>
     <div class="main"><div class="inner">
-      <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › My Profile</div>
+      <div class="bc"><span onclick="showPage('pg-dash')">Dashboard</span> › Il mio profilo</div>
       <div id="profile-body"></div>
     </div></div>
     <footer class="site-footer">
-      <span class="footer-copy">© 2026 ABC Fleet Management</span>
+      <span class="footer-copy">© 2026 E-motion Fleet Management</span>
       <div class="footer-nav">
         <button class="footer-nav-btn" onclick="showPage('pg-know')">Knowledge</button>
         <span class="footer-sep">·</span>
@@ -810,11 +861,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
         <button class="footer-nav-btn" onclick="showPage('pg-bench')">Benchmark</button>
         <span class="footer-sep">·</span>
         <button class="footer-nav-btn" onclick="showPage('pg-contatti')">Contatti</button>
-      
-        <span class="footer-sep">·</span>
-        <button class="footer-nav-btn" onclick="showPage('pg-profile')">My Profile</button>
       </div>
-      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Homepage</button></div>
+      <div class="footer-right"><button class="btn-home" onclick="showPage('pg-dash')"><svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg>Home</button></div>
     </footer>
   </div>
 </div>
@@ -836,7 +884,7 @@ const CATS=[
     id:'adv', label:'Advisory', badge:'Consulenza strategica',
     desc:'Le attività di consulenza sono proposte come servizi a valore aggiunto, erogabili su base progettuale o continuativa, con l\'obiettivo di supportare l\'evoluzione del modello di Fleet Management, migliorare l\'efficienza operativa e garantire un allineamento continuo alle best practice di mercato.',
     services:[
-      {id:'ADV-01',title:'Pre-progettazione & valutazione opportunità fleet',short:'Analisi della situazione attuale e identificazione delle opportunità di ottimizzazione del modello di Fleet Management.',desc:'Supporto nella pre-progettazione e valutazione delle opportunità in ambito fleet. Analisi approfondita della situazione attuale, mappatura dei processi e identificazione di aree di miglioramento.',activities:['Analisi del parco auto e congruità rispetto alle necessità operative','Mappatura dei processi di Fleet Management interni','Identificazione delle opportunità di ottimizzazione','Definizione di una roadmap di evoluzione del modello','Valutazione del mix ideale tra veicoli di servizio, sharing, proprietà e noleggio'],benefits:['Visione chiara della situazione attuale e dei gap rispetto alle best practice','Roadmap di azione concreta e prioritizzata','Stima quantitativa del potenziale di saving'],questions:['La mia flotta è congrua rispetto alle necessità operative?','Qual è il mix ideale tra veicoli di servizio/sharing e proprietà/noleggio?','Sono soddisfatto della gestione dei sinistri?'],tags:['op','sost']},
+      {id:'ADV-01',title:'Pre-progettazione & valutazione opportunità fleet',short:'Analisi della situazione attuale e identificazione delle opportunità di ottimizzazione del modello di Fleet Management.',desc:'Supporto nella pre-progettazione e valutazione delle opportunità in ambito fleet. Analisi approfondita della situazione attuale, mappatura dei processi e identificazione di aree di miglioramento.',activities:['Analisi del parco auto e congruità rispetto alle necessità operative','Mappatura dei processi di Fleet Management interni','Identificazione delle opportunità di ottimizzazione','Definizione di una roadmap di evoluzione del modello','Valutazione del mix ideale tra veicoli di servizio, sharing, proprietà e noleggio'],benefits:['Visione chiara della situazione attuale e dei gap rispetto alle best practice','Roadmap di azione concreta e prioritizzata','Stima quantitativa del potenziale di risparmio'],questions:['La mia flotta è congrua rispetto alle necessità operative?','Qual è il mix ideale tra veicoli di servizio/sharing e proprietà/noleggio?','Sono soddisfatto della gestione dei sinistri?'],tags:['op','sost']},
       {id:'ADV-02',title:'Ottimizzazione del parco auto',short:'Ridefinizione della composizione e della car policy per massimizzare efficienza, controllo dei costi e soddisfazione dei driver.',desc:'Analisi e ridefinizione della composizione del parco auto aziendale per ottimizzare il mix di veicoli e allineare la car policy alle best practice di mercato.',activities:['Analisi della composizione attuale e del livello di utilizzo per veicolo','Benchmarking della car policy rispetto al mercato','Ridefinizione della car list in ottica di efficienza e sostenibilità','Ottimizzazione del mix proprietà vs noleggio vs sharing','Definizione di KPI di monitoraggio continuo'],benefits:['Car policy aggiornata e allineata alle best practice','Riduzione dei costi di gestione del parco','Miglioramento dell\'esperienza dei driver'],questions:['La mia policy è in linea con le best practice?','Qual è il mix ideale tra veicoli di servizio/sharing?','Sono soddisfatto del livello di utilizzo dei veicoli?'],tags:['op','co']},
       {id:'ADV-03',title:'Sviluppo policy & ottimizzazione processi aziendali',short:'Ridisegno dei processi di Fleet Management e sviluppo di policy aziendali strutturate per migliorare controllo, efficienza e compliance.',desc:'Supporto nella definizione di policy aziendali in ambito Fleet e nel ridisegno dei processi operativi per migliorare il controllo dei costi e garantire la compliance.',activities:['Analisi dei processi esistenti e identificazione delle inefficienze','Ridisegno end-to-end dei processi operativi chiave','Sviluppo e implementazione di policy aziendali','Definizione di KPI e strumenti di monitoraggio','Formazione dei referenti interni'],benefits:['Processi standardizzati e documentati','Riduzione degli errori e dei tempi di gestione','Maggiore controllo e visibilità sul TCO'],questions:['Qual è il livello di visibilità sul mio TCO?','Ci sono margini di ottimizzazione dei costi?','La mia reportistica mi aiuta a prendere decisioni?'],tags:['co','op']},
       {id:'ADV-04',title:'Change management sull\'utilizzo dei veicoli',short:'Programmi strutturati per accompagnare l\'organizzazione nell\'adozione di nuovi comportamenti e strumenti di mobilità aziendale.',desc:'Progettazione e gestione di percorsi di change management per supportare l\'adozione di nuove abitudini di utilizzo dei veicoli e dei servizi connessi.',activities:['Analisi del contesto organizzativo e dei principali bias al cambiamento','Progettazione del piano di change management','Sviluppo di materiali di comunicazione e formazione per i driver','Implementazione di programmi di incentivazione','Monitoraggio dell\'adozione e fine tuning'],benefits:['Adozione rapida dei nuovi modelli di mobilità','Riduzione delle resistenze al cambiamento','Miglioramento dei comportamenti di guida'],questions:['Quali benefici voglio ottenere dalla digitalizzazione?','Come posso migliorare l\'esperienza del driver?','Come supportare la transizione verso la mobilità elettrica?'],tags:['sost','op']},
@@ -1008,37 +1056,79 @@ const BENCHMARKS=[
 // ── FLEET PROFILE ──
 var fleetProfile = null;
 var fleetProfileCallback = null;
-const FP_USO = ['Prevalentemente veicoli di servizio','Prevalentemente fringe benefit','Mix equilibrato'];
-const FP_TEAM = ['Nessuna figura dedicata','1 persona part-time','1–2 persone full-time','Team di 3+ persone'];
-
 
 function getFleetSummary(){
   if(!fleetProfile) return null;
-  return fleetProfile.veicoli+' veicoli - '+fleetProfile.pctNoleggio+'% a noleggio - '+(FP_USO[fleetProfile.uso]||'')+' - '+(FP_TEAM[fleetProfile.team]||'');
+  return fleetProfile.veicoli+' veicoli · '+fleetProfile.pctProprieta+'% di proprietà · '+fleetProfile.pctServizio+'% di servizio · Gestionale: '+(fleetProfile.gestionale?'Sì':'No')+' · App driver: '+(fleetProfile.appDriver?'Sì':'No');
 }
 
-function fpUpdateVeh(el){ document.getElementById('fp-veh-val').textContent=el.value; }
-function fpUpdateNol(el){ document.getElementById('fp-nol-val').textContent=el.value+'%'; }
+// slider <-> number box sync for vehicle count
+function fpVehSlider(el){
+  var v=parseInt(el.value)||0;
+  document.getElementById('fp-veh-box').value=v;
+}
+function fpVehBox(el){
+  var v=parseInt(el.value);
+  if(isNaN(v))v=0;
+  if(v<0)v=0;
+  if(v>5000){v=5000;el.value=5000;}
+  // slider snaps to nearest step of 50
+  var snapped=Math.round(v/50)*50;
+  document.getElementById('fp-veh').value=snapped;
+}
+// slider <-> number box sync for percentages
+function fpPctSlider(el,boxId){
+  document.getElementById(boxId).value=parseInt(el.value)||0;
+}
+function fpPctBox(el,sliderId){
+  var v=parseInt(el.value);
+  if(isNaN(v))v=0;
+  if(v<0)v=0;
+  if(v>100){v=100;el.value=100;}
+  document.getElementById(sliderId).value=v;
+}
 
 function buildFleetForm(title, subtitle, showSkip){
-  var v=fleetProfile?fleetProfile.veicoli:50;
-  var n=fleetProfile?fleetProfile.pctNoleggio:50;
-  var u=fleetProfile?fleetProfile.uso:-1;
-  var t=fleetProfile?fleetProfile.team:-1;
-  var usoOpts=FP_USO.map(function(o,i){ return "<div class='fp-opt"+(u===i?" on":"")+"' onclick='fpSel(this)' data-val='"+i+"' data-group='uso'>"+o+"</div>"; }).join('');
-  var teamOpts=FP_TEAM.map(function(o,i){ return "<div class='fp-opt"+(t===i?" on":"")+"' onclick='fpSel(this)' data-val='"+i+"' data-group='team'>"+o+"</div>"; }).join('');
+  var v=fleetProfile?fleetProfile.veicoli:200;
+  var vSnap=Math.round(v/50)*50;
+  var prop=fleetProfile?fleetProfile.pctProprieta:50;
+  var serv=fleetProfile?fleetProfile.pctServizio:50;
+  var gest=fleetProfile?fleetProfile.gestionale:null;
+  var app=fleetProfile?fleetProfile.appDriver:null;
+
+  function yesNo(group, current){
+    return "<div class='fp-opts'>"
+      +"<div class='fp-opt"+(current===true?" on":"")+"' onclick='fpSel(this)' data-val='1' data-group='"+group+"'>Sì</div>"
+      +"<div class='fp-opt"+(current===false?" on":"")+"' onclick='fpSel(this)' data-val='0' data-group='"+group+"'>No</div>"
+      +"</div>";
+  }
+
   return "<div class='fp-form'>"
     +"<h3>"+title+"</h3><p class='fp-sub'>"+subtitle+"</p>"
-    +"<div class='fp-row'><label>Numero di veicoli</label>"
-    +"<div class='fp-sl-hdr'><span>1</span><span class='fp-sl-val' id='fp-veh-val'>"+v+"</span><span>500</span></div>"
-    +"<input type='range' id='fp-veh' min='1' max='500' step='1' value='"+v+"' oninput='fpUpdateVeh(this)'>"
-    +"</div>"
-    +"<div class='fp-row'><label>% veicoli a noleggio a lungo termine</label>"
-    +"<div class='fp-sl-hdr'><span>0%</span><span class='fp-sl-val' id='fp-nol-val'>"+n+"%</span><span>100%</span></div>"
-    +"<input type='range' id='fp-nol' min='0' max='100' step='5' value='"+n+"' oninput='fpUpdateNol(this)'>"
-    +"</div>"
-    +"<div class='fp-row'><label>Destinazione uso prevalente</label><div class='fp-opts'>"+usoOpts+"</div></div>"
-    +"<div class='fp-row'><label>Persone dedicate al fleet management</label><div class='fp-opts'>"+teamOpts+"</div></div>"
+    // Vehicles
+    +"<div class='fp-row'><label>Quanti veicoli compongono la tua flotta?</label>"
+    +"<div class='fp-sl-line'>"
+    +"<input type='range' id='fp-veh' min='0' max='5000' step='50' value='"+vSnap+"' oninput='fpVehSlider(this)'>"
+    +"<input type='number' class='fp-numbox' id='fp-veh-box' min='0' max='5000' value='"+v+"' oninput='fpVehBox(this)'>"
+    +"</div></div>"
+    // % proprietà
+    +"<div class='fp-row'><label>Quanta parte della flotta è di proprietà?</label>"
+    +"<div class='fp-hint'>N.B. Il complementare si intende a noleggio</div>"
+    +"<div class='fp-sl-line'>"
+    +"<input type='range' id='fp-prop' min='0' max='100' step='5' value='"+prop+"' oninput=\"fpPctSlider(this,'fp-prop-box')\">"
+    +"<div class='fp-numbox-wrap'><input type='number' class='fp-numbox' id='fp-prop-box' min='0' max='100' value='"+prop+"' oninput=\"fpPctBox(this,'fp-prop')\"><span class='fp-pct'>%</span></div>"
+    +"</div></div>"
+    // % servizio
+    +"<div class='fp-row'><label>Quanti veicoli sono assegnati come veicoli di servizio?</label>"
+    +"<div class='fp-hint'>N.B. Il complementare si intende in fringe benefit</div>"
+    +"<div class='fp-sl-line'>"
+    +"<input type='range' id='fp-serv' min='0' max='100' step='5' value='"+serv+"' oninput=\"fpPctSlider(this,'fp-serv-box')\">"
+    +"<div class='fp-numbox-wrap'><input type='number' class='fp-numbox' id='fp-serv-box' min='0' max='100' value='"+serv+"' oninput=\"fpPctBox(this,'fp-serv')\"><span class='fp-pct'>%</span></div>"
+    +"</div></div>"
+    // Gestionale
+    +"<div class='fp-row'><label>Utilizzi già un software per gestire la tua flotta?</label>"+yesNo('gest',gest)+"</div>"
+    // App driver
+    +"<div class='fp-row'><label>I tuoi driver hanno a disposizione un'app dedicata?</label>"+yesNo('app',app)+"</div>"
     +"<div class='fp-actions'>"
     +"<button class='fp-btn' onclick='saveFleetProfile()'>Salva e continua</button>"
     +(showSkip ? "<button class='fp-skip' onclick='skipFleetProfile()'>Salta e continua</button>" : "")
@@ -1051,16 +1141,20 @@ function fpSel(el){
 }
 
 function saveFleetProfile(){
-  var uso=-1, team=-1;
+  var gest=null, app=null;
   document.querySelectorAll('.fp-opt.on').forEach(function(el){
-    if(el.dataset.group==='uso') uso=parseInt(el.dataset.val);
-    if(el.dataset.group==='team') team=parseInt(el.dataset.val);
+    if(el.dataset.group==='gest') gest=el.dataset.val==='1';
+    if(el.dataset.group==='app') app=el.dataset.val==='1';
   });
+  var veh=parseInt(document.getElementById('fp-veh-box').value);
+  if(isNaN(veh)||veh<0)veh=0;
+  if(veh>5000)veh=5000;
   fleetProfile={
-    veicoli: parseInt(document.getElementById('fp-veh').value),
-    pctNoleggio: parseInt(document.getElementById('fp-nol').value),
-    uso: uso>=0?uso:2,
-    team: team>=0?team:0
+    veicoli: veh,
+    pctProprieta: parseInt(document.getElementById('fp-prop-box').value)||0,
+    pctServizio: parseInt(document.getElementById('fp-serv-box').value)||0,
+    gestionale: gest===null?false:gest,
+    appDriver: app===null?false:app
   };
   if(fleetProfileCallback) fleetProfileCallback();
   else renderProfile();
@@ -1072,15 +1166,16 @@ function skipFleetProfile(){
 
 function showFleetForm(containerId, callbackFn, fromProfile){
   fleetProfileCallback = callbackFn||null;
-  var title=fromProfile?'Modifica il profilo della tua flotta':'Prima di iniziare, parlaci della tua flotta';
-  var subtitle=fromProfile?'Aggiorna le informazioni sulla tua flotta.':'Ci aiuta a contestualizzare meglio i risultati. Puoi saltare questo passaggio.';
+  var title=fromProfile?'Modifica il profilo della tua flotta':'Raccontaci la tua flotta';
+  var subtitle='Prima di iniziare, condividi qualche informazione di base. Ci aiuta a contestualizzare meglio i risultati dei tuoi assessment.';
   document.getElementById(containerId).innerHTML=buildFleetForm(title,subtitle,!fromProfile);
+  document.getElementById(containerId).scrollIntoView({behavior:'smooth',block:'start'});
 }
 
 
 // ── STATE ──
 var user=null, aFilt='all';
-var currentAssessment=null, currentAssessmentStep=0, currentAssessmentAnswers=[];
+var currentAssessment=null, currentAssessmentStep=0, currentAssessmentAnswers=[], currentAssessmentAltro=[];
 var currentBenchmark=null, benchAnswers={};
 
 // ── AUTH ──
@@ -1212,10 +1307,40 @@ function setFilt(f){aFilt=f;renderKnow();}
 function renderQuizHub(){
   const el=document.getElementById('quiz-hub');
   if(!el)return;
-  var profBanner = fleetProfile ? makeProfileBanner('quiz') : '';
-  var assessCards = ASSESSMENTS.map(function(a){ return "<div class='hub-card' onclick='startAssessment(\"" + a.id + "\")'><div class='hub-card-num'>" + a.id + "</div><h3>" + a.title + "</h3><p>" + a.desc + "</p></div>"; }).join('');
+  var hasProfile = !!fleetProfile;
 
-  el.innerHTML = profBanner + "<p class='hub-intro'>Valuta la maturita della tua gestione flotta con i 4 assessment dedicati.</p><div class='hub-grid'>" + assessCards + "</div>";
+  // Intro / CTA
+  var intro = "<div class='az-intro'>"
+    +"<h2 class='az-intro-title'>Scopri il profilo della tua flotta in 5 minuti</h2>"
+    +"<p class='az-intro-text'>Ogni assessment è un breve questionario di 5 domande che analizza un aspetto specifico della tua gestione flotta — dalla maturità operativa alla sostenibilità. Al termine ricevi il tuo profilo e una selezione di soluzioni E-motion pensate per le tue esigenze. Scegli un'area e inizia: nessun dato tecnico richiesto, solo 5 minuti del tuo tempo.</p>"
+    +"</div>";
+
+  // Assessment 0 - Fleet Profile card
+  var profileCard;
+  if(hasProfile){
+    profileCard = "<div class='az0-card done' onclick='showFleetForm(\"quiz-hub\",renderQuizHub,true)'>"
+      +"<div class='az0-tag'>Profilo flotta</div>"
+      +"<h3>La tua flotta</h3>"
+      +"<p class='az0-summary'>"+getFleetSummary()+"</p>"
+      +"<div class='az0-cta'>Modifica le informazioni →</div>"
+      +"</div>";
+  } else {
+    profileCard = "<div class='az0-card todo' onclick='showFleetForm(\"quiz-hub\",renderQuizHub,true)'>"
+      +"<span class='az0-dot'></span>"
+      +"<div class='az0-tag'>Comincia da qui</div>"
+      +"<h3>Raccontaci la tua flotta</h3>"
+      +"<p>Prima di iniziare, condividi qualche informazione di base. Ci aiuta a contestualizzare meglio i risultati dei tuoi assessment.</p>"
+      +"<div class='az0-cta'>Compila il profilo flotta →</div>"
+      +"</div>";
+  }
+
+  // The 4 assessment cards - dimmed if no profile
+  var dimClass = hasProfile ? '' : ' dimmed';
+  var assessCards = ASSESSMENTS.map(function(a){
+    return "<div class='hub-card"+dimClass+"' onclick='startAssessment(\"" + a.id + "\")'><div class='hub-card-num'>" + a.id + "</div><h3>" + a.title + "</h3><p>" + a.desc + "</p></div>";
+  }).join('');
+
+  el.innerHTML = intro + profileCard + "<div class='az-grid-label'>Gli assessment disponibili</div><div class='hub-grid'>" + assessCards + "</div>";
 }
 
 // ── ASSESSMENT WIZARD ──
@@ -1225,11 +1350,8 @@ function startAssessment(id){
   currentAssessment=a;
   currentAssessmentStep=0;
   currentAssessmentAnswers=new Array(a.questions.length).fill(-1);
-  if(!fleetProfile){
-    showFleetForm('quiz-hub', renderAssessmentStep, false);
-  } else {
-    renderAssessmentStep();
-  }
+  currentAssessmentAltro=new Array(a.questions.length).fill('');
+  renderAssessmentStep();
 }
 
 function renderAssessmentStep(){
@@ -1240,22 +1362,37 @@ function renderAssessmentStep(){
   if(step>=tot){showAssessmentResults();return;}
   const q=a.questions[step];
   const pct=Math.round((step/tot)*100);
-  const letters=['A','B','C','D'];
-  const optsHtml=q.opts.map(function(o,i){
+  const letters=['A','B','C','D','E','F'];
+  // "Altro" is always the last option, with index = q.opts.length
+  const altroIdx=q.opts.length;
+  var optsHtml=q.opts.map(function(o,i){
     return '<div class="opt '+(currentAssessmentAnswers[step]===i?'on':'')+'" onclick="selAssOpt('+i+')">'
       +'<span class="opt-letter">'+letters[i]+'</span>'
       +'<span class="opt-text">'+o+'</span>'
       +'</div>';
   }).join('');
+  // Add "Altro" option
+  var altroSelected=currentAssessmentAnswers[step]===altroIdx;
+  optsHtml+='<div class="opt'+(altroSelected?' on':'')+'" onclick="selAssOpt('+altroIdx+')">'
+    +'<span class="opt-letter">'+letters[altroIdx]+'</span>'
+    +'<span class="opt-text">Altro</span>'
+    +'</div>';
+  // Text field appears when "Altro" is selected
+  var altroField=altroSelected
+    ? '<textarea class="opt-altro-field" id="altro-text" placeholder="Specifica la tua situazione (opzionale)..." oninput="saveAltroText(this)">'+(currentAssessmentAltro[step]||'')+'</textarea>'
+    : '';
+
   el.innerHTML='<div class="az-header">'
     +'<button class="btn-back" onclick="renderQuizHub()" style="margin-bottom:12px">← Tutti gli assessment</button>'
     +'<h2>'+a.title+'</h2>'
     +'<p>'+a.desc+'</p>'
     +'</div>'
     +'<div class="prog"><div class="prog-f" style="width:'+pct+'%"></div></div>'
+    +'<div class="az-method">Rispondi alle 5 domande per scoprire il profilo di maturità della tua flotta e le soluzioni più adatte.</div>'
     +'<div class="qz-sec">Domanda '+(step+1)+' di '+tot+'</div>'
     +'<div class="qz-q">'+q.q+'</div>'
     +'<div class="opts">'+optsHtml+'</div>'
+    +altroField
     +'<div class="qz-nav">'
     +'<button class="btn-s" onclick="assBack()" '+(step===0?'disabled':'')+'>← Indietro</button>'
     +'<span class="qz-cnt">'+(step+1)+' / '+tot+'</span>'
@@ -1263,33 +1400,96 @@ function renderAssessmentStep(){
     +'</div>';
 }
 
-function selAssOpt(i){currentAssessmentAnswers[currentAssessmentStep]=i;renderAssessmentStep();}
+function selAssOpt(i){
+  currentAssessmentAnswers[currentAssessmentStep]=i;
+  renderAssessmentStep();
+}
+function saveAltroText(el){ currentAssessmentAltro[currentAssessmentStep]=el.value; }
 function assNext(){if(currentAssessmentAnswers[currentAssessmentStep]>-1){currentAssessmentStep++;renderAssessmentStep();}}
 function assBack(){if(currentAssessmentStep>0){currentAssessmentStep--;renderAssessmentStep();}}
 
 function showAssessmentResults(){
   const a=currentAssessment;
-  const score=a.questions.reduce((sum,q,i)=>{const ans=currentAssessmentAnswers[i];return sum+(ans===-1?0:q.sc[ans]);},0);
-  const maxScore=a.questions.length*3;
-  const pct=Math.round((score/maxScore)*100);
-  const profile=a.profiles.find(p=>score>=p.range[0]&&score<=p.range[1])||a.profiles[a.profiles.length-1];
+  // Score only questions answered with A/B/C (exclude "Altro" = index q.opts.length)
+  var rawScore=0, scorableCount=0;
+  a.questions.forEach(function(q,i){
+    var ans=currentAssessmentAnswers[i];
+    var altroIdx=q.opts.length;
+    if(ans>-1 && ans<altroIdx){ rawScore+=q.sc[ans]; scorableCount++; }
+  });
+
+  // Edge case: no scorable answers (all "Altro") -> no profile
+  if(scorableCount===0){
+    var ctaNoProfile='<div class="res-cta">'
+      +'<div class="res-cta-text">'
+      +'<div class="res-cta-title">Raccontaci di più sulla tua flotta</div>'
+      +'<div class="res-cta-sub">Le tue risposte indicano una situazione particolare: un assessment personalizzato e gratuito è il modo migliore per inquadrarla.</div>'
+      +'</div>'
+      +'<button class="res-cta-btn" onclick="showPage(\'pg-contatti\')">Contattaci per un assessment approfondito →</button>'
+      +'</div>';
+    document.getElementById('quiz-hub').innerHTML=''
+      +'<button class="btn-back" onclick="renderQuizHub()" style="margin-bottom:16px">← Tutti gli assessment</button>'
+      +'<div class="res-block-label">Il tuo profilo</div>'
+      +'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:24px;margin-bottom:24px;font-size:14px;color:var(--g700);line-height:1.6">Non abbiamo elementi sufficienti per definire automaticamente un profilo, perché hai indicato situazioni non standard. Nessun problema: contattaci e costruiremo insieme un assessment su misura per la tua flotta.</div>'
+      +ctaNoProfile
+      +'<button class="btn-back" onclick="renderQuizHub()" style="margin-top:20px">← Torna agli assessment</button>';
+    return;
+  }
+
+  // Normalize score over scorable questions only
+  const maxScore=scorableCount*3;
+  const pct=Math.round((rawScore/maxScore)*100);
+  // Profile ranges were calibrated on full questionnaire (max 15); rescale to scorable max
+  const scaledScore=Math.round((rawScore/maxScore)*(a.questions.length*3));
+  const profile=a.profiles.find(p=>scaledScore>=p.range[0]&&scaledScore<=p.range[1])||a.profiles[a.profiles.length-1];
+  const score=rawScore;
   // collect matched services
   const allSvcIds=[...profile.services.low,...profile.services.mid,...profile.services.high];
   const matched=allSvcIds.map(id=>getSvcById(id)).filter(Boolean);
   var fleetCtx=fleetProfile?'<div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:8px">🚗 '+getFleetSummary()+'</div>':'';
-  var solHtml=matched.length>0?'<div class="sol-t" style="margin-top:20px">Servizi ABC consigliati per il tuo profilo</div>'+groupByCat(matched):'';
+  // Note if some answers were "Altro"
+  var altroCount=a.questions.length-scorableCount;
+  var altroNote=altroCount>0?'<div style="font-size:12px;color:rgba(255,255,255,.7);margin-top:8px">Profilo calcolato su '+scorableCount+' risposte su '+a.questions.length+' (le risposte "Altro" non incidono sul punteggio)</div>':'';
+
+  // BLOCK 2 - how we can help (visually separated)
+  var helpBlock='';
+  if(matched.length>0){
+    helpBlock='<div class="res-help">'
+      +'<div class="res-help-label">Come possiamo aiutarti</div>'
+      +'<h3 class="res-help-title">Cosa potremmo offrirti per migliorare</h3>'
+      +'<p class="res-help-sub">Una selezione di soluzioni E-motion pensate per il tuo profilo:</p>'
+      +groupByCat(matched)
+      +'</div>';
+  }
+
+  // CTA block
+  var ctaBlock='<div class="res-cta">'
+    +'<div class="res-cta-text">'
+    +'<div class="res-cta-title">Vuoi un assessment basato sui dati reali della tua flotta?</div>'
+    +'<div class="res-cta-sub">Il nostro team può elaborare un\'analisi approfondita e personalizzata, gratuitamente.</div>'
+    +'</div>'
+    +'<button class="res-cta-btn" onclick="showPage(\'pg-contatti\')">Contattaci per un assessment approfondito →</button>'
+    +'</div>';
+
   document.getElementById('quiz-hub').innerHTML=''
     +'<button class="btn-back" onclick="renderQuizHub()" style="margin-bottom:16px">← Tutti gli assessment</button>'
+    // BLOCK 1 - your profile
+    +'<div class="res-block-label">Il tuo profilo</div>'
     +'<div class="res-header">'
     +'<svg class="res-header-circles" viewBox="0 0 160 160" fill="none"><circle cx="80" cy="80" r="35" stroke="white" stroke-width="1"/><circle cx="80" cy="80" r="60" stroke="white" stroke-width="1"/><circle cx="80" cy="80" r="80" stroke="white" stroke-width="1"/></svg>'
     +'<div class="res-header-label">'+a.title+'</div>'
+    +'<div class="res-header-intro">In base alle tue risposte, la maturità della tua flotta è:</div>'
     +'<h2>'+profile.label+'</h2>'
     +'<div class="res-score-row"><div class="res-score-badge">Punteggio: '+score+'/'+maxScore+' ('+pct+'%)</div></div>'
+    +altroNote
     +fleetCtx
     +'</div>'
-    +'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;font-size:13px;color:var(--g600);line-height:1.6">'+profile.desc+'</div>'
-    +solHtml
-    +'<button class="btn-back" onclick="renderQuizHub()" style="margin-top:8px">← Torna agli assessment</button>';
+    +'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius);padding:16px 18px;margin-bottom:28px;font-size:13px;color:var(--g600);line-height:1.6">'+profile.desc+'</div>'
+    // BLOCK 2 - how we can help
+    +helpBlock
+    // CTA
+    +ctaBlock
+    +'<button class="btn-back" onclick="renderQuizHub()" style="margin-top:20px">← Torna agli assessment</button>';
 }
 
 // ── BENCHMARK HUB ──
@@ -1384,7 +1584,7 @@ function calcBenchmark(){
     const sav=Math.max(0,tot-totAvg);
     const savP=tot>0?Math.round((sav/tot)*100):0;
     matchedSvcIds.push('CTR-01','OPS-04');
-    resultHtml='<div class="br-res"><div class="br-section-title">Posizionamento per categoria</div>'+bars+'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:14px 16px;margin:12px 0;font-size:13px"><strong>Costo per veicolo/anno:</strong> <span style="color:var(--blue);font-weight:600">€ '+costPerVeh.toLocaleString('it-IT')+'</span> vs media mercato <span style="color:var(--g600)">€ '+avgPerVeh.toLocaleString('it-IT')+'</span></div><div class="saving"><div><div class="saving-l">Potenziale di saving stimato</div><div class="saving-n">€ '+sav.toLocaleString('it-IT')+'</div></div><div class="saving-p">–'+savP+'%</div></div>';
+    resultHtml='<div class="br-res"><div class="br-section-title">Posizionamento per categoria</div>'+bars+'<div style="background:#fff;border:1px solid var(--g200);border-radius:var(--radius-sm);padding:14px 16px;margin:12px 0;font-size:13px"><strong>Costo per veicolo/anno:</strong> <span style="color:var(--blue);font-weight:600">€ '+costPerVeh.toLocaleString('it-IT')+'</span> vs media mercato <span style="color:var(--g600)">€ '+avgPerVeh.toLocaleString('it-IT')+'</span></div><div class="saving"><div><div class="saving-l">Potenziale di risparmio stimato</div><div class="saving-n">€ '+sav.toLocaleString('it-IT')+'</div></div><div class="saving-p">–'+savP+'%</div></div>';
   } else {
     const questions=b.questions;
     let totalScore=0, maxScore=questions.length*3;
@@ -1412,7 +1612,7 @@ function calcBenchmark(){
   // matched services grouped by category
   const uniqueIds=[...new Set(matchedSvcIds)];
   const matched=uniqueIds.slice(0,5).map(id=>getSvcById(id)).filter(Boolean);
-  var solHtml=matched.length>0?'<div class="sol-t">Servizi ABC consigliati</div>'+groupByCat(matched):'';
+  var solHtml=matched.length>0?'<div class="sol-t">Cosa potremmo offrirti per migliorare</div>'+groupByCat(matched):'';
   document.getElementById('bench-result').innerHTML=resultHtml+solHtml+'<button class="btn-back" onclick="renderBenchHub()" style="margin-top:8px">← Torna ai benchmark</button></div>';
   document.getElementById('bench-result').scrollIntoView({behavior:'smooth',block:'start'});
 }
@@ -1457,7 +1657,7 @@ function renderProfile(){
     fleetCard.appendChild(hdr);
     var grid=document.createElement('div');
     grid.className='prof-detail-grid';
-    [['Veicoli totali',fleetProfile.veicoli],['% a noleggio',fleetProfile.pctNoleggio+'%'],['Destinazione uso',FP_USO[fleetProfile.uso]||'—'],['Team fleet mgmt',FP_TEAM[fleetProfile.team]||'—']].forEach(function(it){
+    [['Veicoli totali',fleetProfile.veicoli],['% di proprietà',fleetProfile.pctProprieta+'%'],['% di servizio',fleetProfile.pctServizio+'%'],['Gestionale flotta',fleetProfile.gestionale?'Sì':'No'],['App driver',fleetProfile.appDriver?'Sì':'No']].forEach(function(it){
       var d=document.createElement('div');
       d.className='prof-detail-item';
       d.innerHTML='<div class="prof-detail-label">'+it[0]+'</div><div class="prof-detail-val">'+it[1]+'</div>';
