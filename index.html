@@ -14,10 +14,10 @@
   --ok:#10b981;--warn:#f59e0b;--err:#ef4444;
   --radius:12px;--radius-sm:8px;
 }
-html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--g50);color:var(--g800);overflow-x:hidden}
+html{scroll-behavior:smooth}body{min-height:100vh;font-family:'DM Sans',sans-serif;background:var(--g50);color:var(--g800);overflow-x:hidden}
 .page{display:none;overflow:hidden}
-.page.active{display:flex;flex-direction:column;min-height:100vh;animation:fi .35s ease}
-.app-shell{display:flex;flex-direction:column;flex:1;min-height:0;height:100%}
+.page.active{display:flex;flex-direction:column;min-height:100vh;overflow:visible;animation:fi .35s ease}
+.app-shell{display:flex;flex-direction:column;flex:1;min-height:100vh}
 @keyframes fi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
 /* LOGIN */
@@ -47,8 +47,8 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 #toast{position:fixed;top:16px;left:50%;transform:translateX(-50%);background:var(--g800);color:#fff;padding:11px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;z-index:9999;display:none;white-space:nowrap;max-width:90vw;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
 
 /* APP SHELL */
-.app-shell{display:flex;flex-direction:column;flex:1;min-height:0;height:100%}
-.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 clamp(10px,2vw,24px);height:56px;display:flex;align-items:center;z-index:100;flex-shrink:0}
+.app-shell{display:flex;flex-direction:column;flex:1;min-height:100vh}
+.hdr{background:#fff;border-bottom:1px solid var(--g200);padding:0 clamp(10px,2vw,24px);height:56px;display:flex;align-items:center;z-index:100;flex-shrink:0;position:sticky;top:0}
 .hdr-logo{cursor:pointer}.hdr-logo .la{font-family:'DM Serif Display',serif;font-size:18px;color:var(--blue);line-height:1}
 .hdr-logo .lb{font-size:8px;letter-spacing:2px;color:var(--g400);text-transform:uppercase}
 .hdr-right{display:flex;align-items:center;gap:6px;margin-left:auto}
@@ -64,9 +64,9 @@ label.lbl{display:block;font-size:11px;font-weight:500;color:var(--g600);letter-
 .hdr-nav-btn:hover{color:var(--blue);background:var(--light)}
 .hdr-nav-sep{width:1px;height:14px;background:var(--g200);margin:0 2px}
 @media(max-width:400px){.hdr-nav{display:none}}
-.main{flex:1;overflow-y:auto}
+.main{flex:1}
 .inner{padding:clamp(18px,4vw,36px) clamp(14px,3vw,28px);max-width:960px;margin:0 auto}
-.main{flex:1;overflow-y:auto}
+.main{flex:1}
 .inner{padding:clamp(18px,4vw,36px) clamp(14px,3vw,28px);max-width:960px;margin:0 auto}
 
 /* BREADCRUMB */
@@ -870,7 +870,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 <script>
 
 // ── USERS ──
-const USERS={
+// Codici di riserva (fallback) - usati se la lettura dal foglio Google non riesce
+var USERS={
   'FM2024-ALFA':{az:'Alfa Logistics',ref:'Marco Bianchi'},
   'FM2024-BETA':{az:'Beta Transport',ref:'Laura Rossi'},
   'FM2024-GAMMA':{az:'Gamma Mobility',ref:'Stefano Ferri'},
@@ -1179,12 +1180,44 @@ var currentAssessment=null, currentAssessmentStep=0, currentAssessmentAnswers=[]
 var currentBenchmark=null, benchAnswers={};
 
 // ── AUTH ──
+// ── ACCESS TRACKING (Google Sheets) ──
+var TRACKING_URL='https://script.google.com/macros/s/AKfycbw4AUF875m1SneyHo-BY6K54eRDu6j8t-bswQzMWvjE1pgSmbANc07gAWhxBqHUvAdEPQ/exec';
+
+// Carica i codici validi dal foglio Google all'avvio.
+// Se la lettura fallisce, restano attivi i codici di riserva definiti in USERS.
+function loadCodici(){
+  try{
+    fetch(TRACKING_URL+'?action=getCodici')
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data && typeof data==='object' && Object.keys(data).length>0){
+          USERS=data;
+        }
+      })
+      .catch(function(){/* mantiene i codici di riserva */});
+  }catch(err){/* mantiene i codici di riserva */}
+}
+loadCodici();
+
+function trackAccess(codice, azienda){
+  try{
+    var url=TRACKING_URL+'?codice='+encodeURIComponent(codice)+'&azienda='+encodeURIComponent(azienda);
+    // fire-and-forget: no-cors so it works cross-origin without blocking login
+    fetch(url,{method:'GET',mode:'no-cors'}).catch(function(){});
+  }catch(err){/* tracking must never block login */}
+}
+
 function doLogin(){
   var v=document.getElementById('ci').value.trim().toUpperCase();
   var u=USERS[v];
   document.getElementById('ci').classList.toggle('bad',!u);
   document.getElementById('em').style.display=u?'none':'block';
-  if(u){user=u;showToast('Benvenuto, '+u.ref+' — '+u.az);setTimeout(function(){showPage('pg-dash');upHdr();},1400);}
+  if(u){
+    user=u;
+    trackAccess(v, u.az);
+    showToast('Benvenuto, '+u.ref+' — '+u.az);
+    setTimeout(function(){showPage('pg-dash');upHdr();},1400);
+  }
 }
 document.getElementById('ci').addEventListener('keydown',function(e){if(e.key==='Enter')doLogin();});
 
