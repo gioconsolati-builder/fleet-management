@@ -920,12 +920,32 @@ function openShareModal(){
   document.getElementById('share-modal').classList.add('open');
 }
 function closeShareModal(){ document.getElementById('share-modal').classList.remove('open'); }
+function buildSharePayload(){
+  var flotta=null;
+  if(fleetProfile){
+    flotta={veicoli:fleetProfile.veicoli,proprieta:fleetProfile.pctProprieta,servizio:fleetProfile.pctServizio,gestionale:!!fleetProfile.gestionale,appDriver:!!fleetProfile.appDriver};
+  }
+  var ass=[]; var nonComp=[];
+  ASSESSMENTS.forEach(function(a){
+    var r=assessmentResults[a.id];
+    if(!r){ nonComp.push(a.title); return; }
+    var risposte=a.questions.map(function(q,i){
+      var ans=r.answers?r.answers[i]:-1;
+      var txt;
+      if(ans===q.opts.length){ txt='Altro'+((r.altro&&r.altro[i])?': '+r.altro[i]:''); }
+      else if(ans>-1){ txt=q.opts[ans]; }
+      else { txt='(nessuna risposta)'; }
+      return {domanda:q.q, risposta:txt};
+    });
+    ass.push({id:a.id,titolo:a.title,profilo:r.label,punteggio:r.score,max:r.maxScore,percentuale:r.pct,note:(r.scorable<r.total?('Calcolato su '+r.scorable+'/'+r.total+' risposte'):''),risposte:risposte});
+  });
+  return {action:'sendAssessment',codice:loginCode||'',azienda:(user?user.az:''),referente:(user?user.ref:''),timestamp:new Date().toISOString(),flotta:flotta,assessment:ass,nonCompilati:nonComp};
+}
+
 function confirmShare(){
   try{
-    var parts=[];
-    ASSESSMENTS.forEach(function(a){var r=assessmentResults[a.id]; if(r)parts.push(a.title+': '+r.label+' ('+r.pct+'%)');});
-    var qs='?action=sendAssessment&codice='+encodeURIComponent(loginCode||'')+'&azienda='+encodeURIComponent(user?user.az:'')+'&flotta='+encodeURIComponent(fleetProfile?getFleetSummary():'')+'&risultati='+encodeURIComponent(parts.join(' | '));
-    fetch(TRACKING_URL+qs,{method:'GET',mode:'no-cors'}).catch(function(){});
+    var payload=JSON.stringify(buildSharePayload());
+    fetch(TRACKING_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:payload}).catch(function(){});
   }catch(e){}
   closeShareModal();
   showShareToast();
