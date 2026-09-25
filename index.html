@@ -444,7 +444,7 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 #pg-quiz .contact-band{background:#EEF3F7;border-radius:0;padding:32px;margin:0}
 #pg-quiz .contact-band-title{font-size:18px;font-weight:600;line-height:1.4;color:var(--blue800);margin:0}
 #pg-quiz .contact-band-text{font-size:18px;font-weight:400;line-height:1.4;color:var(--blue800)}
-#pg-quiz .contact-band-text a{color:var(--blue800);font-weight:400;text-decoration:underline}
+#pg-quiz .contact-band-text a{color:#0A8CD7;font-weight:400;text-decoration:underline}
 
 /* Breakpoint non forniti dal Figma (definito solo a 1440 fisso):
    riduzioni derivate dalla scala A2A, da sostituire quando arrivano i frame. */
@@ -489,11 +489,13 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 /* ==========================================================================
    FORM FLOTTA INLINE — stessi valori del frame "Modale-full flotta", ma dentro la pagina: header e footer restano visibili.
    ========================================================================== */
-.fp-form{background:none;border:none;border-radius:var(--radius);padding:0;margin-bottom:24px;position:relative}
-.fp-close{position:absolute;top:0;right:0;width:56px;min-height:56px;padding:16px;background:#fff;border:1px solid var(--blue);border-radius:100px;color:var(--blue);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none}
+.fp-form{background:#F9FAFC;border:none;border-radius:0;padding:96px clamp(32px,6vw,149px) 160px;margin-bottom:0;position:fixed;inset:0;z-index:500;overflow-y:auto;box-sizing:border-box}
+.fp-close{position:absolute;top:32px;right:32px;width:56px;min-height:56px;padding:16px;background:#fff;border:1px solid var(--blue);border-radius:100px;color:var(--blue);display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-appearance:none;z-index:501}
 .fp-close svg{width:24px;height:24px;display:block}
 
-#pg-quiz .fp-form h3{font-size:40px;font-weight:400;line-height:1.2;color:var(--blue800);margin:0 0 24px;padding-right:88px}
+#pg-quiz .fp-form h3{font-size:40px;font-weight:400;line-height:1.2;color:var(--blue800);margin:0 0 24px;padding-right:88px;max-width:1142px;margin-left:auto;margin-right:auto}
+#pg-quiz .fp-form .fp-sub,#pg-quiz .fp-row,#pg-quiz .fp-actions{max-width:1142px;margin-left:auto;margin-right:auto}
+
 #pg-quiz .fp-form .fp-sub{font-size:24px;font-weight:500;line-height:1.2;color:var(--g600);max-width:none;margin:0 0 48px}
 #pg-quiz .fp-row{max-width:none;margin:0 0 48px}
 #pg-quiz .fp-row label{font-size:18px;font-weight:400;line-height:1.4;color:var(--blue800);margin:0}
@@ -526,14 +528,14 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
   #pg-quiz .btn-pill.tf-pill{width:100%}
   #pg-quiz .fp-form h3{font-size:32px;padding-right:0}
   #pg-quiz .fp-form .fp-sub{font-size:20px}
-  #pg-quiz .fp-close{position:static;margin-bottom:24px}
+  #pg-quiz .fp-close{position:absolute;top:16px;right:16px;margin-bottom:0}
   #pg-quiz .fp-btn{width:100%}
 }
 /* ==========================================================================
    SCHERMATA DOMANDA — frame Figma "Modale-full maturita operativa", resa inline (header e footer restano visibili).
    Riscontro: 32 + 56 + 64 + 838 + 160 = 1150 (Hug).
    ========================================================================== */
-#pg-quiz .qz-wrap{position:relative}
+#pg-quiz .qz-wrap{position:fixed;inset:0;z-index:500;background:#F9FAFC;overflow-y:auto;padding:96px clamp(32px,6vw,149px) 160px;box-sizing:border-box}
 
 /* title-base: heading-02 40/48 + heading-04 24/29, gap 24, poi 64 al corpo */
 #pg-quiz .qz-title{font-size:40px;font-weight:400;line-height:1.2;color:var(--blue800);margin:0 0 24px;padding-right:88px}
@@ -583,7 +585,8 @@ input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;bac
 #pg-quiz .res-block{margin:0 0 96px}
 #pg-quiz .res-label{font-size:32px;font-weight:500;line-height:1.2;color:var(--blue800);max-width:618px;margin:0 0 24px}
 #pg-quiz .res-desc{font-size:24px;font-weight:400;line-height:1.4;color:#6E777E;max-width:618px;margin:0 0 24px}
-#pg-quiz .res-score{display:inline-flex;align-items:center;padding:4px 8px;background:#EEF3F7;border-radius:4px;font-size:20px;font-weight:400;line-height:1.4;color:var(--blue800)}
+#pg-quiz .res-desc-plain{font-size:24px;font-weight:400;line-height:1.4;color:#6E777E;max-width:618px;margin:0 0 24px;background:none;border:none;padding:0}
+#pg-quiz .res-score{display:inline-flex;align-items:center;padding:4px 8px;background:#EEF3F7;border-radius:4px;font-size:20px;font-weight:400;line-height:1.4;color:var(--blue800);margin:0 0 96px}
 
 /* "Cosa potremmo offrirti per migliorare": heading-03, 24px al contenuto */
 #pg-quiz .res-block + .sec-h{margin:0 0 24px}
@@ -1386,8 +1389,8 @@ function renderSynthesis(id){
     +"<button class='fp-close' aria-label='Chiudi' onclick='renderQuizHub()'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'><path d='M6 6L18 18'/><path d='M6 18L18 6'/></svg></button>"
     +"<h1 class='qz-title'>"+a.title+"</h1>"
     +"<p class='qz-desc'>Di seguito trovi il profilo della tua flotta in base alle tue risposte, le risposte \"Altro\" non incidono sul punteggio.</p>"
-    +"<div class='res-block'><h2 class='res-label'>"+r.label+"</h2>"
-    +"<div class='res-desc'>"+r.desc+"</div>"+scoreRow+"</div>"
+    +"<h2 class='res-label'>"+r.label+"</h2>"
+    +"<p class='res-desc-plain'>"+r.desc+"</p>"+scoreRow
     +svcHtml
     +contactBand()
     +"</div>";
@@ -1427,7 +1430,7 @@ function renderQuizHub(){
     }).join('');
     var flotHead="<div class='tf-card-head'><span class='tf-card-title'>La tua flotta</span>"+(hasProfile?"<button class='tf-edit' title='Modifica' aria-label='Modifica' onclick='showFleetForm(\"quiz-hub\",renderQuizHub,true)'><svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'><path d='M13.75 5.25L18.75 10.25'/><path d='M16.714 2.286L3.214 15.786L1.25 22.75L8.214 20.786L21.714 7.286C23.095 5.905 23.095 3.667 21.714 2.286C20.334 0.905 18.095 0.905 16.714 2.286Z'/></svg></button>":"")+"</div>";
     var flotBody=hasProfile?("<div class='tf-chips'>"+chips+"</div>"):"<div class='tf-res-note' style='margin-bottom:2px'>Profilazione della flotta non ancora compilata.</div>";
-    recap="<div class='tf-card'>"+flotHead+flotBody+(resultsHtml?"<div class='tf-div'></div>":"")+resultsHtml
+    recap="<div class='tf-card'>"+flotHead+flotBody+(resultsHtml&&completed.length>1?"<div class='tf-div'></div>":"")+resultsHtml
       +"<div class='tf-actions'><button class='tf-download' onclick='downloadRecap()'>Scarica<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'><path d='M5 21H19'/><path d='M8 11L12 15L16 11'/><path d='M12 15V3'/></svg></button><button class='btn-pill tf-pill' onclick='openShareModal()'>Voglio essere ricontattato/a</button></div></div>";
   }
 
@@ -1466,7 +1469,7 @@ function startAssessment(id){
   window.scrollTo(0,0);
 }
 
-function renderAssessmentStep(){
+function renderAssessmentStep(doScroll){
   var a=currentAssessment;
   var step=currentAssessmentStep;
   var tot=a.questions.length;
@@ -1492,15 +1495,38 @@ function renderAssessmentStep(){
     +altroField
     +"<div class='qz-nav'><button class='qz-back' onclick='assBack()' "+(step===0?'disabled':'')+">Indietro</button>"
     +"<button class='qz-next' onclick='assNext()' "+(currentAssessmentAnswers[step]===-1?'disabled':'')+">"+(step===tot-1?'Vedi risultati':'Avanti')+"</button></div></div>";
+  if(doScroll){var ov=el.querySelector('.qz-wrap');if(ov)ov.scrollTop=0;}
 }
 
 function selAssOpt(i){
   currentAssessmentAnswers[currentAssessmentStep]=i;
-  renderAssessmentStep();
+  // Aggiorna solo le classi senza ri-renderizzare (evita scroll automatico)
+  var opts=document.querySelectorAll('#quiz-hub .qz-opt');
+  opts.forEach(function(el,idx){ el.classList.toggle('on', idx===i); });
+  // Abilita il bottone Avanti
+  var nextBtn=document.querySelector('#quiz-hub .qz-next');
+  if(nextBtn) nextBtn.removeAttribute('disabled');
+  // Mostra/nascondi campo "Altro"
+  var altroIdx=opts.length-1;
+  var existing=document.getElementById('qz-altro-field');
+  if(i===altroIdx){
+    if(!existing){
+      var altroEl=document.createElement('textarea');
+      altroEl.className='qz-altro';
+      altroEl.id='qz-altro-field';
+      altroEl.placeholder='Specifica la tua situazione (opzionale)...';
+      altroEl.oninput=function(){saveAltroText(this);};
+      altroEl.value=currentAssessmentAltro[currentAssessmentStep]||'';
+      var optsContainer=document.querySelector('#quiz-hub .qz-opts');
+      if(optsContainer) optsContainer.after(altroEl);
+    }
+  } else {
+    if(existing) existing.remove();
+  }
 }
 function saveAltroText(el){ currentAssessmentAltro[currentAssessmentStep]=el.value; }
-function assNext(){if(currentAssessmentAnswers[currentAssessmentStep]>-1){currentAssessmentStep++;renderAssessmentStep();}}
-function assBack(){if(currentAssessmentStep>0){currentAssessmentStep--;renderAssessmentStep();}}
+function assNext(){if(currentAssessmentAnswers[currentAssessmentStep]>-1){currentAssessmentStep++;renderAssessmentStep(true);}}
+function assBack(){if(currentAssessmentStep>0){currentAssessmentStep--;renderAssessmentStep(true);}}
 
 function showAssessmentResults(){
   var a=currentAssessment;
